@@ -23,7 +23,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.1/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.2/dist/shadcss.min.css">
 ```
 
 ```bash

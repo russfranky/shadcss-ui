@@ -188,8 +188,11 @@
   --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  /* Dark mode: lighten destructive/info + dark foreground so badges (dark text
+     on light color) AND alert/sonner titles (light color on near-black) both
+     clear WCAG AA — a single mid-tone value cannot satisfy both. */
+  --destructive: 0 84% 68%;
+  --destructive-foreground: 0 0% 12%;
 
   --success: 142.1 70.6% 45.3%;
   --success-foreground: 144.9 80.4% 10%;
@@ -197,8 +200,8 @@
   --warning: 47.9 95.8% 53.1%;
   --warning-foreground: 240 10% 3.9%;
 
-  --info: 217.2 91.2% 59.8%;
-  --info-foreground: 0 0% 98%;
+  --info: 217 91% 68%;
+  --info-foreground: 0 0% 12%;
 
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
@@ -238,14 +241,14 @@
     --muted-foreground: 240 5% 64.9%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 68%;
+    --destructive-foreground: 0 0% 12%;
     --success: 142.1 70.6% 45.3%;
     --success-foreground: 144.9 80.4% 10%;
     --warning: 47.9 95.8% 53.1%;
     --warning-foreground: 240 10% 3.9%;
-    --info: 217.2 91.2% 59.8%;
-    --info-foreground: 0 0% 98%;
+    --info: 217 91% 68%;
+    --info-foreground: 0 0% 12%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;

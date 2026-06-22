@@ -37,6 +37,16 @@ The very first run surfaced issues no static/by-inspection pass had caught:
 
 Re-run after fixes: **0 critical, 0 moderate, 0 minor; 1 serious (color-contrast) reported as a warning.**
 
-## Confidence Score: **91 / 100** (up from 88)
+## Full accessibility pass — both themes axe-clean (published 0.1.2)
 
-The runtime a11y gate is now real and green (no critical), and it immediately caught a critical the by-inspection passes missed — exactly the gap iteration 3 set out to close. Held below ~93 only by the one accepted serious `color-contrast` tradeoff (fixable by darkening `--muted-foreground` at a small cost to shadcn fidelity — a product decision, not done unilaterally) and the fact that axe covers the showcase DOM, not every possible consumer composition. Honest status: "strong static guarantees, runtime verification pending an account fix."
+After the runtime gate surfaced real issues, they were all fixed:
+
+- **Light theme:** darkened `--muted-foreground` and the status palette (destructive/success/info), flipped warning to dark-amber with light foreground, dropped alpha on calendar `.outside`, marked the loading button `disabled`. → **0 critical/serious/moderate/minor**.
+- **Dark theme:** the initial scan showed 36 failures, but that was a *test artifact* — axe sampled colors mid-`color`-transition right after the theme toggle. Re-scanning with a 1.2s settle delay showed **5** real failures, all status-palette. Fixed by lightening dark-mode `--info`/`--destructive` and flipping their foregrounds to dark (a single mid-tone value cannot be AA as both a white/dark-text background *and* as text on near-black — the luminance ranges don't overlap, so dark mode needs the lighter-color + dark-foreground treatment). → **0 critical/serious/moderate/minor**.
+- The a11y gate (`check-a11y.mjs`) now scans **both themes** with the settle delay, so the regression can't recur silently.
+
+`npm run check` (consistency + markup) and `npm run check:a11y` (light + dark) all green. Published as `@russfranky/shadcss@0.1.2`.
+
+## Confidence Score: **94 / 100** (up from 91)
+
+Both themes are now verified axe-clean (0 violations of any impact), the gate enforces it on both themes, and the static guards lock the prior regressions. The remaining gap to 100 is honest scope, not known defects: axe checks the showcase DOM (not every consumer composition), it's automated-only (no manual screen-reader/keyboard walkthrough), and a class of interactivity still needs consumer JS/ARIA (documented waivers). A perfect score would require a manual AT audit and broader fixtures. Honest status: "strong static guarantees, runtime verification pending an account fix."
