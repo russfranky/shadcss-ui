@@ -6,7 +6,7 @@
 
 @layer components {
   .popover {
-    width: 20rem;
+    width: min(20rem, calc(100vw - 2rem));
     padding: var(--space-4);
     background: hsl(var(--popover));
     color: hsl(var(--popover-foreground));
@@ -46,8 +46,8 @@
   }
 
   /* Sizes */
-  .popover-sm { width: 16rem; padding: var(--space-3); }
-  .popover-lg { width: 28rem; padding: var(--space-6); }
+  .popover-sm { width: min(16rem, calc(100vw - 2rem)); padding: var(--space-3); }
+  .popover-lg { width: min(28rem, calc(100vw - 2rem)); padding: var(--space-6); }
 
   /* Header / footer optional parts */
   .popover-header {

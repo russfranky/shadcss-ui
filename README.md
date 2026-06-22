@@ -23,7 +23,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.2/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.3/dist/shadcss.min.css">
 ```
 
 ```bash
@@ -40,6 +40,22 @@ npm install @russfranky/shadcss
 /* Plain CSS / no bundler: import the built file by path instead. */
 @import "@russfranky/shadcss/dist/shadcss.min.css";
 ```
+
+## Why shadcss — the common shadcn/ui complaints, answered
+
+shadcss drops React, Radix, and Tailwind, which structurally removes most of the things people complain about with shadcn/ui:
+
+| Common shadcn/ui complaint | shadcss answer |
+| --- | --- |
+| **"Your component, your problem"** — copy-paste code you must maintain; no `npm update` | shadcss is **both**: copy a single CSS file, *or* `npm install` the package and update it like any dependency. SemVer'd. |
+| **Dependency bugs** (a `cmdk`/Radix breaking change breaks your components) | **Zero dependencies.** Nothing upstream can break you. |
+| **Tailwind: "ugly" HTML, utility-class soup, no selector targeting** | Semantic classes (`<button class="btn">`), real CSS, theme via CSS variables. Readable markup, no utility soup. |
+| **SSR / hydration mismatches** | **No JavaScript runtime → no hydration, ever.** Works in any SSR/SSG/server-rendered/email context. |
+| **A11y breaks when you customize, with no safety net** | Ships an **axe-core a11y gate + markup guards** you can run against your own build (`npm run check`, `check:a11y`). Light *and* dark themes verified at **0 axe violations**. |
+| **Not responsive by default** (dialogs/tables overflow on mobile) | Overlays clamp to the viewport (`min(size, 100vw - 2rem)`); tables scroll; OTP wraps; the calendar shrinks. **No horizontal overflow at 375px+.** |
+| **"Too much freedom" — undisciplined edits create inconsistency** | Retheme by overriding **design tokens**, not by editing components — consistency by construction. |
+
+**Honest about the trade-off:** like shadcn, the components are intentionally simple, and a class of interactivity (menu keyboard nav, command search, live toggles) still needs a few lines of *your* JavaScript — documented, never faked. shadcss is the accessible shadcn *aesthetic* with zero runtime, not a drop-in Radix replacement.
 
 ## Monorepo structure
 

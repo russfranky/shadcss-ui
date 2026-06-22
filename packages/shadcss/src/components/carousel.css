@@ -9,10 +9,13 @@
   .carousel {
     position: relative;
     width: 100%;
+    min-width: 0;
   }
 
   .carousel-viewport {
     overflow-x: auto;
+    min-width: 0;
+    max-width: 100%;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;

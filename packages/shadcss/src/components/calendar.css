@@ -16,6 +16,7 @@
     --cal-cell: 2.5rem;
     --cal-gap: 0.125rem;
     width: max-content;
+    max-width: 100%;
     padding: var(--space-3);
     background: hsl(var(--background));
     border: 1px solid hsl(var(--border));
@@ -59,7 +60,7 @@
 
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, var(--cal-cell));
+    grid-template-columns: repeat(7, minmax(0, var(--cal-cell)));
     gap: var(--cal-gap);
   }
 
@@ -79,7 +80,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--cal-cell);
+    width: 100%;
     height: var(--cal-cell);
     border-radius: var(--radius-sm);
     font-size: var(--text-sm);

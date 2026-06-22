@@ -120,7 +120,7 @@ shadcss ships every shadcn component, plus a few extras:
 
 ```html
 <!-- Pin a version in production so a future major can't silently break you. -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.2/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.3/dist/shadcss.min.css">
 ```
 
 ### npm

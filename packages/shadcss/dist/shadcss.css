@@ -2227,7 +2227,7 @@
   }
 
   .popover {
-    width: 20rem;
+    width: min(20rem, 100vw - 2rem);
     padding: var(--space-4);
     background: hsl(var(--popover));
     color: hsl(var(--popover-foreground));
@@ -2302,12 +2302,12 @@
   }
 
   .popover-sm {
-    width: 16rem;
+    width: min(16rem, 100vw - 2rem);
     padding: var(--space-3);
   }
 
   .popover-lg {
-    width: 28rem;
+    width: min(28rem, 100vw - 2rem);
     padding: var(--space-6);
   }
 
@@ -2345,7 +2345,7 @@
   }
 
   .hover-card-panel {
-    width: 20rem;
+    width: min(20rem, 100vw - 2rem);
     padding: var(--space-4);
     background: hsl(var(--popover));
     color: hsl(var(--popover-foreground));
@@ -4649,6 +4649,7 @@
     --cal-cell: 2.5rem;
     --cal-gap: .125rem;
     width: max-content;
+    max-width: 100%;
     padding: var(--space-3);
     background: hsl(var(--background));
     border: 1px solid hsl(var(--border));
@@ -4705,7 +4706,7 @@
   }
 
   .calendar-grid {
-    grid-template-columns: repeat(7, var(--cal-cell));
+    grid-template-columns: repeat(7, minmax(0, var(--cal-cell)));
     gap: var(--cal-gap);
     display: grid;
   }
@@ -4723,7 +4724,7 @@
   }
 
   .calendar-day {
-    width: var(--cal-cell);
+    width: 100%;
     height: var(--cal-cell);
     -webkit-border-radius: var(--radius-sm);
     border-radius: var(--radius-sm);
@@ -4805,6 +4806,7 @@
 
   .carousel {
     width: 100%;
+    min-width: 0;
     position: relative;
   }
 
@@ -4813,6 +4815,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
+    min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
   }
 
@@ -5720,7 +5724,9 @@
   .otp {
     align-items: center;
     gap: var(--space-2);
-    display: inline-flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    display: flex;
   }
 
   .otp-input {
