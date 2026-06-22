@@ -164,7 +164,7 @@
         <span class="sidebar-brand-text">shadcss</span>
       </a>
     </div>
-    <nav class="sidebar-content scroll-area">
+    <nav class="sidebar-content scroll-area" aria-label="Sidebar">
       <div class="sidebar-group">
         <div class="sidebar-group-label">Getting Started</div>
         <ul class="sidebar-menu">
@@ -592,7 +592,7 @@
           </div>
         </div>
 
-        <details class="alert alert-destructive alert-dismissible" role="alert" open>
+        <details class="alert alert-destructive alert-dismissible" open>
           <summary aria-label="Dismiss">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </summary>
@@ -1104,11 +1104,11 @@
           <div class="card-content demo-stack">
             <div>
               <div class="label" style="margin-bottom: var(--space-2); justify-content: space-between;">Volume <span id="vol-label">50%</span></div>
-              <input type="range" class="slider" min="0" max="100" value="50" style="--slider-fill: 50%" oninput="this.style.setProperty('--slider-fill', this.value + '%'); document.getElementById('vol-label').textContent = this.value + '%'">
+              <input type="range" class="slider" aria-label="Volume" min="0" max="100" value="50" style="--slider-fill: 50%" oninput="this.style.setProperty('--slider-fill', this.value + '%'); document.getElementById('vol-label').textContent = this.value + '%'">
             </div>
             <div>
               <div class="label" style="margin-bottom: var(--space-2);">Brightness (large)</div>
-              <input type="range" class="slider slider-lg" min="0" max="100" value="75" style="--slider-fill: 75%">
+              <input type="range" class="slider slider-lg" aria-label="Brightness" min="0" max="100" value="75" style="--slider-fill: 75%">
             </div>
           </div>
         </div>
@@ -1286,7 +1286,7 @@
       </div>
 
       <div class="carousel">
-        <div class="carousel-viewport">
+        <div class="carousel-viewport" tabindex="0" role="group" aria-label="Carousel (scrollable)">
           <div class="carousel-track">
             <div class="carousel-item" data-size="third">
               <div class="card card-interactive" style="height: 100%;">
