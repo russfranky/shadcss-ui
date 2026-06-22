@@ -23,7 +23,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.3/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.4/dist/shadcss.min.css">
 ```
 
 ```bash
@@ -40,6 +40,17 @@ npm install @russfranky/shadcss
 /* Plain CSS / no bundler: import the built file by path instead. */
 @import "@russfranky/shadcss/dist/shadcss.min.css";
 ```
+
+## CLI — own the code *and* keep it updatable
+
+```bash
+npx @russfranky/shadcss-cli add button card dialog   # copy components (+ deps) into ./shadcss
+npx @russfranky/shadcss-cli diff button              # see what changed upstream vs your copy
+npx @russfranky/shadcss-cli check ./index.html       # lint HTML for a11y/markup foot-guns
+npx @russfranky/shadcss-cli list                     # all 52 components
+```
+
+`add` gives you shadcn-style ownership (the CSS lives in your repo); `diff` answers shadcn's #1 complaint by showing exactly what changed upstream so fixes don't silently pass you by. Zero dependencies, fetches from the CDN. See [`packages/cli`](./packages/cli).
 
 ## Why shadcss — the common shadcn/ui complaints, answered
 

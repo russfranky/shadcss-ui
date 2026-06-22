@@ -1,0 +1,34 @@
+{
+  "name": "@russfranky/shadcss-cli",
+  "version": "0.1.0",
+  "description": "CLI for shadcss — add components to your project, diff your copies against upstream, and lint markup. Zero dependencies.",
+  "type": "module",
+  "bin": {
+    "shadcss": "./bin/shadcss.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "shadcss",
+    "cli",
+    "css",
+    "components",
+    "registry"
+  ],
+  "author": "russfranky",
+  "license": "MIT",
+  "homepage": "https://github.com/russfranky/shadcss-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russfranky/shadcss-ui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": "https://github.com/russfranky/shadcss-ui/issues",
+  "publishConfig": {
+    "access": "public"
+  }
+}
