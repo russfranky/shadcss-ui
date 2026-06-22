@@ -200,6 +200,7 @@
         "card-header",
         "card-title",
         "card-description",
+        "card-action",
         "card-content",
         "card-footer",
         "card-interactive"
@@ -361,7 +362,9 @@
         "dropdown-label",
         "dropdown-separator",
         "dropdown-destructive",
-        "dropdown-shortcut"
+        "dropdown-shortcut",
+        "dropdown-checkbox-item",
+        "dropdown-radio-item"
       ],
       "attributes": [
         "popover",

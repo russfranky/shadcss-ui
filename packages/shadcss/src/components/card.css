@@ -31,6 +31,21 @@
     color: hsl(var(--muted-foreground));
   }
 
+  /* Action slot — a control pinned to the top-right of the header (shadcn's
+     CardAction). When present, the header becomes a grid so the title and
+     description keep the first column and the action sits top-right. */
+  .card-header:has(.card-action) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+  .card-action {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+    justify-self: end;
+  }
+
   .card-content { padding: var(--space-6); padding-top: 0; }
   .card-content:has(+ .card-footer) { padding-bottom: var(--space-4); }
 

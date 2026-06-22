@@ -120,4 +120,39 @@
     font-size: var(--text-xs);
     letter-spacing: 0.05em;
   }
+
+  /* Checkbox / radio menu items (shadcn parity). Use with
+     role="menuitemcheckbox"/"menuitemradio" + aria-checked; the left indicator
+     appears when checked. Mirror aria-checked into data-checked for styling if
+     you toggle it from JS. */
+  .dropdown-checkbox-item,
+  .dropdown-radio-item {
+    position: relative;
+    padding-inline-start: 2rem;
+  }
+  .dropdown-checkbox-item::before,
+  .dropdown-radio-item::before {
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    color: hsl(var(--foreground));
+  }
+  .dropdown-checkbox-item[aria-checked="true"]::before,
+  .dropdown-checkbox-item[data-checked]::before {
+    content: "✓";
+    font-size: 0.85em;
+    line-height: 1;
+    opacity: 1;
+  }
+  .dropdown-radio-item[aria-checked="true"]::before,
+  .dropdown-radio-item[data-checked]::before {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    opacity: 1;
+  }
 }

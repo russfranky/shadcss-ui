@@ -1424,6 +1424,18 @@
     color: hsl(var(--muted-foreground));
   }
 
+  .card-header:has(.card-action) {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    display: grid;
+  }
+
+  .card-action {
+    grid-area: 1 / 2 / -1;
+    align-self: start;
+    justify-self: end;
+  }
+
   .card-content {
     padding: var(--space-6);
     padding-top: 0;
@@ -3435,6 +3447,92 @@
 
   .dropdown-shortcut:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
     margin-right: auto;
+  }
+
+  .dropdown-checkbox-item, .dropdown-radio-item {
+    position: relative;
+  }
+
+  .dropdown-checkbox-item:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+    padding-left: 2rem;
+  }
+
+  .dropdown-radio-item:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+    padding-left: 2rem;
+  }
+
+  .dropdown-checkbox-item:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+    padding-right: 2rem;
+  }
+
+  .dropdown-radio-item:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+    padding-right: 2rem;
+  }
+
+  .dropdown-checkbox-item:before {
+    opacity: 0;
+    color: hsl(var(--foreground));
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .dropdown-checkbox-item:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))):before {
+    left: var(--space-3);
+  }
+
+  .dropdown-checkbox-item:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)):before {
+    right: var(--space-3);
+  }
+
+  .dropdown-radio-item:before {
+    opacity: 0;
+    color: hsl(var(--foreground));
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .dropdown-radio-item:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))):before {
+    left: var(--space-3);
+  }
+
+  .dropdown-radio-item:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)):before {
+    right: var(--space-3);
+  }
+
+  .dropdown-checkbox-item[aria-checked="true"]:before {
+    content: "✓";
+    opacity: 1;
+    font-size: .85em;
+    line-height: 1;
+  }
+
+  .dropdown-checkbox-item[data-checked]:before {
+    content: "✓";
+    opacity: 1;
+    font-size: .85em;
+    line-height: 1;
+  }
+
+  .dropdown-radio-item[aria-checked="true"]:before {
+    content: "";
+    -webkit-border-radius: var(--radius-full);
+    border-radius: var(--radius-full);
+    opacity: 1;
+    background: currentColor;
+    width: .375rem;
+    height: .375rem;
+  }
+
+  .dropdown-radio-item[data-checked]:before {
+    content: "";
+    -webkit-border-radius: var(--radius-full);
+    border-radius: var(--radius-full);
+    opacity: 1;
+    background: currentColor;
+    width: .375rem;
+    height: .375rem;
   }
 
   .menubar {
