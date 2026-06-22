@@ -1,0 +1,76 @@
+/* ==========================================================================
+   shadcss · components/table.css
+   ========================================================================== */
+
+@layer components {
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    caption-side: bottom;
+  }
+
+  .table caption {
+    margin-top: var(--space-2);
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-xs);
+  }
+
+  .table thead {
+    background: hsl(var(--muted));
+  }
+
+  .table th {
+    height: 2.5rem;
+    padding: 0 var(--space-4);
+    text-align: start;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-xs);
+    text-transform: none;
+    white-space: nowrap;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .table td {
+    height: 3rem;
+    padding: 0 var(--space-4);
+    color: hsl(var(--foreground));
+    border-bottom: 1px solid hsl(var(--border));
+    vertical-align: middle;
+  }
+
+  .table tbody tr:last-child td { border-bottom: none; }
+
+  .table tbody tr {
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .table tbody tr:hover {
+    background: hsl(var(--muted) / 0.5);
+  }
+
+  /* Right-align numeric columns */
+  .table th[data-align="end"],
+  .table td[data-align="end"] { text-align: end; }
+  .table th[data-align="center"],
+  .table td[data-align="center"] { text-align: center; }
+
+  /* Compact variant */
+  .table-compact th { height: 2rem; padding: 0 var(--space-3); }
+  .table-compact td { height: 2.25rem; padding: 0 var(--space-3); }
+
+  /* Sticky header */
+  .table[data-sticky-header] thead th {
+    position: sticky;
+    top: 0;
+    background: hsl(var(--muted));
+    z-index: 1;
+  }
+}

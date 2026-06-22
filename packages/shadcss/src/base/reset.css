@@ -1,0 +1,76 @@
+/* ==========================================================================
+   shadcss · base/reset.css
+   A modern reset. Inspired by Andy Bell's modern-css-reset, refined for
+   component-driven layouts. Lives in the lowest cascade layer so anything
+   authored later wins without `!important` fights.
+   ========================================================================== */
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  p, li, blockquote { text-wrap: pretty; }
+
+  ul[role="list"], ol[role="list"] { list-style: none; }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+  }
+
+  button { cursor: pointer; }
+
+  a { color: inherit; text-decoration: none; }
+
+  :where(:modal, :popover-open, [popover]:popover-open) {
+    inset: 0;
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  :where([popover], dialog[open]) { color: inherit; }
+}
+
+/* Reduced motion is global and should not be overridable by components */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

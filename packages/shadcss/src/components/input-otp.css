@@ -1,0 +1,61 @@
+/* ==========================================================================
+   shadcss · components/input-otp.css
+   Multi-digit one-time-password input. Each digit is its own native
+   <input> styled as a box (.otp-input), grouped in a flex row (.otp) with
+   optional .otp-separator elements between digit groups.
+   ACCESSIBILITY: mark each .otp-separator aria-hidden="true" so it is not read
+   aloud, give each .otp-input an aria-label (e.g. "Digit 1 of 6"), and label
+   the group. Auto-advance between boxes requires consumer JS (not shippable in
+   a CSS-only framework). */
+
+@layer components {
+  .otp {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .otp-input {
+    width: 2.5rem;
+    height: 3rem;
+    text-align: center;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    font-family: var(--font-mono);
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--input));
+    border-radius: var(--radius-md);
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  .otp-input:focus {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.25);
+  }
+
+  .otp-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .otp-input:invalid {
+    border-color: hsl(var(--destructive));
+  }
+
+  /* Separator after N digits */
+  .otp-separator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--muted-foreground));
+    padding-inline: var(--space-1);
+  }
+
+  /* Variants */
+  .otp-sm .otp-input { width: 2rem; height: 2.5rem; font-size: var(--text-base); }
+  .otp-lg .otp-input { width: 3rem; height: 3.5rem; font-size: var(--text-xl); }
+}

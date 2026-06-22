@@ -2,9 +2,13 @@
   "name": "www",
   "version": "0.0.1",
   "private": true,
+  "description": "shadcss/ui component showcase and docs.",
   "type": "module",
   "scripts": {
-    "dev": "npx serve . -p 3000",
-    "build": "echo 'Static site — no build step required.'"
+    "dev": "serve . -l 3333",
+    "build": "echo 'Static showcase — no build step. Open index.html.'"
+  },
+  "devDependencies": {
+    "serve": "14.2.3"
   }
 }

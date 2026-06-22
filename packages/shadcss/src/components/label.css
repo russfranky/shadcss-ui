@@ -1,0 +1,48 @@
+/* ==========================================================================
+   shadcss · components/label.css
+   ========================================================================== */
+
+@layer components {
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .label:has(:disabled, [aria-disabled="true"]) {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .label-required::after {
+    content: "*";
+    color: hsl(var(--destructive));
+    margin-inline-start: 0.125em;
+  }
+
+  .label-muted { color: hsl(var(--muted-foreground)); font-weight: 400; }
+
+  /* Form layout helper */
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .form-field .help-text {
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+  }
+  /* :user-invalid (Baseline since ~2023) is the primary trigger — it reddens
+     help-text for empty placeholder-less required controls after interaction.
+     The :placeholder-shown pair is a progressive-enhancement fallback. */
+  .form-field:has(:user-invalid) .help-text,
+  .form-field:has(:invalid:not(:placeholder-shown)) .help-text {
+    color: hsl(var(--destructive));
+  }
+}

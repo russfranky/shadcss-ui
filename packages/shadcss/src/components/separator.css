@@ -1,0 +1,20 @@
+/* ==========================================================================
+   shadcss · components/separator.css
+   ========================================================================== */
+
+@layer components {
+  /* Base = horizontal, so any unknown/missing orientation falls back safely */
+  .separator {
+    flex-shrink: 0;
+    background: hsl(var(--border));
+    border: none;
+    width: 100%;
+    height: 1px;
+  }
+  /* Vertical override only */
+  .separator[data-orientation="vertical"] {
+    height: 100%;
+    width: 1px;
+    align-self: stretch;
+  }
+}

@@ -1,0 +1,53 @@
+/* ==========================================================================
+   shadcss · components/scroll-area.css
+   A restyled scroll container with a custom thin scrollbar. Pure CSS.
+   ========================================================================== */
+
+@layer components {
+  .scroll-area {
+    position: relative;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  /* WebKit (Chrome / Safari / Edge) */
+  .scroll-area::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  .scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .scroll-area::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--input));
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+
+  /* Size variants — WebKit/Blink only. Firefox exposes no per-element
+     scrollbar thickness beyond thin/auto/none, so -sm/-lg are no-ops there. */
+  .scroll-area-sm::-webkit-scrollbar { width: 0.25rem; height: 0.25rem; }
+  .scroll-area-lg::-webkit-scrollbar { width: 0.75rem; height: 0.75rem; }
+
+  /* Always-visible scrollbar */
+  .scroll-area[data-persistent="true"] {
+    scrollbar-color: hsl(var(--input)) hsl(var(--muted) / 0.3);
+  }
+  .scroll-area[data-persistent="true"]::-webkit-scrollbar-track {
+    background: hsl(var(--muted) / 0.3);
+  }
+
+  /* Hide scrollbar entirely (e.g. carousel) */
+  .scroll-area-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scroll-area-hidden::-webkit-scrollbar { display: none; }
+}

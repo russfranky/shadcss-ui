@@ -1,0 +1,63 @@
+/* ==========================================================================
+   shadcss · components/spinner.css
+   A pure-CSS loading spinner. Use as a standalone indicator or inside
+   buttons (the .btn[aria-busy] variant already does this internally).
+   ========================================================================== */
+
+@layer components {
+  .spinner {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid hsl(var(--muted));
+    border-top-color: hsl(var(--primary));
+    border-radius: var(--radius-full);
+    animation: shadcss-spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+
+  .spinner-sm { width: 0.875rem; height: 0.875rem; border-width: 1.5px; }
+  .spinner-lg { width: 1.75rem; height: 1.75rem; border-width: 3px; }
+  .spinner-xl { width: 2.5rem; height: 2.5rem; border-width: 4px; }
+
+  /* Color variants */
+  .spinner-primary {
+    border-color: hsl(var(--primary) / 0.3);
+    border-top-color: hsl(var(--primary));
+  }
+  .spinner-destructive {
+    border-color: hsl(var(--destructive) / 0.3);
+    border-top-color: hsl(var(--destructive));
+  }
+  .spinner-success {
+    border-color: hsl(var(--success) / 0.3);
+    border-top-color: hsl(var(--success));
+  }
+  .spinner-muted {
+    border-color: hsl(var(--border));
+    border-top-color: hsl(var(--muted-foreground));
+  }
+  .spinner-inherit {
+    border-color: currentColor;
+    border-top-color: transparent;
+  }
+
+  /* Inline text loader */
+  .spinner-inline {
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-width: 1.5px;
+    vertical-align: -0.125em;
+  }
+
+  @keyframes shadcss-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner {
+      animation-duration: 1.5s;
+    }
+  }
+}

@@ -1,26 +1,48 @@
 {
   "name": "shadcss",
-  "version": "0.0.1",
-  "description": "Lightweight, HTML/CSS-first UI components. A minimal alternative to shadcn/ui.",
-  "license": "MIT",
+  "version": "0.1.0",
+  "description": "shadcn's beauty, zero JavaScript. A modular HTML+CSS-only component library built on modern web standards.",
   "type": "module",
-  "main": "./src/index.js",
-  "exports": {
-    ".": "./src/index.js",
-    "./components/*": "./src/components/*"
-  },
+  "main": "dist/shadcss.min.css",
+  "style": "dist/shadcss.min.css",
   "files": [
+    "dist",
     "src"
   ],
+  "exports": {
+    ".": "./dist/shadcss.min.css",
+    "./unminified": "./dist/shadcss.css",
+    "./src": "./src/shadcss.css"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --watch"
+  },
   "keywords": [
-    "ui",
-    "components",
-    "shadcn",
     "css",
     "html",
-    "lightweight"
+    "shadcn",
+    "components",
+    "design-system",
+    "no-javascript",
+    "framework",
+    "modular",
+    "lightweight",
+    "tailwind"
   ],
-  "scripts": {
-    "release": "npm publish --access public"
+  "author": "russfranky",
+  "license": "MIT",
+  "homepage": "https://github.com/russfranky/shadcss-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russfranky/shadcss-ui.git",
+    "directory": "packages/shadcss"
+  },
+  "bugs": "https://github.com/russfranky/shadcss-ui/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.29.0"
   }
 }

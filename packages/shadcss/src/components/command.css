@@ -1,0 +1,130 @@
+/* ==========================================================================
+   shadcss · components/command.css
+   A command palette styled to match shadcn's `cmdk`. The actual fuzzy
+   search and keyboard navigation require a few lines of JS — shadcss
+   provides the visual layer, accessible markup, and an example pattern
+   using <datalist> for native autocomplete where possible.
+
+   Pair with the Popover API to display from a ⌘K trigger:
+     <button popovertarget="cmd">⌘K</button>
+     <div class="command" popover id="cmd">...</div>
+   ========================================================================== */
+
+@layer components {
+  .command {
+    width: min(36rem, 90vw);
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 24rem;
+  }
+
+  .command-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  .command-input-wrap > svg {
+    width: 1rem;
+    height: 1rem;
+    color: hsl(var(--muted-foreground));
+    flex-shrink: 0;
+  }
+  .command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: hsl(var(--popover-foreground));
+    font-size: var(--text-sm);
+  }
+  .command-input::placeholder { color: hsl(var(--muted-foreground)); }
+
+  .command-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2);
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .command-list::-webkit-scrollbar { width: 6px; }
+  .command-list::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: var(--radius-full);
+  }
+
+  .command-group {
+    padding: var(--space-1);
+  }
+  .command-group-heading {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .command-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: hsl(var(--popover-foreground));
+    font-size: var(--text-sm);
+    line-height: 1;
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .command-item:hover,
+  .command-item[data-selected="true"] {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  .command-item > svg {
+    width: 1rem;
+    height: 1rem;
+    color: hsl(var(--muted-foreground));
+    flex-shrink: 0;
+  }
+  .command-item[data-selected="true"] > svg {
+    color: hsl(var(--accent-foreground));
+  }
+
+  .command-separator {
+    height: 1px;
+    background: hsl(var(--border));
+    margin: var(--space-1) 0;
+  }
+
+  .command-shortcut {
+    margin-inline-start: auto;
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-xs);
+  }
+
+  .command-empty {
+    padding: var(--space-8);
+    text-align: center;
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-sm);
+  }
+
+  .command-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    border-top: 1px solid hsl(var(--border));
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+  }
+}

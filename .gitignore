@@ -1,4 +1,13 @@
 node_modules/
-dist/
-.DS_Store
+*.log
 *.local
+.DS_Store
+.vscode/
+.idea/
+
+# Internal build/QA artifacts — kept locally, not published
+packages/shadcss/HANDOFF.md
+packages/shadcss/qa/
+
+# Built artifact copied into the showcase for the local dev preview
+apps/www/shadcss.min.css

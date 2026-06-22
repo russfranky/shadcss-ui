@@ -1,0 +1,175 @@
+/* ==========================================================================
+   shadcss · components/button.css
+   Pure CSS buttons. Variants, sizes, loading state (pure CSS spinner),
+   icon support — zero JS.
+   ========================================================================== */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    padding: 0 var(--space-4);
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transition:
+      background var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .btn:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--primary) / 0.9);
+  }
+
+  .btn:active:not(:disabled, [aria-busy="true"]) {
+    transform: translateY(0.5px);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .btn:disabled, .btn[aria-busy="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ---- Variants ---- */
+  .btn-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  .btn-secondary:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--secondary) / 0.8);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+  .btn-outline:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--foreground));
+  }
+  .btn-ghost:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .btn-destructive {
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+  .btn-destructive:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--destructive) / 0.9);
+  }
+
+  /* Scoped out of .btn-group: link's height:auto/padding:0 break the
+     joined group's uniform height + border-radius assumptions. */
+  .btn-link:not(.btn-group .btn) {
+    background: transparent;
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    height: auto;
+    padding: 0;
+  }
+  .btn-link:hover:not(:disabled) {
+    text-decoration: underline;
+  }
+
+  /* ---- Sizes ---- */
+  .btn-sm  { height: 2rem; padding: 0 var(--space-3); font-size: var(--text-xs); border-radius: var(--radius-sm); }
+  .btn-lg  { height: 2.75rem; padding: 0 var(--space-6); font-size: var(--text-base); }
+  .btn-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+  }
+  .btn-icon.btn-sm { width: 2rem; height: 2rem; }
+  .btn-icon.btn-lg { width: 2.75rem; height: 2.75rem; }
+
+  /* ---- Loading (pure CSS spinner via ::after) ---- */
+  .btn[aria-busy="true"]::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--radius-full);
+    animation: shadcss-spin 0.6s linear infinite;
+  }
+
+  @keyframes shadcss-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn[aria-busy="true"]::after { animation: none; }
+  }
+
+  /* Button group — visually joined */
+  .btn-group {
+    display: inline-flex;
+    border-radius: var(--radius-md);
+    isolation: isolate;
+  }
+  .btn-group .btn {
+    border-radius: 0;
+    border-inline-end-width: 0;
+  }
+  /* Middle items square all corners (defensive against variant radius) */
+  .btn-group .btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  .btn-group .btn:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+  .btn-group .btn:last-child {
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    border-inline-end-width: 1px;
+  }
+
+  /* Vertical orientation — collapse top/bottom borders instead of inline */
+  .btn-group[data-orientation="vertical"] {
+    flex-direction: column;
+  }
+  .btn-group[data-orientation="vertical"] .btn {
+    border-radius: 0;
+    border-inline-end-width: 1px;
+    border-bottom-width: 0;
+  }
+  .btn-group[data-orientation="vertical"] .btn:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+    border-bottom-left-radius: 0;
+  }
+  .btn-group[data-orientation="vertical"] .btn:last-child {
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    border-top-right-radius: 0;
+    border-bottom-width: 1px;
+  }
+}

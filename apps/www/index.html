@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shadcss — The complete shadcn aesthetic, no JS framework</title>
+  <meta name="description" content="52 components. 16 KB gzipped. No JS framework — the CSS bundle ships 0 JS. The shadcn aesthetic reimagined for the modern web platform.">
+  <link rel="stylesheet" href="./shadcss.min.css">
+  <style>
+    /* Showcase-only layout — not part of the framework */
+    .layout {
+      display: grid;
+      grid-template-columns: 16rem 1fr;
+      min-height: 100vh;
+    }
+    .layout-main {
+      padding: var(--space-8) var(--space-12);
+      max-width: 100rem;
+    }
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      .layout-sidebar { display: none; }
+      .layout-main { padding: var(--space-6); }
+    }
+
+    .showcase-section { scroll-margin-top: 2rem; margin-bottom: var(--space-12); }
+    .showcase-section > h2 {
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--space-1);
+      scroll-margin-top: 5rem;
+    }
+    .showcase-section > p {
+      color: hsl(var(--muted-foreground));
+      margin-bottom: var(--space-6);
+      max-width: 65ch;
+      line-height: 1.6;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 1px dashed hsl(var(--border));
+      border-radius: var(--radius-md);
+    }
+    .demo-row + .demo-row { margin-top: var(--space-3); }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      gap: var(--space-4);
+    }
+    .demo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    /* Sidebar overrides for showcase */
+    .layout-sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      max-height: 100vh;
+    }
+    .layout-sidebar .sidebar-menu-button { padding: var(--space-2) var(--space-3); }
+    @media (max-width: 768px) {
+      .layout-sidebar {
+        position: fixed;
+        height: 100vh;
+        max-height: 100vh;
+      }
+    }
+
+    .hero {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: var(--space-12);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: var(--space-4);
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--info)));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: var(--text-lg);
+      color: hsl(var(--muted-foreground));
+      max-width: 38rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+    .hero-stats {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      margin-top: var(--space-10);
+    }
+    .hero-stat-num {
+      font-size: var(--text-3xl);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .hero-stat-label {
+      font-size: var(--text-xs);
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .code-block {
+      background: hsl(var(--muted));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      color: hsl(var(--foreground));
+      margin-top: var(--space-3);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: hsl(var(--border));
+      margin: var(--space-12) 0;
+    }
+
+    footer {
+      padding: var(--space-12) 0;
+      border-top: 1px solid hsl(var(--border));
+      margin-top: var(--space-12);
+      text-align: center;
+      color: hsl(var(--muted-foreground));
+      font-size: var(--text-sm);
+    }
+
+    .prose-demo { max-width: 65ch; }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar layout-sidebar" data-variant="inset">
+    <div class="sidebar-header">
+      <a class="sidebar-brand" href="#">
+        <span class="sidebar-brand-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0-10 10c0 .5 0 1 .1 1.5L12 12V2z"/></svg>
+        </span>
+        <span class="sidebar-brand-text">shadcss</span>
+      </a>
+    </div>
+    <nav class="sidebar-content scroll-area">
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Getting Started</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#hero" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Overview</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#installation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Installation</span></a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Components (52)</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#accordion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span>Accordion</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#alert"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg><span>Alert</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#avatar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Avatar</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/></svg><span>Badge</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg><span>Button</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#calendar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Calendar</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#card"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg><span>Card</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#carousel"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 17 5-5-5-5M7 7l-5 5 5 5"/></svg><span>Carousel</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#command"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg><span>Command</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#dialog"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M21 9V7a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h7"/></svg><span>Dialog</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#dropdown"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg><span>Dropdown</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#field"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-4"/></svg><span>Field</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg><span>Input</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#popover"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Popover</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#sidebar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg><span>Sidebar</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#slider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="4" y1="6" y2="6"/><line x1="20" x2="20" y1="18" y2="18"/></svg><span>Slider</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#table"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><span>Table</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#tabs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg><span>Tabs</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#toast"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Toast</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="#tooltip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Tooltip</span></a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Resources</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="https://github.com"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span>GitHub</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="../../packages/shadcss/AI_GUIDE.md"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>AI Guide</span></a></li>
+          <li class="sidebar-menu-item"><a class="sidebar-menu-button" href="../../packages/shadcss/registry.json"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Registry</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-menu-button" aria-pressed="false" onclick="const d=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=d;this.setAttribute('aria-pressed', d==='dark')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <span>Toggle theme</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="layout-main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <span class="badge badge-outline badge-dot" style="margin-bottom: var(--space-4);">v0.1.0 · 52 components</span>
+      <h1>shadcn's beauty.<br><span>no JS framework.</span></h1>
+      <p>A complete HTML + CSS-only clone of the shadcn aesthetic. Every component, every variant, every detail — built on <code>:has()</code>, the Popover API, native <code>&lt;dialog&gt;</code>, and modern CSS. AI-friendly by design.</p>
+      <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+        <button class="btn btn-lg" onclick="document.getElementById('button').scrollIntoView({behavior: 'smooth'})">Browse 52 components</button>
+        <a class="btn btn-outline btn-lg" href="#installation">Get started</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">52</div><div class="hero-stat-label">Components</div></div>
+        <div><div class="hero-stat-num">16 KB</div><div class="hero-stat-label">Gzipped</div></div>
+        <div><div class="hero-stat-num">0</div><div class="hero-stat-label">JS in CSS bundle</div></div>
+        <div><div class="hero-stat-num">0</div><div class="hero-stat-label">Dependencies</div></div>
+        <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Token-driven</div></div>
+      </div>
+    </section>
+
+    <!-- BUTTON -->
+    <section class="showcase-section" id="button">
+      <h2>Button</h2>
+      <p>The primary action trigger. 6 variants × 4 sizes × loading + icon + group + disabled states. Pure CSS — even the loading spinner is a CSS animation.</p>
+
+      <div class="demo-row">
+        <button class="btn">Default</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-destructive">Destructive</button>
+        <button class="btn btn-link">Link</button>
+      </div>
+
+      <div class="demo-row">
+        <button class="btn btn-sm">Small</button>
+        <button class="btn">Default</button>
+        <button class="btn btn-lg">Large</button>
+        <button class="btn btn-icon btn-sm" aria-label="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <button class="btn" aria-busy="true">Loading</button>
+        <button class="btn" disabled>Disabled</button>
+      </div>
+
+      <div class="demo-row">
+        <button class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+          New project
+        </button>
+        <button class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download
+        </button>
+        <button class="btn btn-destructive">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          Delete
+        </button>
+      </div>
+
+      <div class="demo-row">
+        <div class="btn-group">
+          <button class="btn btn-outline btn-sm">Previous</button>
+          <button class="btn btn-outline btn-sm">1</button>
+          <button class="btn btn-outline btn-sm">2</button>
+          <button class="btn btn-outline btn-sm">3</button>
+          <button class="btn btn-outline btn-sm">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUT + FIELD -->
+    <section class="showcase-section" id="input">
+      <h2>Input & Field</h2>
+      <p>Native text inputs with leading/trailing icons, validation, sizes, and the higher-level <code>.field</code> wrapper that auto-shows error messages via <code>:user-invalid</code>.</p>
+
+      <div class="demo-grid">
+        <div class="field" data-required="true">
+          <label class="field-label" for="email">Email</label>
+          <div class="field-control">
+            <div class="input-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <input class="input" type="email" id="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <p class="field-description">We'll never share your email.</p>
+          <p class="field-error">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+            Please enter a valid email address.
+          </p>
+        </div>
+
+        <div class="field" data-required="true">
+          <label class="field-label" for="pw">Password</label>
+          <div class="field-control">
+            <div class="input-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input class="input" type="password" id="pw" placeholder="••••••••" minlength="8" required>
+            </div>
+          </div>
+          <p class="field-description">At least 8 characters with one number.</p>
+          <p class="field-error">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+            Password must be at least 8 characters.
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="bio">Bio</label>
+          <div class="field-control">
+            <textarea class="textarea" id="bio" maxlength="280" placeholder="Tell us about yourself..."></textarea>
+          </div>
+          <p class="field-description">Markdown supported. Max 280 characters.</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="role">Role</label>
+          <div class="field-control">
+            <select class="select" id="role">
+              <option>Member</option>
+              <option>Admin</option>
+              <option>Owner</option>
+              <option>Billing</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label label-required" for="role-sm">Role (small)</label>
+          <div class="field-control">
+            <select class="select select-sm" id="role-sm">
+              <option>Member</option>
+              <option>Admin</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="label" for="ff-name">Legacy form-field pattern</label>
+          <input class="input" id="ff-name" placeholder="Use .field for richer features">
+          <span class="help-text">.form-field is the simpler layout helper from label.css.</span>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="search">Search with trailing icon</label>
+          <div class="field-control">
+            <div class="input-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input class="input" id="search" placeholder="Search projects...">
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">OTP verification</label>
+          <div class="field-control">
+            <div class="otp" role="group" aria-label="One-time passcode">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="4" aria-label="Digit 1">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="2" aria-label="Digit 2">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 3">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 4">
+              <span class="otp-separator" aria-hidden="true">—</span>
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
+            </div>
+          </div>
+          <p class="field-description">Enter the 8-digit code sent to your phone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTION CONTROLS -->
+    <section class="showcase-section" id="selection">
+      <h2>Selection Controls</h2>
+      <p>Checkbox, radio, switch, radio-group, and toggle-group — all built on native form controls. Keyboard, screen-reader, and form submission all work for free.</p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Checkboxes</div></div>
+          <div class="card-content demo-stack">
+            <label class="label"><input type="checkbox" class="checkbox" checked> Accept terms and conditions</label>
+            <label class="label"><input type="checkbox" class="checkbox"> Subscribe to newsletter</label>
+            <label class="label"><input type="checkbox" class="checkbox" data-indeterminate="true"> Select all (indeterminate)</label>
+            <label class="label"><input type="checkbox" class="checkbox" disabled> Disabled option</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Switches</div></div>
+          <div class="card-content demo-stack">
+            <label class="label" style="justify-content: space-between;">Airplane mode<input type="checkbox" class="switch" checked></label>
+            <label class="label" style="justify-content: space-between;">Wi-Fi<input type="checkbox" class="switch"></label>
+            <label class="label" style="justify-content: space-between;">Bluetooth<input type="checkbox" class="switch switch-sm" checked></label>
+            <label class="label" style="justify-content: space-between;">Notifications<input type="checkbox" class="switch switch-lg" checked></label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Radio group (card style)</div></div>
+          <div class="card-content">
+            <div class="radio-group">
+              <label class="radio-group-item">
+                <input type="radio" name="plan" checked>
+                <div class="radio-group-item-body">
+                  <div class="radio-group-item-label">Free</div>
+                  <div class="radio-group-item-description">Up to 3 projects</div>
+                </div>
+              </label>
+              <label class="radio-group-item">
+                <input type="radio" name="plan">
+                <div class="radio-group-item-body">
+                  <div class="radio-group-item-label">Pro · $9/mo</div>
+                  <div class="radio-group-item-description">Unlimited projects</div>
+                </div>
+              </label>
+              <label class="radio-group-item">
+                <input type="radio" name="plan">
+                <div class="radio-group-item-body">
+                  <div class="radio-group-item-label">Enterprise</div>
+                  <div class="radio-group-item-description">Custom limits + SSO</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Toggle group</div></div>
+          <div class="card-content demo-stack">
+            <div class="toggle-group">
+              <input type="radio" name="view" id="view-list" checked>
+              <label for="view-list" class="toggle-group-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                List
+              </label>
+              <input type="radio" name="view" id="view-grid">
+              <label for="view-grid" class="toggle-group-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                Grid
+              </label>
+              <input type="radio" name="view" id="view-board">
+              <label for="view-board" class="toggle-group-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="6" height="18" x="3" y="3" rx="1"/><rect width="6" height="14" x="9" y="3" rx="1"/><rect width="6" height="10" x="15" y="3" rx="1"/></svg>
+                Board
+              </label>
+            </div>
+
+            <div class="toggle-group" data-variant="outline">
+              <input type="checkbox" id="bold" checked>
+              <label for="bold" class="toggle-group-item"><strong>B</strong></label>
+              <input type="checkbox" id="italic">
+              <label for="italic" class="toggle-group-item"><em>I</em></label>
+              <input type="checkbox" id="underline">
+              <label for="underline" class="toggle-group-item"><u>U</u></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="showcase-section" id="card">
+      <h2>Card</h2>
+      <p>Composable container with header, content, and footer zones. Interactive hover-lift variant for clickable cards.</p>
+
+      <div class="demo-grid">
+        <div class="card card-interactive">
+          <div class="card-header">
+            <h3 class="card-title">Create project</h3>
+            <div class="card-description">Deploy a new project from a template.</div>
+          </div>
+          <div class="card-content">
+            <p>Choose from 12 starter templates — React, Vue, Svelte, or static HTML.</p>
+          </div>
+          <div class="card-footer" data-justify="end">
+            <button class="btn btn-ghost btn-sm">Cancel</button>
+            <button class="btn btn-sm">Deploy</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="badge badge-success badge-dot" style="align-self: flex-start;">Live</div>
+            <h3 class="card-title">Production</h3>
+            <div class="card-description">acme.com · 99.99% uptime</div>
+          </div>
+          <div class="card-content">
+            <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);">
+              <span style="color: hsl(var(--muted-foreground));">Deployed</span>
+              <span>2 min ago</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-top: var(--space-2);">
+              <span style="color: hsl(var(--muted-foreground));">Region</span>
+              <span>us-east-1</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: var(--text-sm); margin-top: var(--space-2);">
+              <span style="color: hsl(var(--muted-foreground));">Build</span>
+              <span class="badge badge-outline">v1.2.3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Team members</h3>
+            <div class="card-description">5 of 10 seats used</div>
+          </div>
+          <div class="card-content">
+            <div class="avatar-group" style="margin-bottom: var(--space-3);">
+              <div class="avatar">A</div>
+              <div class="avatar">B</div>
+              <div class="avatar">C</div>
+              <div class="avatar">D</div>
+              <div class="avatar">E</div>
+              <div class="avatar">+5</div>
+            </div>
+            <button class="btn btn-outline btn-sm w-full">Invite member</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="showcase-section" id="badge">
+      <h2>Badge</h2>
+      <p>Inline status indicators. Six color variants plus outline and dot styles.</p>
+
+      <div class="demo-row">
+        <span class="badge">Default</span>
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-destructive">Destructive</span>
+        <span class="badge badge-outline">Outline</span>
+      </div>
+      <div class="demo-row">
+        <span class="badge badge-success badge-dot">Online</span>
+        <span class="badge badge-warning badge-dot">Away</span>
+        <span class="badge badge-destructive badge-dot">Offline</span>
+        <span class="badge badge-info badge-dot">Syncing</span>
+      </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section class="showcase-section" id="alert">
+      <h2>Alert</h2>
+      <p>Inline message banners. Four variants. Dismissible using the native <code>&lt;details&gt;</code> element — no JS required.</p>
+
+      <div class="demo-stack">
+        <div class="alert alert-info" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div>
+            <div class="alert-title">Heads up!</div>
+            <div class="alert-description">You can add components to your app using the CLI.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-success" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <div>
+            <div class="alert-title">Success</div>
+            <div class="alert-description">Your changes have been saved successfully.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-warning" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <div>
+            <div class="alert-title">Warning</div>
+            <div class="alert-description">Your subscription expires in 3 days. Renew to avoid interruption.</div>
+          </div>
+        </div>
+
+        <details class="alert alert-destructive alert-dismissible" role="alert" open>
+          <summary aria-label="Dismiss">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </summary>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          <div>
+            <div class="alert-title">Error</div>
+            <div class="alert-description">Your session has expired. Please log in again to continue.</div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ACCORDION + COLLAPSIBLE -->
+    <section class="showcase-section" id="accordion">
+      <h2>Accordion & Collapsible</h2>
+      <p>Built on native <code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code>. Animated height via the modern <code>grid-template-rows: 0fr → 1fr</code> technique.</p>
+
+      <div class="demo-grid">
+        <div class="accordion">
+          <details name="faq" open>
+            <summary>Is it accessible?</summary>
+            <div class="accordion-content">Yes. By using native <code>&lt;details&gt;</code> we get keyboard navigation, screen-reader semantics, and the "summary" role for free.</div>
+          </details>
+          <details name="faq">
+            <summary>How big is the bundle?</summary>
+            <div class="accordion-content">The complete framework gzips to ~16 KB. You can also import individual component files for tree-shaking.</div>
+          </details>
+          <details name="faq">
+            <summary>Can I use only some components?</summary>
+            <div class="accordion-content">Absolutely. Each component is a standalone CSS file in <code>src/components/</code>.</div>
+          </details>
+        </div>
+
+        <details class="collapsible">
+          <summary class="collapsible-trigger">Advanced filters</summary>
+          <div class="collapsible-content">
+            <div class="demo-stack">
+              <label class="label" style="justify-content: space-between;">Hide completed<input type="checkbox" class="switch" checked></label>
+              <label class="label" style="justify-content: space-between;">Show archived<input type="checkbox" class="switch"></label>
+              <label class="label" style="justify-content: space-between;">Include sub-tasks<input type="checkbox" class="switch" checked></label>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- TABS -->
+    <section class="showcase-section" id="tabs">
+      <h2>Tabs</h2>
+      <p>Pure CSS tabs using radio inputs + <code>:has()</code>. Three variants: default, underline, vertical.</p>
+
+      <div class="tabs">
+        <div class="tabs-list" role="tablist">
+          <input type="radio" name="account-tabs" id="account-tabs-1" checked>
+          <label for="account-tabs-1" class="tabs-trigger" role="tab" aria-selected="true">Account</label>
+          <input type="radio" name="account-tabs" id="account-tabs-2">
+          <label for="account-tabs-2" class="tabs-trigger" role="tab" aria-selected="false">Password</label>
+          <input type="radio" name="account-tabs" id="account-tabs-3">
+          <label for="account-tabs-3" class="tabs-trigger" role="tab" aria-selected="false">Team</label>
+        </div>
+        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-1">
+          <div class="card"><div class="card-content">
+            <p>Account settings go here.</p>
+          </div></div>
+        </div>
+        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-2">
+          <div class="card"><div class="card-content">
+            <p>Password change form goes here.</p>
+          </div></div>
+        </div>
+        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-3">
+          <div class="card"><div class="card-content">
+            <p>Team management goes here.</p>
+          </div></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3); font-size: var(--text-base); font-weight: 600;">Underline variant</h3>
+      <div class="tabs" data-variant="underline">
+        <div class="tabs-list" role="tablist">
+          <input type="radio" name="docs-tabs" id="docs-tabs-1" checked>
+          <label for="docs-tabs-1" class="tabs-trigger" role="tab" aria-selected="true">Overview</label>
+          <input type="radio" name="docs-tabs" id="docs-tabs-2">
+          <label for="docs-tabs-2" class="tabs-trigger" role="tab" aria-selected="false">Features</label>
+          <input type="radio" name="docs-tabs" id="docs-tabs-3">
+          <label for="docs-tabs-3" class="tabs-trigger" role="tab" aria-selected="false">Pricing</label>
+          <input type="radio" name="docs-tabs" id="docs-tabs-4">
+          <label for="docs-tabs-4" class="tabs-trigger" role="tab" aria-selected="false">FAQ</label>
+        </div>
+        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-1"><p>A high-level overview of what we offer.</p></div>
+        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-2"><p>Everything you get when you sign up.</p></div>
+        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-3"><p>Simple, transparent pricing.</p></div>
+        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-4"><p>Frequently asked questions.</p></div>
+      </div>
+    </section>
+
+    <!-- DIALOG + ALERT DIALOG + DRAWER + SHEET -->
+    <section class="showcase-section" id="dialog">
+      <h2>Dialog · Alert Dialog · Drawer · Sheet</h2>
+      <p>Four modal-style overlays, all built on native <code>&lt;dialog&gt;</code>. Use <code>&lt;form method="dialog"&gt;</code> for no-JS close buttons.</p>
+
+      <div class="demo-row">
+        <button class="btn" onclick="document.getElementById('demo-dialog').showModal()">Open dialog</button>
+        <button class="btn btn-destructive" onclick="document.getElementById('demo-alert').showModal()">Open alert dialog</button>
+        <button class="btn btn-outline" onclick="document.getElementById('demo-drawer').showModal()">Open drawer</button>
+        <button class="btn btn-outline" onclick="document.getElementById('demo-sheet').showModal()">Open sheet</button>
+      </div>
+
+      <dialog class="dialog" id="demo-dialog">
+        <header class="dialog-header">
+          <div class="dialog-title">Edit profile</div>
+          <div class="dialog-description">Make changes to your profile here. Click save when you're done.</div>
+        </header>
+        <div class="dialog-body">
+          <div class="demo-stack">
+            <div class="field"><label class="field-label" for="d-name">Name</label><div class="field-control"><input class="input" id="d-name" value="Jane Doe"></div></div>
+            <div class="field"><label class="field-label" for="d-username">Username</label><div class="field-control"><input class="input" id="d-username" value="@janedoe"></div></div>
+          </div>
+        </div>
+        <footer class="dialog-footer">
+          <form method="dialog"><button class="btn btn-ghost">Cancel</button></form>
+          <button class="btn">Save changes</button>
+        </footer>
+      </dialog>
+
+      <dialog class="alert-dialog" id="demo-alert" role="alertdialog" aria-labelledby="demo-alert-title" aria-describedby="demo-alert-desc">
+        <header class="alert-dialog-header">
+          <div class="alert-dialog-title" id="demo-alert-title">Are you absolutely sure?</div>
+          <div class="alert-dialog-description" id="demo-alert-desc">This action cannot be undone. This will permanently delete your account and remove your data from our servers.</div>
+        </header>
+        <footer class="alert-dialog-footer" data-justify="center">
+          <form method="dialog"><button class="btn btn-outline">Cancel</button></form>
+          <button class="btn btn-destructive">Continue</button>
+        </footer>
+      </dialog>
+
+      <dialog class="drawer" data-side="right" id="demo-drawer">
+        <header class="drawer-header">
+          <div class="drawer-title">Filters</div>
+          <div class="drawer-description">Narrow your search results.</div>
+        </header>
+        <div class="drawer-body">
+          <div class="demo-stack">
+            <div class="field">
+              <label class="field-label">Status</label>
+              <div class="field-control">
+                <div class="radio-group">
+                  <label class="radio-group-item"><input type="radio" name="d-status" checked><div class="radio-group-item-body"><div class="radio-group-item-label">All</div></div></label>
+                  <label class="radio-group-item"><input type="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Active</div></div></label>
+                  <label class="radio-group-item"><input type="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Archived</div></div></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="drawer-footer" data-justify="end">
+          <form method="dialog"><button class="btn btn-ghost">Cancel</button></form>
+          <button class="btn">Apply filters</button>
+        </footer>
+      </dialog>
+
+      <dialog class="sheet" data-side="right" id="demo-sheet">
+        <header class="sheet-header">
+          <div class="sheet-title-block">
+            <div class="sheet-title">Menu</div>
+            <div class="sheet-description">Navigate to any section.</div>
+          </div>
+          <form method="dialog"><button class="btn btn-ghost btn-icon" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button></form>
+        </header>
+        <div class="sheet-body">
+          <nav class="demo-stack">
+            <a class="btn btn-ghost" href="#" style="justify-content: flex-start;">Dashboard</a>
+            <a class="btn btn-ghost" href="#" style="justify-content: flex-start;">Projects</a>
+            <a class="btn btn-ghost" href="#" style="justify-content: flex-start;">Team</a>
+            <a class="btn btn-ghost" href="#" style="justify-content: flex-start;">Settings</a>
+          </nav>
+        </div>
+      </dialog>
+    </section>
+
+    <!-- DROPDOWN + MENUBAR + CONTEXT MENU -->
+    <section class="showcase-section" id="dropdown">
+      <h2>Dropdown · Menubar · Context Menu</h2>
+      <p>Three menu patterns, all powered by the Popover API. Click-trigger via <code>popovertarget</code> attribute — no JS state. The <code>.context-menu</code> variant is styled identically but is not demoed here: right-click positioning at the cursor requires a one-line <code>oncontextmenu</code> + <code>showPopover()</code> trigger (JS-required).</p>
+
+      <div class="demo-row">
+        <div class="dropdown">
+          <button class="btn btn-outline" popovertarget="user-menu" aria-haspopup="menu" aria-expanded="false" id="user-menu-trigger">
+            Open menu
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu" popover id="user-menu" data-side="bottom-start" role="menu" aria-label="My Account" ontoggle="document.getElementById('user-menu-trigger').setAttribute('aria-expanded', this.matches(':popover-open'))">
+            <div class="dropdown-label">My Account</div>
+            <a class="dropdown-item" href="#" role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Profile
+            </a>
+            <a class="dropdown-item" href="#" role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+              Settings
+              <span class="dropdown-shortcut">⌘,</span>
+            </a>
+            <a class="dropdown-item" href="#" role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              Calendar
+            </a>
+            <div class="dropdown-separator"></div>
+            <button class="dropdown-item dropdown-destructive" role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+              Log out
+            </button>
+          </div>
+        </div>
+
+        <div class="menubar" role="menubar" aria-label="Application menu">
+          <div class="menubar-menu-item">
+            <button class="menubar-trigger" popovertarget="m-file" role="menuitem" aria-haspopup="menu" aria-expanded="false" id="m-file-trigger">File</button>
+            <div class="menubar-menu" popover id="m-file" data-side="bottom-start" role="menu" aria-label="File" ontoggle="document.getElementById('m-file-trigger').setAttribute('aria-expanded', this.matches(':popover-open'))">
+              <button class="dropdown-item" role="menuitem">New File <span class="dropdown-shortcut">⌘N</span></button>
+              <button class="dropdown-item" role="menuitem">New Window <span class="dropdown-shortcut">⌘⇧N</span></button>
+              <div class="dropdown-separator"></div>
+              <button class="dropdown-item" role="menuitem">Open… <span class="dropdown-shortcut">⌘O</span></button>
+            </div>
+          </div>
+          <div class="menubar-menu-item">
+            <button class="menubar-trigger" popovertarget="m-edit" role="menuitem" aria-haspopup="menu" aria-expanded="false" id="m-edit-trigger">Edit</button>
+            <div class="menubar-menu" popover id="m-edit" data-side="bottom-start" role="menu" aria-label="Edit" ontoggle="document.getElementById('m-edit-trigger').setAttribute('aria-expanded', this.matches(':popover-open'))">
+              <button class="dropdown-item" role="menuitem">Undo <span class="dropdown-shortcut">⌘Z</span></button>
+              <button class="dropdown-item" role="menuitem">Redo <span class="dropdown-shortcut">⌘⇧Z</span></button>
+              <div class="dropdown-separator"></div>
+              <button class="dropdown-item" role="menuitem">Cut <span class="dropdown-shortcut">⌘X</span></button>
+              <button class="dropdown-item" role="menuitem">Copy <span class="dropdown-shortcut">⌘C</span></button>
+              <button class="dropdown-item" role="menuitem">Paste <span class="dropdown-shortcut">⌘V</span></button>
+            </div>
+          </div>
+          <div class="menubar-menu-item">
+            <button class="menubar-trigger" popovertarget="m-view" role="menuitem" aria-haspopup="menu" aria-expanded="false" id="m-view-trigger">View</button>
+            <div class="menubar-menu" popover id="m-view" data-side="bottom-start" role="menu" aria-label="View" ontoggle="document.getElementById('m-view-trigger').setAttribute('aria-expanded', this.matches(':popover-open'))">
+              <button class="dropdown-item" role="menuitem">Toggle Sidebar <span class="dropdown-shortcut">⌘\</span></button>
+              <button class="dropdown-item" role="menuitem">Toggle Theme <span class="dropdown-shortcut">⌘⇧T</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMAND PALETTE -->
+    <section class="showcase-section" id="command">
+      <h2>Command Palette</h2>
+      <p>Styled shell for a ⌘K command palette. Uses the Popover API for display; pair with ~10 lines of JS for fuzzy search and arrow-key navigation.</p>
+
+      <div class="demo-row">
+        <button class="btn" popovertarget="cmd">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+          Search
+          <kbd>⌘</kbd><kbd>K</kbd>
+        </button>
+      </div>
+
+      <div class="command" popover id="cmd" style="position: fixed; top: 25%; left: 50%; transform: translateX(-50%);">
+        <div class="command-input-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input class="command-input" role="combobox" aria-expanded="true" aria-controls="cmd-list" aria-autocomplete="list" placeholder="Type a command or search…">
+        </div>
+        <div class="command-list" id="cmd-list" role="listbox" aria-label="Commands">
+          <div class="command-group-heading" role="presentation">Suggestions</div>
+          <button class="command-item" data-selected="true" role="option" aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+            <span>Create new project</span>
+            <span class="command-shortcut">⌘N</span>
+          </button>
+          <button class="command-item" role="option" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Search documentation</span>
+          </button>
+          <div class="command-separator" role="presentation"></div>
+          <div class="command-group-heading" role="presentation">Navigation</div>
+          <a class="command-item" href="#" role="option" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span>Go to Dashboard</span>
+          </a>
+          <a class="command-item" href="#" role="option" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span>Go to Settings</span>
+          </a>
+        </div>
+        <div class="command-footer">
+          <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span><kbd>↵</kbd> to select</span>
+          <span><kbd>esc</kbd> to close</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLTIP + POPOVER + HOVER CARD -->
+    <section class="showcase-section" id="tooltip">
+      <h2>Tooltip · Popover · Hover Card</h2>
+      <p>Three floating UI patterns in increasing richness. Tooltip = single line. Popover = arbitrary content. Hover-card = rich preview.</p>
+
+      <div class="demo-row">
+        <button class="btn btn-outline tooltip" data-tooltip="Top tooltip" aria-label="Top tooltip">Tooltip top</button>
+        <button class="btn btn-outline tooltip" data-tooltip="Bottom tooltip" data-position="bottom" aria-label="Bottom tooltip">Tooltip bottom</button>
+        <button class="btn btn-outline tooltip" data-tooltip="Start tooltip" data-position="start" aria-label="Start tooltip">Tooltip start</button>
+        <button class="btn btn-outline tooltip" data-tooltip="End tooltip" data-position="end" aria-label="End tooltip">Tooltip end</button>
+      </div>
+
+      <div class="demo-row">
+        <button class="btn" popovertarget="pop1">Open popover</button>
+        <div class="popover" popover id="pop1" data-side="bottom-start">
+          <div class="popover-header">
+            <div class="popover-title">Popover title</div>
+            <div class="popover-description">Set the dimensions for this layer.</div>
+          </div>
+          <div class="demo-stack">
+            <div class="field">
+              <label class="field-label" for="pop-w">Width</label>
+              <div class="field-control"><input class="input input-sm" id="pop-w" value="100%"></div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="pop-h">Height</label>
+              <div class="field-control"><input class="input input-sm" id="pop-h" value="auto"></div>
+            </div>
+          </div>
+          <div class="popover-footer">
+            <button class="btn btn-ghost btn-sm">Cancel</button>
+            <button class="btn btn-sm">Apply</button>
+          </div>
+        </div>
+
+        <div class="hover-card">
+          <a href="#" class="btn btn-link">@shadcss</a>
+          <div class="hover-card-panel">
+            <div class="hover-card-header">
+              <div class="avatar avatar-ring">Z</div>
+              <div>
+                <div class="hover-card-title">shadcss</div>
+                <div class="hover-card-description">@shadcss · Follow</div>
+              </div>
+            </div>
+            <p style="font-size: var(--text-sm); line-height: 1.5;">The shadcn aesthetic, reimagined for the era of :has(), Popover API, and native &lt;dialog&gt;. No JS framework.</p>
+            <div class="hover-card-footer">
+              <div class="hover-card-stat">
+                <span class="hover-card-stat-value">1,234</span>
+                <span>Following</span>
+              </div>
+              <div class="hover-card-stat">
+                <span class="hover-card-stat-value">12.3K</span>
+                <span>Followers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOAST + SONNER -->
+    <section class="showcase-section" id="toast">
+      <h2>Toast & Sonner</h2>
+      <p>Auto-dismissing notifications. CSS animation runs for <code>--sonner-duration</code> then hides itself. Variants for success, error, warning, info, loading.</p>
+
+      <div class="demo-row">
+        <button class="btn btn-outline" onclick="document.getElementById('t1').showPopover()">Default toast</button>
+        <button class="btn btn-outline" onclick="document.getElementById('t2').showPopover()">Success</button>
+        <button class="btn btn-outline" onclick="document.getElementById('t3').showPopover()">Error</button>
+        <button class="btn btn-outline" onclick="document.getElementById('t4').showPopover()">Warning</button>
+        <button class="btn btn-outline" onclick="document.getElementById('t5').showPopover()">With action</button>
+      </div>
+
+      <div class="sonner-region" role="status" aria-live="polite">
+        <div class="sonner" popover id="t1" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="sonner-content">
+            <div class="sonner-title">New message</div>
+            <div class="sonner-description">You have a new message from Alex.</div>
+          </div>
+          <button class="sonner-close" aria-label="Close" onclick="document.getElementById('t1').hidePopover()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sonner sonner-success" popover id="t2" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <div class="sonner-content">
+            <div class="sonner-title">Saved</div>
+            <div class="sonner-description">Your changes have been saved.</div>
+          </div>
+          <button class="sonner-close" aria-label="Close" onclick="document.getElementById('t2').hidePopover()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sonner sonner-error" popover id="t3" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          <div class="sonner-content">
+            <div class="sonner-title">Failed to save</div>
+            <div class="sonner-description">Check your connection and try again.</div>
+          </div>
+          <button class="sonner-close" aria-label="Close" onclick="document.getElementById('t3').hidePopover()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sonner sonner-warning" popover id="t4" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <div class="sonner-content">
+            <div class="sonner-title">Storage almost full</div>
+            <div class="sonner-description">You've used 90% of your storage.</div>
+          </div>
+          <button class="sonner-close" aria-label="Close" onclick="document.getElementById('t4').hidePopover()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sonner sonner-info" popover id="t5" data-persistent="true" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div class="sonner-content">
+            <div class="sonner-title">Subscription expires soon</div>
+            <div class="sonner-description">Renew now to keep your premium features.</div>
+          </div>
+          <div class="sonner-action"><button class="btn btn-sm" onclick="document.getElementById('t5').hidePopover()">Renew</button></div>
+          <button class="sonner-close" aria-label="Close" onclick="document.getElementById('t5').hidePopover()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLE -->
+    <section class="showcase-section" id="table">
+      <h2>Table</h2>
+      <p>Restyled native HTML table with hover rows, alignment variants, and badges inside cells.</p>
+
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Email</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th data-align="end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-success badge-dot">Success</span></td>
+              <td>ken99@example.com</td>
+              <td>$316.00</td>
+              <td>Credit card</td>
+              <td data-align="end">
+                <div class="dropdown" style="display: inline-block;">
+                  <button class="btn btn-ghost btn-icon btn-sm" popovertarget="row-1" aria-label="Actions" aria-haspopup="menu" aria-expanded="false" id="row-1-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                  </button>
+                  <div class="dropdown-menu" popover id="row-1" data-side="bottom-end" role="menu" aria-label="Row actions" ontoggle="document.getElementById('row-1-trigger').setAttribute('aria-expanded', this.matches(':popover-open'))">
+                    <button class="dropdown-item" role="menuitem">View</button>
+                    <button class="dropdown-item" role="menuitem">Edit</button>
+                    <button class="dropdown-item dropdown-destructive" role="menuitem">Delete</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-success badge-dot">Success</span></td>
+              <td>abe45@example.com</td>
+              <td>$242.00</td>
+              <td>Credit card</td>
+              <td data-align="end"><button class="btn btn-ghost btn-icon btn-sm" aria-label="Actions"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-warning badge-dot">Processing</span></td>
+              <td>monserrat44@example.com</td>
+              <td>$837.00</td>
+              <td>PayPal</td>
+              <td data-align="end"><button class="btn btn-ghost btn-icon btn-sm" aria-label="Actions"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-destructive badge-dot">Failed</span></td>
+              <td>sylvia75@example.com</td>
+              <td>$875.00</td>
+              <td>Credit card</td>
+              <td data-align="end"><button class="btn btn-ghost btn-icon btn-sm" aria-label="Actions"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROGRESS + SLIDER + SPINNER -->
+    <section class="showcase-section" id="progress">
+      <h2>Progress · Slider · Spinner</h2>
+      <p>Loading indicators at three scales of richness.</p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Progress</div></div>
+          <div class="card-content demo-stack">
+            <div>
+              <div class="label" style="margin-bottom: var(--space-2); justify-content: space-between;">Uploading… <span>67%</span></div>
+              <progress class="progress" value="67" max="100"></progress>
+            </div>
+            <div>
+              <div class="label" style="margin-bottom: var(--space-2);">Indeterminate</div>
+              <progress class="progress"></progress>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Slider</div></div>
+          <div class="card-content demo-stack">
+            <div>
+              <div class="label" style="margin-bottom: var(--space-2); justify-content: space-between;">Volume <span id="vol-label">50%</span></div>
+              <input type="range" class="slider" min="0" max="100" value="50" style="--slider-fill: 50%" oninput="this.style.setProperty('--slider-fill', this.value + '%'); document.getElementById('vol-label').textContent = this.value + '%'">
+            </div>
+            <div>
+              <div class="label" style="margin-bottom: var(--space-2);">Brightness (large)</div>
+              <input type="range" class="slider slider-lg" min="0" max="100" value="75" style="--slider-fill: 75%">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Spinner</div></div>
+          <div class="card-content">
+            <div class="demo-row" style="border: none; padding: 0;">
+              <div class="spinner spinner-sm" role="status" aria-label="Loading"></div>
+              <div class="spinner" role="status" aria-label="Loading"></div>
+              <div class="spinner spinner-lg" role="status" aria-label="Loading"></div>
+              <div class="spinner spinner-primary" role="status" aria-label="Loading"></div>
+              <div class="spinner spinner-destructive" role="status" aria-label="Loading"></div>
+              <div class="spinner spinner-success" role="status" aria-label="Loading"></div>
+              <div class="spinner spinner-muted" role="status" aria-label="Loading"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKELETON + EMPTY -->
+    <section class="showcase-section" id="skeleton">
+      <h2>Skeleton & Empty States</h2>
+      <p>Loading shimmer for placeholders, and friendly empty states with CTAs.</p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Loading…</div></div>
+          <div class="card-content">
+            <div style="display: flex; gap: var(--space-3); align-items: center; margin-bottom: var(--space-3);">
+              <div class="skeleton skeleton-circle" style="width: 2.5rem; height: 2.5rem;"></div>
+              <div style="flex: 1;">
+                <div class="skeleton skeleton-text" style="height: 0.875rem; width: 40%;"></div>
+                <div class="skeleton skeleton-text" style="height: 0.75rem; width: 60%;"></div>
+              </div>
+            </div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text" style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <div class="empty">
+              <div class="empty-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="empty-title">No projects yet</div>
+              <div class="empty-description">Get started by creating your first project. It only takes a minute.</div>
+              <div class="empty-actions">
+                <button class="btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+                  New project
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVATARS + SEPARATORS -->
+    <section class="showcase-section" id="avatar">
+      <h2>Avatar · Separator · Kbd</h2>
+      <p>Image with text fallback, layout dividers, and keyboard shortcut indicators.</p>
+
+      <div class="demo-row">
+        <div class="avatar avatar-sm">AB</div>
+        <div class="avatar">CD</div>
+        <div class="avatar avatar-lg">EF</div>
+        <div class="avatar avatar-xl">GH</div>
+        <div class="avatar avatar-ring">IJ</div>
+        <div class="avatar avatar-square">KL</div>
+        <div class="avatar"><img src="https://i.pravatar.cc/100?u=shadcss1" alt="User avatar" onerror="this.style.display='none'; this.parentElement.textContent='U'"></div>
+        <div class="avatar-group">
+          <div class="avatar">A</div>
+          <div class="avatar">B</div>
+          <div class="avatar">C</div>
+          <div class="avatar">+5</div>
+        </div>
+      </div>
+
+      <div class="demo-row">
+        <span>First</span>
+        <div class="separator" data-orientation="vertical" role="separator" aria-orientation="vertical" style="height: 1.5rem;"></div>
+        <span>Second</span>
+        <div class="separator" data-orientation="vertical" role="separator" aria-orientation="vertical" style="height: 1.5rem;"></div>
+        <span>Third</span>
+      </div>
+
+      <div class="demo-row">
+        <span>Press <kbd>⌘</kbd> <kbd>K</kbd> to search</span>
+        <span>Press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>P</kbd> for command palette</span>
+        <span>Press <kbd>?</kbd> for help</span>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section class="showcase-section" id="calendar">
+      <h2>Calendar</h2>
+      <p>Pure CSS month calendar with today, selected, and outside-month states.</p>
+
+      <div class="demo-row">
+        <div class="calendar">
+          <div class="calendar-header">
+            <span class="calendar-title">June 2026</span>
+            <div class="calendar-nav">
+              <button class="calendar-nav-btn" aria-label="Previous month" aria-disabled="true" title="Demo only — navigation requires JS">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button class="calendar-nav-btn" aria-label="Next month" aria-disabled="true" title="Demo only — navigation requires JS">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="calendar-grid" role="grid" aria-label="June 2026">
+            <span class="calendar-weekday" role="columnheader" aria-label="Sunday">S</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Monday">M</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Tuesday">T</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Wednesday">W</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Thursday">T</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Friday">F</span>
+            <span class="calendar-weekday" role="columnheader" aria-label="Saturday">S</span>
+            <button class="calendar-day outside">31</button>
+            <button class="calendar-day">1</button>
+            <button class="calendar-day">2</button>
+            <button class="calendar-day">3</button>
+            <button class="calendar-day">4</button>
+            <button class="calendar-day">5</button>
+            <button class="calendar-day">6</button>
+            <button class="calendar-day">7</button>
+            <button class="calendar-day">8</button>
+            <button class="calendar-day">9</button>
+            <button class="calendar-day">10</button>
+            <button class="calendar-day is-today" role="gridcell" aria-current="date" aria-label="June 11, 2026">11</button>
+            <button class="calendar-day">12</button>
+            <button class="calendar-day">13</button>
+            <button class="calendar-day">14</button>
+            <button class="calendar-day" role="gridcell" aria-pressed="true" aria-label="June 15, 2026">15</button>
+            <button class="calendar-day">16</button>
+            <button class="calendar-day">17</button>
+            <button class="calendar-day">18</button>
+            <button class="calendar-day">19</button>
+            <button class="calendar-day">20</button>
+            <button class="calendar-day">21</button>
+            <button class="calendar-day">22</button>
+            <button class="calendar-day">23</button>
+            <button class="calendar-day">24</button>
+            <button class="calendar-day">25</button>
+            <button class="calendar-day">26</button>
+            <button class="calendar-day">27</button>
+            <button class="calendar-day">28</button>
+            <button class="calendar-day">29</button>
+            <button class="calendar-day">30</button>
+            <button class="calendar-day outside">1</button>
+            <button class="calendar-day outside">2</button>
+            <button class="calendar-day outside">3</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <section class="showcase-section" id="carousel">
+      <h2>Carousel · Aspect Ratio</h2>
+      <p>Scroll-snap carousel — scroll/swipe and Tab-then-arrow keyboard navigation work with zero JS; the prev/next arrow buttons use a one-line inline <code>scrollBy()</code> (or CSS <code>::scroll-button()</code> where supported). Aspect-ratio presets below.</p>
+
+      <div class="demo-row" style="margin-bottom: var(--space-4);">
+        <div class="aspect-ratio aspect-square" style="width: 6rem; background: linear-gradient(135deg, hsl(var(--chart-1)), hsl(var(--chart-2)));"></div>
+        <div class="aspect-ratio aspect-video" style="width: 8rem; background: linear-gradient(135deg, hsl(var(--chart-3)), hsl(var(--chart-4)));"></div>
+        <div class="aspect-ratio aspect-photo" style="width: 8rem; background: linear-gradient(135deg, hsl(var(--chart-5)), hsl(var(--chart-1)));"></div>
+        <div class="aspect-ratio aspect-portrait" style="width: 5rem; background: linear-gradient(135deg, hsl(var(--chart-2)), hsl(var(--chart-3)));"></div>
+      </div>
+
+      <div class="carousel">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-item" data-size="third">
+              <div class="card card-interactive" style="height: 100%;">
+                <div class="aspect-ratio aspect-video" style="background: linear-gradient(135deg, hsl(var(--chart-1)), hsl(var(--chart-2))); border-radius: 0;"></div>
+                <div class="card-header"><div class="card-title">Card 1</div></div>
+              </div>
+            </div>
+            <div class="carousel-item" data-size="third">
+              <div class="card card-interactive" style="height: 100%;">
+                <div class="aspect-ratio aspect-video" style="background: linear-gradient(135deg, hsl(var(--chart-3)), hsl(var(--chart-4))); border-radius: 0;"></div>
+                <div class="card-header"><div class="card-title">Card 2</div></div>
+              </div>
+            </div>
+            <div class="carousel-item" data-size="third">
+              <div class="card card-interactive" style="height: 100%;">
+                <div class="aspect-ratio aspect-video" style="background: linear-gradient(135deg, hsl(var(--chart-5)), hsl(var(--chart-1))); border-radius: 0;"></div>
+                <div class="card-header"><div class="card-title">Card 3</div></div>
+              </div>
+            </div>
+            <div class="carousel-item" data-size="third">
+              <div class="card card-interactive" style="height: 100%;">
+                <div class="aspect-ratio aspect-video" style="background: linear-gradient(135deg, hsl(var(--chart-2)), hsl(var(--chart-3))); border-radius: 0;"></div>
+                <div class="card-header"><div class="card-title">Card 4</div></div>
+              </div>
+            </div>
+            <div class="carousel-item" data-size="third">
+              <div class="card card-interactive" style="height: 100%;">
+                <div class="aspect-ratio aspect-video" style="background: linear-gradient(135deg, hsl(var(--chart-4)), hsl(var(--chart-5))); border-radius: 0;"></div>
+                <div class="card-header"><div class="card-title">Card 5</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div style="display: flex; gap: var(--space-2);">
+            <button class="carousel-btn" aria-label="Previous" onclick="this.closest('.carousel').querySelector('.carousel-viewport').scrollBy({left: -300, behavior: 'smooth'})">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-btn" aria-label="Next" onclick="this.closest('.carousel').querySelector('.carousel-viewport').scrollBy({left: 300, behavior: 'smooth'})">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="carousel-dots" role="tablist" aria-label="Slide indicators">
+            <button class="carousel-dot" style="background: hsl(var(--primary));" aria-label="Slide 1" aria-current="true"></button>
+            <button class="carousel-dot" aria-label="Slide 2"></button>
+            <button class="carousel-dot" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION MENU + BREADCRUMB + PAGINATION -->
+    <section class="showcase-section" id="navigation">
+      <h2>Navigation Menu · Breadcrumb · Pagination</h2>
+      <p>Three nav patterns: rich dropdown nav, breadcrumb trail, and paginated list nav.</p>
+
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: var(--space-6);">
+        <span class="breadcrumb-item"><a href="#" class="breadcrumb-link">Home</a></span>
+        <span class="breadcrumb-item"><a href="#" class="breadcrumb-link">Components</a></span>
+        <span class="breadcrumb-item"><span class="breadcrumb-current" aria-current="page">Navigation</span></span>
+      </nav>
+
+      <nav class="navigation-menu" aria-label="Main" style="margin-bottom: var(--space-6);">
+        <ul class="navigation-menu-list">
+          <li class="navigation-menu-item">
+            <button class="navigation-menu-trigger" popovertarget="nav-products">Products</button>
+            <div class="navigation-menu-content" popover id="nav-products" data-side="bottom-start">
+              <ul class="navigation-menu-link-list" data-cols="2">
+                <li>
+                  <a class="navigation-menu-link" href="#">
+                    <span class="navigation-menu-link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    </span>
+                    <span>
+                      <div class="navigation-menu-link-title">Components</div>
+                      <div class="navigation-menu-link-description">A set of 52 styled components.</div>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="navigation-menu-link" href="#">
+                    <span class="navigation-menu-link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                    </span>
+                    <span>
+                      <div class="navigation-menu-link-title">Templates</div>
+                      <div class="navigation-menu-link-description">Pre-built page layouts.</div>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="navigation-menu-link" href="#">
+                    <span class="navigation-menu-link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </span>
+                    <span>
+                      <div class="navigation-menu-link-title">Documentation</div>
+                      <div class="navigation-menu-link-description">Guides and API reference.</div>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="navigation-menu-link" href="#">
+                    <span class="navigation-menu-link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    </span>
+                    <span>
+                      <div class="navigation-menu-link-title">Support</div>
+                      <div class="navigation-menu-link-description">Get help when you need it.</div>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="navigation-menu-item">
+            <button class="navigation-menu-trigger" popovertarget="nav-resources">Resources</button>
+            <div class="navigation-menu-content" popover id="nav-resources" data-side="bottom-start">
+              <ul class="navigation-menu-link-list">
+                <li><a class="navigation-menu-link" href="#"><span class="navigation-menu-link-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span><div class="navigation-menu-link-title">Blog</div><div class="navigation-menu-link-description">Latest news and articles.</div></span></a></li>
+                <li><a class="navigation-menu-link" href="#"><span class="navigation-menu-link-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg></span><span><div class="navigation-menu-link-title">Tutorials</div><div class="navigation-menu-link-description">Video walkthroughs.</div></span></a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Pagination">
+      <ul class="pagination">
+        <li class="pagination-item"><a href="#" class="pagination-link pagination-prev" aria-label="Previous">‹</a></li>
+        <li class="pagination-item"><a href="#" class="pagination-link">1</a></li>
+        <li class="pagination-item"><a href="#" class="pagination-link" aria-current="page">2</a></li>
+        <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
+        <li class="pagination-item"><span class="pagination-ellipsis">…</span></li>
+        <li class="pagination-item"><a href="#" class="pagination-link">10</a></li>
+        <li class="pagination-item"><a href="#" class="pagination-link pagination-next" aria-label="Next">›</a></li>
+      </ul>
+      </nav>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="showcase-section" id="typography">
+      <h2>Typography</h2>
+      <p>Drop-in prose styles for blog posts, docs, marketing copy. Wraps in <code>.prose</code>.</p>
+
+      <article class="prose prose-demo">
+        <h1>The Platform is the Framework</h1>
+        <p class="lead">Modern CSS can do it all. The platform caught up to React three years ago — we just stopped paying attention.</p>
+        <p>For the past decade, we built UIs by shipping JavaScript that <em>describes</em> UIs. Every interaction was a state update, every animation a <code>useEffect</code>, every modal a portal. The cost added up: <strong>parse time, hydration jank, framework lock-in</strong>.</p>
+        <h2>What changed</h2>
+        <p>Three things landed in browsers that quietly eliminated 90% of the JavaScript we wrote:</p>
+        <ul>
+          <li><code>:has()</code> — parent selectors. Finally.</li>
+          <li>The Popover API — built-in dropdowns, tooltips, menus.</li>
+          <li><code>grid-template-rows: 0fr → 1fr</code> — animated height without <code>max-height</code> hacks.</li>
+        </ul>
+        <blockquote>“The best framework is no framework. The second-best is the platform itself.”</blockquote>
+        <p>Read the <a href="#">full announcement</a> or browse the <a href="#installation">installation guide</a>.</p>
+        <h3>Try it</h3>
+        <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/shadcss"&gt;</code></pre>
+      </article>
+    </section>
+
+    <!-- INSTALLATION -->
+    <section class="showcase-section" id="installation">
+      <h2>Installation</h2>
+      <p>Three ways to use shadcss. Pick the one that fits your project.</p>
+
+      <h3 style="margin: var(--space-6) 0 var(--space-3); font-weight: 600;">1. CDN (fastest)</h3>
+      <pre class="code-block">&lt;link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css"&gt;</pre>
+
+      <h3 style="margin: var(--space-6) 0 var(--space-3); font-weight: 600;">2. npm</h3>
+      <pre class="code-block">npm install shadcss</pre>
+      <pre class="code-block" style="margin-top: var(--space-2);">/* In your CSS entry: */
+@import "shadcss";</pre>
+
+      <h3 style="margin: var(--space-6) 0 var(--space-3); font-weight: 600;">3. Copy a single component</h3>
+      <p>Grab one file from <code>src/components/</code>. The token file in <code>src/base/tokens.css</code> is the only shared dependency.</p>
+      <pre class="code-block">src/
+├── base/
+│   ├── reset.css
+│   ├── tokens.css      ← REQUIRED
+│   └── theme.css
+├── components/
+│   ├── button.css
+│   ├── card.css
+│   └── … 52 total
+└── shadcss.css             ← main entry</pre>
+    </section>
+
+    <!-- AI -->
+    <section class="showcase-section" id="ai">
+      <h2>Built for AI productivity</h2>
+      <p>shadcss ships with infrastructure designed for AI agents to generate UI reliably.</p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="badge badge-info badge-dot" style="align-self: flex-start;">AI-ready</div>
+            <div class="card-title">Machine-readable registry</div>
+            <div class="card-description">Every component is described in <code>registry.json</code> with classes, attributes, markup, and dependencies.</div>
+          </div>
+          <div class="card-content">
+            <pre class="code-block" style="font-size: 0.7rem;">{
+  "name": "button",
+  "classes": ["btn", "btn-outline", "btn-sm"],
+  "markup": "&lt;button class=\"btn\"&gt;…&lt;/button&gt;"
+}</pre>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="badge badge-success badge-dot" style="align-self: flex-start;">AI-ready</div>
+            <div class="card-title">Pattern-based guide</div>
+            <div class="card-description">7 patterns cover 95% of UI needs. Documented in <code>AI_GUIDE.md</code> with copy-paste examples.</div>
+          </div>
+          <div class="card-content">
+            <ul style="display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); color: hsl(var(--muted-foreground));">
+              <li>1. Modal — <code>&lt;dialog&gt;</code> + <code>showModal()</code></li>
+              <li>2. Dropdown — Popover API</li>
+              <li>3. Accordion — native <code>&lt;details&gt;</code></li>
+              <li>4. Tabs — radios + <code>:has()</code></li>
+              <li>5. Tooltip — <code>::after</code> + <code>:hover</code></li>
+              <li>6. Selection — native inputs</li>
+              <li>7. Toast — Popover + CSS animation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="badge badge-warning badge-dot" style="align-self: flex-start;">AI-ready</div>
+            <div class="card-title">Predictable conventions</div>
+            <div class="card-description">Variants are classes. State uses ARIA. Tokens drive styling. No surprises for the model.</div>
+          </div>
+          <div class="card-content">
+            <ul style="display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); color: hsl(var(--muted-foreground));">
+              <li>✅ <code>class="btn btn-outline btn-sm"</code></li>
+              <li>❌ <code>data-variant="outline" data-size="sm"</code></li>
+              <li>✅ <code>aria-current="page"</code></li>
+              <li>✅ <code>aria-pressed="true"</code></li>
+              <li>✅ <code>hsl(var(--primary))</code></li>
+              <li>❌ <code>#000000</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="container">
+    <p>shadcss v0.1.0 · 52 components · 16 KB gzipped · 0 JS in the CSS bundle · MIT licensed</p>
+  </div>
+</footer>
+
+</body>
+</html>

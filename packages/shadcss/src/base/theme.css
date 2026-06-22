@@ -1,0 +1,120 @@
+/* ==========================================================================
+   shadcss · base/theme.css
+   Applies tokens to the document and provides color utility helpers.
+   Lives in the `theme` layer — below components, above reset.
+   ========================================================================== */
+
+@layer theme {
+  html {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  code, kbd, pre, samp {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  /* Token helpers — use as `class="bg-card text-muted-foreground"` */
+  .text-foreground      { color: hsl(var(--foreground)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .text-primary         { color: hsl(var(--primary)); }
+  .text-destructive     { color: hsl(var(--destructive)); }
+  .text-success         { color: hsl(var(--success)); }
+  .text-warning         { color: hsl(var(--warning)); }
+  .text-info            { color: hsl(var(--info)); }
+
+  .bg-background        { background: hsl(var(--background)); }
+  .bg-card              { background: hsl(var(--card)); }
+  .bg-popover           { background: hsl(var(--popover)); }
+  .bg-primary           { background: hsl(var(--primary)); }
+  .bg-secondary         { background: hsl(var(--secondary)); }
+  .bg-muted             { background: hsl(var(--muted)); }
+  .bg-accent            { background: hsl(var(--accent)); }
+  .bg-destructive       { background: hsl(var(--destructive)); }
+
+  .border-border        { border-color: hsl(var(--border)); }
+  .border-input         { border-color: hsl(var(--input)); }
+  .border-primary       { border-color: hsl(var(--primary)); }
+  .border-destructive   { border-color: hsl(var(--destructive)); }
+
+  /* Typography scale helpers */
+  .text-xs   { font-size: var(--text-xs);   line-height: var(--leading-xs); }
+  .text-sm   { font-size: var(--text-sm);   line-height: var(--leading-sm); }
+  .text-base { font-size: var(--text-base); line-height: var(--leading-base); }
+  .text-lg   { font-size: var(--text-lg);   line-height: var(--leading-lg); }
+  .text-xl   { font-size: var(--text-xl);   line-height: var(--leading-xl); }
+  .text-2xl  { font-size: var(--text-2xl);  line-height: var(--leading-2xl); }
+  .text-3xl  { font-size: var(--text-3xl);  line-height: var(--leading-3xl); }
+
+  .font-sans   { font-family: var(--font-sans); }
+  .font-serif  { font-family: var(--font-serif); }
+  .font-mono   { font-family: var(--font-mono); }
+
+  .font-medium  { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold    { font-weight: 700; }
+
+  .tracking-tight { letter-spacing: -0.025em; }
+  .tracking-tighter { letter-spacing: -0.05em; }
+
+  /* Radius helpers */
+  .rounded-sm   { border-radius: var(--radius-sm); }
+  .rounded-md   { border-radius: var(--radius-md); }
+  .rounded-lg   { border-radius: var(--radius-lg); }
+  .rounded-xl   { border-radius: var(--radius-xl); }
+  .rounded-full { border-radius: var(--radius-full); }
+
+  /* Shadow helpers */
+  .shadow-sm  { box-shadow: var(--shadow-sm); }
+  .shadow-md  { box-shadow: var(--shadow-md); }
+  .shadow-lg  { box-shadow: var(--shadow-lg); }
+  .shadow-xl  { box-shadow: var(--shadow-xl); }
+  .shadow-2xl { box-shadow: var(--shadow-2xl); }
+
+  /* Layout helpers (the few we couldn't avoid) */
+  .flex          { display: flex; }
+  .inline-flex   { display: inline-flex; }
+  .grid          { display: grid; }
+  .items-center  { align-items: center; }
+  .justify-center { justify-content: center; }
+  .justify-between { justify-content: space-between; }
+  .gap-1 { gap: var(--space-1); }
+  .gap-2 { gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .gap-6 { gap: var(--space-6); }
+  .p-2  { padding: var(--space-2); }
+  .p-3  { padding: var(--space-3); }
+  .p-4  { padding: var(--space-4); }
+  .p-6  { padding: var(--space-6); }
+  .px-2 { padding-inline: var(--space-2); }
+  .px-3 { padding-inline: var(--space-3); }
+  .px-4 { padding-inline: var(--space-4); }
+  .py-2 { padding-block: var(--space-2); }
+  .py-3 { padding-block: var(--space-3); }
+  .w-full { width: 100%; }
+  .hidden { display: none; }
+}

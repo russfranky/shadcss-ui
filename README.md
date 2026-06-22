@@ -1,66 +1,69 @@
 # shadcss/ui
 
-Beautifully designed HTML/CSS components. Minimal JavaScript. Copy and paste into your projects.
+> **shadcn's beauty, no JS framework.**
+> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
-> A lightweight alternative to [shadcn/ui](https://ui.shadcn.com) — no framework required.
+[![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
+[![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
+[![components](https://img.shields.io/badge/components-52-blue)](./packages/shadcss#components-52)
+[![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE.md)
 
----
+`shadcss` rebuilds every shadcn/ui component — every variant, every detail —
+for the modern web platform. Where shadcn uses React + Radix + Tailwind,
+shadcss uses `:has()`, the Popover API, native `<dialog>`, and modern CSS.
+**No JS framework. Zero dependencies. Zero framework lock-in.** The CSS bundle
+ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
+(`showModal()`/`showPopover()`).
 
-## What is this?
+> Not affiliated with, endorsed by, or sponsored by shadcn/ui. Inspired by its
+> design language.
 
-shadcss/ui gives you the same polished component aesthetic as shadcn/ui but with plain HTML and CSS. No React, no build step, no framework lock-in. Drop a stylesheet, copy the markup, done.
-
-Designed to be AI-friendly — LLMs can read, generate, and modify pure HTML/CSS with far less friction than JSX + Tailwind.
-
-## Usage
-
-1. Copy the component stylesheet into your project (or import the npm package).
-2. Paste the HTML markup.
-3. Customize with CSS variables.
+## Install
 
 ```html
-<link rel="stylesheet" href="node_modules/shadcss/src/components/button/button.css" />
-
-<button class="sc-btn sc-btn-default">Click me</button>
-<button class="sc-btn sc-btn-outline sc-btn-sm">Small outline</button>
+<!-- CDN -->
+<link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css">
 ```
 
-## Theming
-
-All design tokens are CSS custom properties on `:root`:
+```bash
+# npm
+npm install shadcss
+```
 
 ```css
-:root {
-  --sc-primary: #18181b;
-  --sc-primary-fg: #fafafa;
-  --sc-border: #e4e4e7;
-  --sc-accent: #f4f4f5;
-  --sc-destructive: #ef4444;
-  --sc-radius: 0.375rem;
-}
+@import "shadcss";
 ```
 
-## Components
+## Monorepo structure
 
-| Component | Status |
-|-----------|--------|
-| Button    | ✅ Done |
-| Input     | 🚧 Planned |
-| Card      | 🚧 Planned |
-| Badge     | 🚧 Planned |
-| Dialog    | 🚧 Planned |
-
-## Structure
+This repository mirrors the [`shadcn-ui/ui`](https://github.com/shadcn-ui/ui) layout:
 
 ```
 shadcss-ui/
 ├── apps/
-│   └── www/          # Docs + component showcase
+│   └── www/              ← live component showcase + docs
 └── packages/
-    └── shadcss/      # The component library (publishable)
-        └── src/
-            └── components/
+    └── shadcss/          ← the framework (published to npm as `shadcss`)
+        ├── src/          ← source CSS (base + 52 components)
+        ├── dist/         ← built bundles
+        ├── registry.json ← machine-readable component spec
+        └── AI_GUIDE.md   ← patterns for AI code generation
 ```
+
+## Develop
+
+```bash
+npm install        # install workspace deps
+npm run build      # build the framework → packages/shadcss/dist
+npm run dev        # rebuild on change (watch)
+npm run www        # serve the showcase at http://localhost:3333
+```
+
+## Documentation
+
+- **Framework README** — [`packages/shadcss/README.md`](./packages/shadcss/README.md)
+- **AI guide** — [`packages/shadcss/AI_GUIDE.md`](./packages/shadcss/AI_GUIDE.md)
+- **Component registry** — [`packages/shadcss/registry.json`](./packages/shadcss/registry.json)
 
 ## License
 

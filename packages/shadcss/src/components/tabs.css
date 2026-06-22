@@ -1,0 +1,156 @@
+/* ==========================================================================
+   shadcss · components/tabs.css
+   Pure CSS tabs using native radio inputs + :has() for state.
+
+   Markup:
+     <div class="tabs">
+       <div class="tabs-list">
+         <input type="radio" name="mytabs" id="mytabs-1" checked>
+         <label for="mytabs-1" class="tabs-trigger">Account</label>
+         <input type="radio" name="mytabs" id="mytabs-2">
+         <label for="mytabs-2" class="tabs-trigger">Password</label>
+       </div>
+       <div class="tabs-panel" data-tab="mytabs-1"> ... </div>
+       <div class="tabs-panel" data-tab="mytabs-2"> ... </div>
+     </div>
+
+   Pair each input's `id` with a panel's `data-tab` attribute. shadcss
+   pre-bakes selectors for the 16 most common id suffixes (`-1` through
+   `-16`). Need more? Add a one-line rule:
+     .tabs:has(#my-id-13:checked) .tabs-panel[data-tab="my-id-13"] { display: block; }
+   ========================================================================== */
+
+@layer components {
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Hide the radios — labels are the visible triggers */
+  .tabs-list > input[type="radio"] {
+    appearance: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  .tabs-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: hsl(var(--muted));
+    border-radius: var(--radius-md);
+    padding: var(--space-1);
+    justify-self: start;
+  }
+
+  .tabs-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--muted-foreground));
+    border-radius: calc(var(--radius-md) - 2px);
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      background var(--duration-base) var(--ease-out);
+  }
+  .tabs-trigger:hover { color: hsl(var(--foreground)); }
+
+  /* When the paired radio is checked, highlight the matching trigger
+     via :has() on the tabs-list. We pair by `for` attribute → input `id`. */
+  .tabs-list:has(input:checked) .tabs-trigger {
+    /* default unstyled when nothing is checked */
+  }
+
+  /* Active state — uses sibling combinator + :checked */
+  .tabs-list > input[type="radio"]:checked + .tabs-trigger {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tabs-list > input[type="radio"]:focus-visible + .tabs-trigger {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Panels — only the one whose id matches a checked radio is shown.
+     Generic pattern via :has() and [data-tab="..."]. We enumerate the
+     common id suffixes -1 through -16 here; extend with one line if needed. */
+  .tabs-panel {
+    display: none;
+    animation: shadcss-tab-in var(--duration-slow) var(--ease-out);
+  }
+
+  .tabs:has(input[id$="-1"]:checked)  .tabs-panel[data-tab$="-1"],
+  .tabs:has(input[id$="-2"]:checked)  .tabs-panel[data-tab$="-2"],
+  .tabs:has(input[id$="-3"]:checked)  .tabs-panel[data-tab$="-3"],
+  .tabs:has(input[id$="-4"]:checked)  .tabs-panel[data-tab$="-4"],
+  .tabs:has(input[id$="-5"]:checked)  .tabs-panel[data-tab$="-5"],
+  .tabs:has(input[id$="-6"]:checked)  .tabs-panel[data-tab$="-6"],
+  .tabs:has(input[id$="-7"]:checked)  .tabs-panel[data-tab$="-7"],
+  .tabs:has(input[id$="-8"]:checked)  .tabs-panel[data-tab$="-8"],
+  .tabs:has(input[id$="-9"]:checked)  .tabs-panel[data-tab$="-9"],
+  .tabs:has(input[id$="-10"]:checked) .tabs-panel[data-tab$="-10"],
+  .tabs:has(input[id$="-11"]:checked) .tabs-panel[data-tab$="-11"],
+  .tabs:has(input[id$="-12"]:checked) .tabs-panel[data-tab$="-12"],
+  .tabs:has(input[id$="-13"]:checked) .tabs-panel[data-tab$="-13"],
+  .tabs:has(input[id$="-14"]:checked) .tabs-panel[data-tab$="-14"],
+  .tabs:has(input[id$="-15"]:checked) .tabs-panel[data-tab$="-15"],
+  .tabs:has(input[id$="-16"]:checked) .tabs-panel[data-tab$="-16"] {
+    display: block;
+  }
+
+  @keyframes shadcss-tab-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Vertical variant */
+  .tabs[data-orientation="vertical"] {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .tabs[data-orientation="vertical"] .tabs-list {
+    flex-direction: column;
+    align-items: stretch;
+    align-self: stretch;
+    height: max-content;
+  }
+  .tabs[data-orientation="vertical"] .tabs-panel {
+    flex: 1;
+  }
+
+  /* Underline variant */
+  .tabs[data-variant="underline"] .tabs-list {
+    background: transparent;
+    border-bottom: 1px solid hsl(var(--border));
+    border-radius: 0;
+    padding: 0;
+    gap: var(--space-1);
+  }
+  .tabs[data-variant="underline"] .tabs-trigger {
+    background: transparent;
+    border-radius: 0;
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tabs[data-variant="underline"]
+    .tabs-list > input[type="radio"]:checked
+    + .tabs-trigger {
+    background: transparent;
+    color: hsl(var(--foreground));
+    border-bottom-color: hsl(var(--primary));
+    box-shadow: none;
+  }
+}

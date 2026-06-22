@@ -1,0 +1,65 @@
+/* ==========================================================================
+   shadcss · components/empty.css
+   A friendly placeholder for empty states. Centered icon, title, and
+   description, with optional CTA buttons.
+   ========================================================================== */
+
+@layer components {
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+  }
+
+  .empty-icon {
+    display: inline-grid;
+    place-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--accent));
+    color: hsl(var(--muted-foreground));
+  }
+  .empty-icon > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .empty-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .empty-description {
+    font-size: var(--text-sm);
+    color: hsl(var(--muted-foreground));
+    max-width: 32rem;
+    line-height: 1.5;
+  }
+
+  .empty-actions {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  /* Variants by content type */
+  .empty-error .empty-icon {
+    background: hsl(var(--destructive) / 0.1);
+    color: hsl(var(--destructive));
+  }
+  .empty-success .empty-icon {
+    background: hsl(var(--success) / 0.1);
+    color: hsl(var(--success));
+  }
+  .empty-warning .empty-icon {
+    background: hsl(var(--warning) / 0.1);
+    color: hsl(var(--warning));
+  }
+}

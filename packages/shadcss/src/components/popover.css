@@ -1,0 +1,92 @@
+/* ==========================================================================
+   shadcss · components/popover.css
+   A floating panel with arbitrary content. Uses the Popover API. Like a
+   richer version of the tooltip — can contain forms, lists, etc.
+   ========================================================================== */
+
+@layer components {
+  .popover {
+    width: 20rem;
+    padding: var(--space-4);
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin: 0;
+    inset: auto auto auto 0;
+    margin-top: var(--space-2);
+    animation: shadcss-popover-in var(--duration-base) var(--ease-out);
+  }
+
+  @keyframes shadcss-popover-in {
+    from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Positioning variants.
+     Note: these are margin nudges relative to the top-layer default
+     placement. When CSS anchor positioning is available, prefer anchoring
+     the popover to its trigger (see @supports block below). */
+  .popover[data-side="top"]    { margin-top: 0; margin-bottom: var(--space-2); }
+  .popover[data-side="start"]  { margin-top: 0; margin-inline-end: var(--space-2); }
+  .popover[data-side="end"]    { margin-top: 0; margin-inline-start: var(--space-2); }
+
+  /* bottom-start / bottom-end — used by the showcase + registry markup.
+     Align under the trigger, pinned to the start or end edge. */
+  .popover[data-side="bottom-start"] {
+    inset: auto auto auto 0;
+    margin-top: var(--space-2);
+  }
+  .popover[data-side="bottom-end"] {
+    inset: auto 0 auto auto;
+    margin-top: var(--space-2);
+  }
+
+  /* Anchor the popover to its trigger where supported. Authors set
+     `anchor-name` on the trigger and `position-anchor` on the popover
+     (or rely on the implicit anchor from popovertarget). */
+  @supports (anchor-name: --x) {
+    .popover[data-side="bottom-start"] {
+      inset: auto;
+      top: anchor(bottom);
+      inset-inline-start: anchor(start);
+    }
+    .popover[data-side="bottom-end"] {
+      inset: auto;
+      top: anchor(bottom);
+      inset-inline-end: anchor(end);
+    }
+  }
+
+  /* Sizes */
+  .popover-sm { width: 16rem; padding: var(--space-3); }
+  .popover-lg { width: 28rem; padding: var(--space-6); }
+
+  /* Header / footer optional parts */
+  .popover-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+  .popover-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .popover-description {
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+    line-height: 1.5;
+  }
+
+  .popover-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid hsl(var(--border));
+  }
+}

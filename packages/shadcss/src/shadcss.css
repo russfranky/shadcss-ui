@@ -1,0 +1,72 @@
+/* ==========================================================================
+   shadcss · src/shadcss.css
+   Main entrypoint. @imports everything in the correct cascade layer order.
+   Use this if you want source-order control (e.g. for bundlers that
+   understand @import). For a ready-to-go bundle, use dist/shadcss.css instead.
+   ========================================================================== */
+
+/* Prime layer order up-front so precedence survives import reordering by a
+   bundler — layers acquire their priority here, not on first appearance. */
+@layer reset, theme, components;
+
+/* Order matters: reset → tokens → theme → components.
+   NOTE: base/tokens.css is a HARD PREREQUISITE — every component references
+   tokens (var(--space-*), var(--radius-*), etc.) with no fallbacks, so it
+   must be imported (as below) before any component for styles to resolve. */
+@import "./base/reset.css";
+@import "./base/tokens.css";
+@import "./base/theme.css";
+
+/* Components — each lives in its own file, opt in by removing an import */
+@import "./components/button.css";
+@import "./components/input.css";
+@import "./components/textarea.css";
+@import "./components/label.css";
+@import "./components/select.css";
+@import "./components/checkbox.css";
+@import "./components/radio.css";
+@import "./components/radio-group.css";
+@import "./components/switch.css";
+@import "./components/slider.css";
+@import "./components/card.css";
+@import "./components/badge.css";
+@import "./components/alert.css";
+@import "./components/alert-dialog.css";
+@import "./components/avatar.css";
+@import "./components/separator.css";
+@import "./components/skeleton.css";
+@import "./components/spinner.css";
+@import "./components/progress.css";
+@import "./components/tooltip.css";
+@import "./components/popover.css";
+@import "./components/hover-card.css";
+@import "./components/accordion.css";
+@import "./components/collapsible.css";
+@import "./components/tabs.css";
+@import "./components/dialog.css";
+@import "./components/sheet.css";
+@import "./components/drawer.css";
+@import "./components/dropdown.css";
+@import "./components/menubar.css";
+@import "./components/navigation-menu.css";
+@import "./components/context-menu.css";
+@import "./components/command.css";
+@import "./components/toast.css";
+@import "./components/sonner.css";
+@import "./components/table.css";
+@import "./components/container.css";
+@import "./components/kbd.css";
+@import "./components/breadcrumb.css";
+@import "./components/pagination.css";
+@import "./components/calendar.css";
+@import "./components/carousel.css";
+@import "./components/aspect-ratio.css";
+@import "./components/scroll-area.css";
+@import "./components/resizable.css";
+@import "./components/sidebar.css";
+@import "./components/empty.css";
+@import "./components/field.css";
+@import "./components/input-otp.css";
+@import "./components/toggle.css";
+@import "./components/toggle-group.css";
+@import "./components/typography.css";

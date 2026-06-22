@@ -1,0 +1,117 @@
+/* ==========================================================================
+   shadcss · components/menubar.css
+   A horizontal menu bar with dropdown submenus. Combines the Popover
+   API for opening menus with the same dropdown-item patterns you already
+   know.
+   ========================================================================== */
+
+@layer components {
+  .menubar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    padding: var(--space-1);
+  }
+
+  .menubar-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    background: transparent;
+    border: none;
+    border-radius: calc(var(--radius-md) - 2px);
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .menubar-trigger:hover { background: hsl(var(--accent)); }
+  .menubar-trigger:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Submenu via Popover API */
+  .menubar-menu {
+    min-width: 12rem;
+    padding: var(--space-1);
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    margin: 0;
+    inset: auto auto auto 0;
+    margin-top: var(--space-2);
+    width: max-content;
+    animation: shadcss-menubar-in var(--duration-fast) var(--ease-out);
+  }
+  @keyframes shadcss-menubar-in {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Side variants (fallback inset values, viewport-relative in the top
+     layer). Default placement is bottom-start. */
+  .menubar-menu[data-side="bottom-end"] {
+    inset: auto 0 auto auto;
+    margin-top: var(--space-2);
+  }
+  .menubar-menu[data-side="top-start"] {
+    inset: auto auto 0 0;
+    margin-top: 0;
+    margin-bottom: var(--space-2);
+  }
+  .menubar-menu[data-side="top-end"] {
+    inset: auto 0 0 auto;
+    margin-top: 0;
+    margin-bottom: var(--space-2);
+  }
+
+  /* Anchor the submenu to its trigger where supported, with try-fallbacks
+     so it flips away from the viewport edge. */
+  @supports (anchor-name: --x) {
+    .menubar-menu {
+      inset: auto;
+      top: anchor(bottom);
+      inset-inline-start: anchor(start);
+      position-try-fallbacks: flip-block, flip-inline;
+    }
+    .menubar-menu[data-side="bottom-end"] {
+      inset: auto;
+      top: anchor(bottom);
+      inset-inline-end: anchor(end);
+    }
+    .menubar-menu[data-side="top-start"] {
+      inset: auto;
+      bottom: anchor(top);
+      inset-inline-start: anchor(start);
+    }
+    .menubar-menu[data-side="top-end"] {
+      inset: auto;
+      bottom: anchor(top);
+      inset-inline-end: anchor(end);
+    }
+  }
+
+  /* Reuse dropdown item styles within menubar */
+  .menubar-menu .dropdown-item,
+  .menubar-menu .dropdown-label,
+  .menubar-menu .dropdown-separator {
+    /* Inherits from dropdown.css */
+  }
+
+  /* Keyboard shortcut inside menubar item */
+  .menubar-menu .dropdown-shortcut {
+    margin-inline-start: auto;
+    color: hsl(var(--muted-foreground));
+    font-size: var(--text-xs);
+  }
+}

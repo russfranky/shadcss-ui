@@ -1,0 +1,27 @@
+/* ==========================================================================
+   shadcss · components/kbd.css
+   Keyboard shortcut indicator. Pure CSS — no JS, no images.
+   ========================================================================== */
+
+@layer components {
+  kbd, .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.25rem;
+    padding: 0 0.375rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-sm);
+    border-bottom-width: 2px;
+    box-shadow: var(--shadow-xs);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+}

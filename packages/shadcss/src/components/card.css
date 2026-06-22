@@ -1,0 +1,63 @@
+/* ==========================================================================
+   shadcss · components/card.css
+   ========================================================================== */
+
+@layer components {
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
+  }
+  .card-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  .card-description {
+    font-size: var(--text-sm);
+    color: hsl(var(--muted-foreground));
+  }
+
+  .card-content { padding: var(--space-6); padding-top: 0; }
+  .card-content:has(+ .card-footer) { padding-bottom: var(--space-4); }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    padding-top: 0;
+  }
+  .card-footer:where([data-justify="end"]) { justify-content: flex-end; }
+  .card-footer:where([data-justify="between"]) { justify-content: space-between; }
+  .card-footer:where([data-justify="center"]) { justify-content: center; }
+
+  /* Hover lift — opt-in only */
+  .card-interactive {
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+  .card-interactive:hover,
+  .card-interactive:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .card-interactive:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}

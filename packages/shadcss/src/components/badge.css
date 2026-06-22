@@ -1,0 +1,62 @@
+/* ==========================================================================
+   shadcss · components/badge.css
+   ========================================================================== */
+
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0.125rem var(--space-2);
+    height: 1.25rem;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    background: hsl(var(--secondary));
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .badge-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .badge-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  .badge-destructive {
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+  .badge-success {
+    background: hsl(var(--success));
+    color: hsl(var(--success-foreground));
+  }
+  .badge-warning {
+    background: hsl(var(--warning));
+    color: hsl(var(--warning-foreground));
+  }
+  .badge-info {
+    background: hsl(var(--info));
+    color: hsl(var(--info-foreground));
+  }
+  .badge-outline {
+    background: transparent;
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+
+  /* Variants */
+  .badge-dot::before {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    opacity: 0.9;
+  }
+}

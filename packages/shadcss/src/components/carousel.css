@@ -1,0 +1,91 @@
+/* ==========================================================================
+   shadcss · components/carousel.css
+   Pure CSS carousel using scroll-snap. Navigation arrows + dots are
+   provided; the actual scrolling uses native overflow + scroll-snap-align
+   so it works perfectly on touch devices and with keyboard arrows.
+   ========================================================================== */
+
+@layer components {
+  .carousel {
+    position: relative;
+    width: 100%;
+  }
+
+  .carousel-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
+  .carousel-viewport::-webkit-scrollbar { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-viewport { scroll-behavior: auto; }
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-1);
+  }
+
+  .carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 100%;
+  }
+  .carousel-item[data-size="half"]    { width: calc(50% - var(--space-3) / 2); }
+  .carousel-item[data-size="third"]   { width: calc(33.333% - var(--space-3) * 2 / 3); }
+  .carousel-item[data-size="quarter"] { width: calc(25% - var(--space-3) * 3 / 4); }
+  @media (max-width: 640px) {
+    .carousel-item[data-size="half"],
+    .carousel-item[data-size="third"],
+    .carousel-item[data-size="quarter"] { width: 80%; }
+  }
+
+  /* Navigation arrows — opt in by wrapping in .carousel-controls */
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-3);
+  }
+
+  .carousel-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: inline-grid;
+    place-content: center;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-full);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
+  }
+  .carousel-btn:hover {
+    background: hsl(var(--accent));
+    border-color: hsl(var(--input));
+  }
+  .carousel-btn:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Dots indicator */
+  .carousel-dots {
+    display: inline-flex;
+    gap: var(--space-2);
+  }
+  .carousel-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--border));
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .carousel-dot:hover { background: hsl(var(--input)); }
+}

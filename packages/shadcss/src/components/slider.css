@@ -1,0 +1,127 @@
+/* ==========================================================================
+   shadcss · components/slider.css
+   A styled range input. The thumb and track are restyled to match
+   shadcn. Multi-thumb support comes from native input[type=range]
+   (though dual-thumb requires two inputs layered).
+   ========================================================================== */
+
+@layer components {
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1.25rem;
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  /* Track */
+  .slider::-webkit-slider-runnable-track {
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--secondary));
+  }
+  .slider::-moz-range-track {
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--secondary));
+  }
+
+  /* Filled portion — colored via a background gradient whose stop is the
+     --slider-fill custom property (default 50%). CSS cannot read a range's
+     live value, so to track dragging set --slider-fill from a tiny consumer
+     oninput handler (e.g. style.setProperty('--slider-fill', pct)). */
+  .slider {
+    background: linear-gradient(
+      to right,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary)) var(--slider-fill, 50%),
+      hsl(var(--secondary)) var(--slider-fill, 50%),
+      hsl(var(--secondary)) 100%
+    );
+    border-radius: var(--radius-full);
+    height: 0.375rem;
+    padding: 0;
+  }
+  .slider::-webkit-slider-runnable-track { background: transparent; }
+  .slider::-moz-range-track { background: transparent; }
+
+  /* Thumb */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: -0.375rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--primary));
+    box-shadow: var(--shadow-sm);
+    cursor: grab;
+    transition:
+      transform var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+  }
+  .slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+  }
+  .slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.15);
+  }
+  .slider::-webkit-slider-thumb:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--primary));
+    box-shadow: var(--shadow-sm);
+    cursor: grab;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  .slider::-moz-range-thumb:hover { transform: scale(1.1); }
+  .slider::-moz-range-thumb:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Disabled */
+  .slider:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .slider:disabled::-webkit-slider-thumb { cursor: not-allowed; }
+  .slider:disabled::-moz-range-thumb { cursor: not-allowed; }
+
+  /* Sizes */
+  .slider-sm { height: 0.25rem; }
+  .slider-sm::-webkit-slider-thumb { width: 0.875rem; height: 0.875rem; margin-top: -0.3125rem; }
+  .slider-sm::-moz-range-thumb { width: 0.875rem; height: 0.875rem; }
+
+  .slider-lg { height: 0.5rem; }
+  .slider-lg::-webkit-slider-thumb { width: 1.375rem; height: 1.375rem; margin-top: -0.4375rem; }
+  .slider-lg::-moz-range-thumb { width: 1.375rem; height: 1.375rem; }
+
+  /* Vertical orientation (modern browsers) */
+  .slider[data-orientation="vertical"] {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 0.375rem;
+    height: 8rem;
+    /* Gradient axis must follow the visual track (bottom→top) in vertical
+       mode, not the horizontal to-right axis used by the base rule. */
+    background: linear-gradient(
+      to top,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary)) var(--slider-fill, 50%),
+      hsl(var(--secondary)) var(--slider-fill, 50%),
+      hsl(var(--secondary)) 100%
+    );
+  }
+}

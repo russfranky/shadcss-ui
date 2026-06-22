@@ -1,0 +1,79 @@
+/* ==========================================================================
+   shadcss · components/radio-group.css
+   A wrapper around radio inputs that adds labels, descriptions, and
+   group layout. Companion to radio.css.
+   ========================================================================== */
+
+@layer components {
+  .radio-group {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .radio-group[data-orientation="horizontal"] {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+  }
+
+  .radio-group-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      background var(--duration-base) var(--ease-out);
+  }
+  .radio-group-item:hover {
+    background: hsl(var(--accent));
+  }
+  .radio-group-item:has(:checked) {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--accent));
+  }
+  .radio-group-item:has(:focus-visible) {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .radio-group-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .radio-group-item-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1.2;
+    color: hsl(var(--foreground));
+  }
+  .radio-group-item-description {
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+    line-height: 1.5;
+  }
+
+  /* Bare inline variant — no card chrome */
+  .radio-group[data-variant="inline"] {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: var(--space-3);
+  }
+  .radio-group[data-variant="inline"] .radio-group-item {
+    padding: 0;
+    border: none;
+    background: transparent;
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .radio-group[data-variant="inline"] .radio-group-item:hover {
+    background: transparent;
+  }
+  .radio-group[data-variant="inline"] .radio-group-item:has(:checked) {
+    background: transparent;
+    border: none;
+  }
+}

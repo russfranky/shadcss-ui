@@ -1,0 +1,47 @@
+/* ==========================================================================
+   shadcss · components/radio.css
+   ========================================================================== */
+
+@layer components {
+  .radio {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-full);
+    background: hsl(var(--background));
+    cursor: pointer;
+    flex-shrink: 0;
+    display: inline-grid;
+    place-content: center;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      background var(--duration-base) var(--ease-out);
+  }
+
+  .radio::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--primary-foreground));
+    transform: scale(0);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .radio:checked {
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+  }
+  .radio:checked::before { transform: scale(1); }
+  .radio:hover:not(:disabled) { border-color: hsl(var(--primary)); }
+  .radio:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  .radio:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Radio group layout lives in radio-group.css (single authoritative
+     grid-based definition supporting both orientations). */
+}

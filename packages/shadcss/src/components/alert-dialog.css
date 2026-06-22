@@ -1,0 +1,77 @@
+/* ==========================================================================
+   shadcss · components/alert-dialog.css
+   A destructive-action confirmation modal. Built on native <dialog> with
+   a focus-trapping backdrop. Uses <form method="dialog"> for the cancel
+   button so no JS is required to dismiss. Opening the modal still requires
+   a one-line dialog.showModal() call — native <dialog> cannot be opened
+   from CSS alone.
+   ========================================================================== */
+
+@layer components {
+  dialog.alert-dialog {
+    margin: auto;
+    padding: 0;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    box-shadow: var(--shadow-lg);
+    max-width: min(28rem, 90vw);
+    width: 100%;
+    overflow: hidden;
+    animation: shadcss-alert-in var(--duration-base) var(--ease-out);
+  }
+
+  dialog.alert-dialog::backdrop {
+    background: hsl(var(--background) / 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: shadcss-backdrop-in var(--duration-base) var(--ease-out);
+  }
+
+  @keyframes shadcss-alert-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .alert-dialog-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    padding-bottom: var(--space-3);
+    text-align: center;
+  }
+  .alert-dialog-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  .alert-dialog-description {
+    font-size: var(--text-sm);
+    color: hsl(var(--muted-foreground));
+    line-height: 1.5;
+  }
+
+  .alert-dialog-body {
+    padding: 0 var(--space-6);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .alert-dialog-footer {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    padding-top: var(--space-4);
+  }
+  .alert-dialog-footer[data-justify="center"] {
+    justify-content: center;
+  }
+  .alert-dialog-footer[data-justify="between"] {
+    justify-content: space-between;
+  }
+}

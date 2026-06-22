@@ -1,0 +1,81 @@
+/* ==========================================================================
+   shadcss · components/toggle.css
+   A two-state button. Built on <button> + aria-pressed for the a11y
+   semantics. CSS only styles [aria-pressed]; flipping that attribute on
+   click requires a one-line JS handler. For a zero-JS toggle, use
+   .toggle-group (native radio/checkbox inputs drive the checked state).
+   ========================================================================== */
+
+@layer components {
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out);
+  }
+
+  .toggle > svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .toggle:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .toggle:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .toggle:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Pressed state */
+  .toggle[aria-pressed="true"] {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  .toggle[aria-pressed="true"]:hover {
+    background: hsl(var(--accent) / 0.85);
+  }
+
+  /* Sizes */
+  .toggle-sm { width: 2rem; height: 2rem; font-size: var(--text-xs); border-radius: var(--radius-sm); }
+  .toggle-sm > svg { width: 1rem; height: 1rem; }
+  .toggle-lg { width: 2.75rem; height: 2.75rem; font-size: var(--text-base); }
+  .toggle-lg > svg { width: 1.25rem; height: 1.25rem; }
+
+  /* Outline variant */
+  .toggle-outline {
+    border-color: hsl(var(--border));
+  }
+  .toggle-outline[aria-pressed="true"] {
+    background: hsl(var(--accent));
+    border-color: hsl(var(--input));
+  }
+
+  /* With text — wider than icon-only */
+  .toggle.has-text {
+    width: auto;
+    padding: 0 var(--space-3);
+  }
+}

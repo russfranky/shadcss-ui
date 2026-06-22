@@ -1,0 +1,99 @@
+/* ==========================================================================
+   shadcss · components/dialog.css
+   Uses the native <dialog> element. Opening/closing is HTML-native via
+   `dialog[open]` or `dialog.showModal()` (one line of inline JS if you
+   want the modal variant with backdrop). Pure-CSS close via
+   <form method="dialog"><button>Close</button></form>.
+
+   For full no-JS opening, use the Popover API on a <div popover> instead.
+   See dropdown.css for the popover pattern — same idea applies here.
+   ========================================================================== */
+
+@layer components {
+  dialog.dialog {
+    margin: auto;
+    padding: 0;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    box-shadow: var(--shadow-lg);
+    max-width: min(32rem, 90vw);
+    max-height: 85vh;
+    width: 100%;
+    overflow: auto;
+    animation: shadcss-dialog-in var(--duration-base) var(--ease-out);
+  }
+
+  dialog.dialog::backdrop {
+    background: hsl(var(--background) / 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: shadcss-backdrop-in var(--duration-base) var(--ease-out);
+  }
+
+  @keyframes shadcss-dialog-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes shadcss-backdrop-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .dialog-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
+    padding-bottom: var(--space-3);
+  }
+  .dialog-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  .dialog-description {
+    font-size: var(--text-sm);
+    color: hsl(var(--muted-foreground));
+  }
+
+  .dialog-body {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    padding-top: var(--space-4);
+  }
+
+  /* Close button. This is styling only — it has no close behavior on its
+     own. To make it dismiss the dialog with no JS, wrap it in a dialog form:
+       <form method="dialog"><button class="dialog-close">✕</button></form>
+     (the form's submit closes the parent <dialog>). */
+  .dialog-close {
+    position: absolute;
+    top: var(--space-4);
+    inset-inline-end: var(--space-4);
+    width: 2rem;
+    height: 2rem;
+    display: inline-grid;
+    place-content: center;
+    border-radius: var(--radius-sm);
+    color: hsl(var(--muted-foreground));
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--duration-base) var(--ease-out);
+  }
+  .dialog-close:hover { background: hsl(var(--accent)); }
+  .dialog-close:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}

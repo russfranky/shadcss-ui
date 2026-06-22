@@ -1,0 +1,95 @@
+/* ==========================================================================
+   shadcss · components/resizable.css
+   A panel group with draggable dividers. Pure CSS cannot implement drag
+   — but it can implement the visual structure and the divider affordance.
+   Pair with one tiny inline `onpointerdown` per divider for the actual
+   resize behavior (10 lines of vanilla JS, no framework).
+   ========================================================================== */
+
+@layer components {
+  .resizable {
+    display: grid;
+    gap: 0;
+    /* Default to horizontal when data-direction is absent */
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+  .resizable[data-direction="horizontal"] {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+  .resizable[data-direction="vertical"] {
+    grid-auto-flow: row;
+    grid-auto-rows: 1fr;
+  }
+
+  .resizable-panel {
+    overflow: auto;
+    min-width: 0;
+    min-height: 0;
+    padding: var(--space-3);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+  }
+  .resizable-panel:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+  .resizable-panel:last-child  { border-radius: 0 var(--radius-md) var(--radius-md) 0; border-inline-start: none; }
+  .resizable-panel:only-child  { border-radius: var(--radius-md); }
+
+  /* Vertical stacks round the top of the first panel and the bottom of the
+     last panel instead of the horizontal corners. */
+  .resizable[data-direction="vertical"] .resizable-panel:first-child {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  .resizable[data-direction="vertical"] .resizable-panel:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border-inline-start: 1px solid hsl(var(--border));
+    border-block-start: none;
+  }
+  .resizable[data-direction="vertical"] .resizable-panel:only-child {
+    border-radius: var(--radius-md);
+  }
+
+  .resizable-handle {
+    position: relative;
+    flex-shrink: 0;
+    background: hsl(var(--border));
+    transition: background var(--duration-base) var(--ease-out);
+    touch-action: none;
+  }
+  .resizable[data-direction="horizontal"] .resizable-handle {
+    width: 4px;
+    cursor: col-resize;
+    margin-inline: -1px;
+  }
+  .resizable[data-direction="vertical"] .resizable-handle {
+    height: 4px;
+    cursor: row-resize;
+    margin-block: -1px;
+  }
+  .resizable-handle:hover,
+  .resizable-handle[data-active="true"] {
+    background: hsl(var(--ring));
+  }
+
+  /* Visual grip indicator */
+  .resizable-handle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.25rem;
+    height: 1.5rem;
+    border-radius: var(--radius-full);
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+  .resizable[data-direction="vertical"] .resizable-handle::after {
+    width: 1.5rem;
+    height: 0.25rem;
+  }
+
+  .resizable-handle:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}

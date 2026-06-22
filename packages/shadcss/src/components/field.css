@@ -1,0 +1,93 @@
+/* ==========================================================================
+   shadcss · components/field.css
+   A higher-level form field wrapper than .form-field. Includes label,
+   description, input, error message, and (optionally) an inline
+   validation icon. Errors are wired via :user-invalid and the
+   :has(:invalid) sibling selector.
+   ========================================================================== */
+
+@layer components {
+  .field {
+    display: grid;
+    gap: var(--space-2);
+    grid-template-areas:
+      "label"
+      "control"
+      "description"
+      "error";
+  }
+
+  .field-label {
+    grid-area: label;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+    color: hsl(var(--foreground));
+  }
+  .field-label::after {
+    content: "*";
+    color: hsl(var(--destructive));
+    margin-inline-start: 0.125em;
+    display: none;
+  }
+  .field[data-required="true"] .field-label::after { display: inline; }
+
+  .field-control {
+    grid-area: control;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .field-description {
+    grid-area: description;
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+    line-height: 1.4;
+  }
+
+  .field-error {
+    grid-area: error;
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: hsl(var(--destructive));
+    line-height: 1.4;
+  }
+  .field-error > svg { width: 0.875rem; height: 0.875rem; }
+
+  /* Show the error message when the field is invalid. :user-invalid (Baseline
+     since ~2023) is the primary trigger — it covers empty placeholder-less
+     required fields after interaction. The :placeholder-shown pair is kept as
+     a progressive-enhancement fallback for older engines. */
+  .field:has(:user-invalid) .field-error,
+  .field:has(:invalid:not(:placeholder-shown)) .field-error,
+  .field:has(select:invalid) .field-error {
+    display: flex;
+  }
+  .field:has(:user-invalid) .field-description,
+  .field:has(:invalid:not(:placeholder-shown)) .field-description,
+  .field:has(select:invalid) .field-description {
+    display: none;
+  }
+
+  /* Apply destructive border to inputs in invalid fields */
+  .field:has(:user-invalid) .input,
+  .field:has(:user-invalid) .textarea,
+  .field:has(:invalid:not(:placeholder-shown)) .input,
+  .field:has(:invalid:not(:placeholder-shown)) .textarea,
+  .field:has(select:invalid) .select {
+    border-color: hsl(var(--destructive));
+  }
+  .field:has(:user-invalid) .input:focus,
+  .field:has(:user-invalid) .textarea:focus,
+  .field:has(:invalid:not(:placeholder-shown)) .input:focus,
+  .field:has(:invalid:not(:placeholder-shown)) .textarea:focus,
+  .field:has(select:invalid) .select:focus {
+    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
+  }
+}

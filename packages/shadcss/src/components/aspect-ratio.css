@@ -1,0 +1,35 @@
+/* ==========================================================================
+   shadcss · components/aspect-ratio.css
+   Locks an element to a width/height ratio. Uses the modern aspect-ratio
+   property. Pair with <img> or video for responsive media.
+   ========================================================================== */
+
+@layer components {
+  .aspect-ratio {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .aspect-ratio > img,
+  .aspect-ratio > video,
+  .aspect-ratio > picture,
+  .aspect-ratio > iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Common ratios */
+  .aspect-square   { aspect-ratio: 1 / 1; }
+  .aspect-video    { aspect-ratio: 16 / 9; }
+  .aspect-photo    { aspect-ratio: 4 / 3; }
+  .aspect-portrait { aspect-ratio: 3 / 4; }
+  .aspect-cinema   { aspect-ratio: 21 / 9; }
+  .aspect-wide     { aspect-ratio: 2 / 1; }
+  .aspect-ultra    { aspect-ratio: 32 / 9; }
+}

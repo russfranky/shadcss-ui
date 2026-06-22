@@ -1,0 +1,72 @@
+/* ==========================================================================
+   shadcss · components/pagination.css
+   Pure CSS pagination — uses <a> for nav, [aria-current="page"] for active.
+   ========================================================================== */
+
+@layer components {
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+  }
+
+  .pagination-item {
+    display: inline-flex;
+  }
+
+  .pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .pagination-link:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .pagination-link[aria-current="page"] {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    pointer-events: none;
+  }
+
+  .pagination-link:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .pagination-prev[aria-disabled="true"],
+  .pagination-next[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

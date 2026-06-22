@@ -1,0 +1,150 @@
+/* ==========================================================================
+   shadcss · components/calendar.css
+   A pure-CSS month calendar layout (CSS grid). The visual layer only:
+   month switching and date-picking UX (prev/next navigation, disable past
+   dates, range select, etc.) require a few lines of JS — the .calendar-nav-btn
+   controls are styled affordances with no built-in navigation. shadcss ships
+   the visual layer; wire behavior on top as needed.
+
+   ACCESSIBILITY: for AT, add role="grid" to .calendar-grid, role="columnheader"
+   to each .calendar-weekday, and an aria-label (full date) to each
+   .calendar-day. If the nav buttons are display-only, mark them aria-disabled.
+   ========================================================================== */
+
+@layer components {
+  .calendar {
+    --cal-cell: 2.5rem;
+    --cal-gap: 0.125rem;
+    width: max-content;
+    padding: var(--space-3);
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .calendar-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .calendar-nav {
+    display: inline-flex;
+    gap: 0;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .calendar-nav-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-grid;
+    place-content: center;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .calendar-nav-btn:first-child { border-inline-end: 1px solid hsl(var(--border)); }
+  .calendar-nav-btn:hover { background: hsl(var(--accent)); }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, var(--cal-cell));
+    gap: var(--cal-gap);
+  }
+
+  .calendar-weekday {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--cal-cell);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .calendar-day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--cal-cell);
+    height: var(--cal-cell);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: transparent;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .calendar-day:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  .calendar-day:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .calendar-day[aria-pressed="true"],
+  .calendar-day.is-today {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .calendar-day[aria-pressed="true"]:hover {
+    background: hsl(var(--primary) / 0.9);
+  }
+
+  .calendar-day.is-today:not([aria-pressed="true"]) {
+    border-color: hsl(var(--ring));
+    background: transparent;
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+
+  .calendar-day[aria-disabled="true"] {
+    color: hsl(var(--muted-foreground) / 0.5);
+    pointer-events: none;
+  }
+
+  .calendar-day.outside {
+    color: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Range selection — pair two days marked with [data-range] */
+  .calendar-day[data-range="start"] {
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+  .calendar-day[data-range="end"] {
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .calendar-day[data-range="middle"] {
+    border-radius: 0;
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* Compact variant */
+  .calendar-sm {
+    --cal-cell: 2rem;
+    --cal-gap: 0.0625rem;
+  }
+  .calendar-sm { padding: var(--space-2); }
+}
