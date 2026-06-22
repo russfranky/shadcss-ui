@@ -104,10 +104,10 @@ Runtime accessibility (headless Chromium + **axe-core**), one-time browser insta
 ```bash
 npx playwright install chromium
 npx serve apps/www -l 3333 &      # serve the built showcase
-npm run check:a11y                # fails on any CRITICAL axe violation
+npm run check:a11y                # axe-core on light AND dark themes
 ```
 
-`check:a11y` reports serious/moderate/minor as warnings — some interactivity legitimately needs consumer-supplied JS/ARIA in a CSS-only library. The known remaining *serious* item is `color-contrast` on muted-foreground text, inherited from shadcn's own palette (see `qa/iteration-3/`).
+`check:a11y` scans both themes (with a settle delay so it doesn't sample mid-transition colors) and **fails on any serious or critical** violation; moderate/minor are reported as warnings. The showcase currently passes at **0 violations of any impact in both light and dark** — the WCAG AA work (including a darkened status palette vs shadcn's defaults) is recorded in `qa/iteration-3/`.
 
 ## Documentation
 
