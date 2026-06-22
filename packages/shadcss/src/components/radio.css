@@ -45,3 +45,9 @@
   /* Radio group layout lives in radio-group.css (single authoritative
      grid-based definition supporting both orientations). */
 }
+
+/* --- parity: aria-invalid error state --- */
+@layer components {
+  .radio[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+  .radio[aria-invalid="true"]:focus-visible { outline-color: hsl(var(--destructive)); }
+}

@@ -93,3 +93,23 @@
     box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
   }
 }
+
+/* --- parity: horizontal orientation + data-invalid / aria-invalid hooks + group --- */
+@layer components {
+  .field[data-orientation="horizontal"] {
+    grid-template-areas:
+      "control label"
+      "control description"
+      "control error";
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: var(--space-3);
+  }
+  .field[data-invalid="true"] .field-error,
+  .field:has([aria-invalid="true"]) .field-error { display: flex; }
+  .field[data-invalid="true"] .input,
+  .field:has([aria-invalid="true"]) .input,
+  .field[data-invalid="true"] .textarea,
+  .field:has([aria-invalid="true"]) .textarea { border-color: hsl(var(--destructive)); }
+  .field-group { display: flex; flex-direction: column; gap: var(--space-5); }
+}

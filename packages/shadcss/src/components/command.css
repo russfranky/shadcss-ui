@@ -127,3 +127,9 @@
     color: hsl(var(--muted-foreground));
   }
 }
+
+/* --- parity: disabled item --- */
+@layer components {
+  .command-item[data-disabled="true"],
+  .command-item:disabled { pointer-events: none; opacity: 0.5; }
+}

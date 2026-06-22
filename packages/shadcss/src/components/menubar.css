@@ -95,3 +95,12 @@
     font-size: var(--text-xs);
   }
 }
+
+/* --- parity: keep trigger highlighted while its menu is open --- */
+@layer components {
+  .menubar-trigger[data-state="open"],
+  .menubar-trigger[aria-expanded="true"] {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+}

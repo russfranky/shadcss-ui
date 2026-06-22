@@ -93,3 +93,9 @@
     inset-inline-end: var(--space-3);
   }
 }
+
+/* --- parity: aria-invalid error state (form libraries set this, not :invalid) --- */
+@layer components {
+  .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+  .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25); }
+}

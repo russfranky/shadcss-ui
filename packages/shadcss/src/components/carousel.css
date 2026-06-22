@@ -92,3 +92,15 @@
   }
   .carousel-dot:hover { background: hsl(var(--input)); }
 }
+
+/* --- parity: vertical orientation --- */
+@layer components {
+  .carousel[data-orientation="vertical"] .carousel-viewport {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+  .carousel[data-orientation="vertical"] .carousel-track { flex-direction: column; }
+  .carousel[data-orientation="vertical"] .carousel-item { width: 100%; height: auto; scroll-snap-align: start; }
+  .carousel[data-orientation="vertical"] .carousel-controls { flex-direction: column; }
+}

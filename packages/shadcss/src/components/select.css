@@ -45,3 +45,9 @@
   .select-sm { height: 2rem; padding: 0 var(--space-2); font-size: var(--text-xs); border-radius: var(--radius-sm); }
   .select-lg { height: 2.75rem; padding: 0 var(--space-4); font-size: var(--text-base); }
 }
+
+/* --- parity: aria-invalid error state --- */
+@layer components {
+  .select[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+  .select[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25); }
+}

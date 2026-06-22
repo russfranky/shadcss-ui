@@ -58,3 +58,9 @@
   }
   .checkbox:disabled { opacity: 0.5; cursor: not-allowed; }
 }
+
+/* --- parity: aria-invalid error state --- */
+@layer components {
+  .checkbox[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+  .checkbox[aria-invalid="true"]:focus-visible { outline-color: hsl(var(--destructive)); }
+}

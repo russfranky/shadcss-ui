@@ -17,7 +17,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 
 const PKG = "@russfranky/shadcss";
-const DEFAULT_VERSION = "0.1.4"; // framework version this CLI ships against
+const DEFAULT_VERSION = "0.1.5"; // framework version this CLI ships against
 
 const C = {
   dim: (s) => `\x1b[2m${s}\x1b[0m`,

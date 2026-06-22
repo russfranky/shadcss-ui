@@ -113,3 +113,11 @@
      the native exclusive-accordion behavior landing in Chromium 129+.
      Example: <details name="faq-1"> */
 }
+
+/* --- parity: keyboard focus ring on the trigger --- */
+@layer components {
+  .accordion > details > summary:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: -2px;
+  }
+}

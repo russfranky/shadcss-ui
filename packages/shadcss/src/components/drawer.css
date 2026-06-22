@@ -119,3 +119,15 @@
   }
   .drawer-footer[data-justify="end"] { justify-content: flex-end; }
 }
+
+/* --- parity: drag-handle pill --- */
+@layer components {
+  .drawer-handle {
+    margin: var(--space-4) auto 0;
+    height: 0.5rem;
+    width: 100px;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    background: hsl(var(--muted));
+  }
+}

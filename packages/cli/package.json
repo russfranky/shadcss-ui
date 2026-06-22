@@ -1,7 +1,7 @@
 {
   "name": "@russfranky/shadcss-cli",
-  "version": "0.1.0",
-  "description": "CLI for shadcss — add components to your project, diff your copies against upstream, and lint markup. Zero dependencies.",
+  "version": "0.1.1",
+  "description": "CLI for shadcss \u2014 add components to your project, diff your copies against upstream, and lint markup. Zero dependencies.",
   "type": "module",
   "bin": {
     "shadcss": "./bin/shadcss.mjs"

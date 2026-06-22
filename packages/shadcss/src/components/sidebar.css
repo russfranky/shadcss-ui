@@ -279,3 +279,33 @@
     box-shadow: var(--shadow-sm);
   }
 }
+
+/* --- parity: per-item action button + section separator --- */
+@layer components {
+  .sidebar-menu-item { position: relative; }
+  .sidebar-menu-action {
+    position: absolute;
+    inset-inline-end: var(--space-1);
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-sm);
+    color: hsl(var(--sidebar-foreground));
+    background: transparent;
+    cursor: pointer;
+  }
+  .sidebar-menu-action:hover {
+    background: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+  .sidebar-separator {
+    height: 1px;
+    margin-inline: var(--space-2);
+    background: hsl(var(--sidebar-border));
+    border: 0;
+  }
+}

@@ -154,3 +154,12 @@
     box-shadow: none;
   }
 }
+
+/* --- parity: disabled trigger --- */
+@layer components {
+  .tabs-list > input[type="radio"]:disabled + .tabs-trigger {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}

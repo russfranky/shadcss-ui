@@ -1,7 +1,7 @@
 {
   "note": "This is a custom shadcss manifest describing an HTML+CSS component library \u2014 it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
   "name": "shadcss",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "homepage": "https://github.com/russfranky/shadcss-ui",
   "license": "MIT",
@@ -137,7 +137,8 @@
         "breadcrumb",
         "breadcrumb-item",
         "breadcrumb-link",
-        "breadcrumb-current"
+        "breadcrumb-current",
+        "breadcrumb-ellipsis"
       ]
     },
     {
@@ -342,7 +343,8 @@
         "drawer-title",
         "drawer-description",
         "drawer-body",
-        "drawer-footer"
+        "drawer-footer",
+        "drawer-handle"
       ],
       "attributes": [
         "data-side=\"right|left|top|bottom\""
@@ -364,7 +366,9 @@
         "dropdown-destructive",
         "dropdown-shortcut",
         "dropdown-checkbox-item",
-        "dropdown-radio-item"
+        "dropdown-radio-item",
+        "dropdown-sub-trigger",
+        "dropdown-sub-content"
       ],
       "attributes": [
         "popover",
@@ -405,7 +409,8 @@
         "field-label",
         "field-control",
         "field-description",
-        "field-error"
+        "field-error",
+        "field-group"
       ],
       "attributes": [
         "data-required=\"true\""
@@ -470,7 +475,8 @@
       "description": "Keyboard shortcut indicator.",
       "markup": "<kbd>\u2318</kbd> <kbd>K</kbd>",
       "classes": [
-        "kbd"
+        "kbd",
+        "kbd-group"
       ]
     },
     {
@@ -712,7 +718,9 @@
         "sidebar-menu-badge",
         "sidebar-menu-sub",
         "sidebar-menu-sub-button",
-        "sidebar-footer"
+        "sidebar-footer",
+        "sidebar-menu-action",
+        "sidebar-separator"
       ],
       "attributes": [
         "data-collapsible=\"icon\"",

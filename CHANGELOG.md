@@ -5,6 +5,15 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.5
+- **Component parity pass (vs shadcn/ui).** Grounded 52-component audit found 39
+  gaps; closed the 21 high-confidence ones: `aria-invalid` error state on all form
+  controls + field, auto-sized inline icons on buttons/badges, disabled states
+  (dropdown/command/tabs), accordion focus ring, menubar open-trigger highlight,
+  responsive alert-dialog footer, drawer handle, dropdown submenu, carousel vertical
+  orientation, field horizontal orientation + group, sidebar menu-action/separator,
+  kbd-group, breadcrumb-ellipsis. See `qa/parity/`.
+
 ## @russfranky/shadcss-cli 0.1.0
 - New CLI: `add` (copy components + deps), `diff` (compare your copy to upstream),
   `list`, `info`, and `check` (lint HTML for a11y/markup foot-guns). Zero deps;

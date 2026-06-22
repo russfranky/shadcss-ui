@@ -34,3 +34,9 @@
     box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
   }
 }
+
+/* --- parity: aria-invalid error state --- */
+@layer components {
+  .textarea[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
+  .textarea[aria-invalid="true"]:focus { box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25); }
+}

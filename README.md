@@ -1,10 +1,10 @@
 # shadcss/ui
 
 > **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.0 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.8 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
 [![npm](https://img.shields.io/npm/v/@russfranky/shadcss)](https://www.npmjs.com/package/@russfranky/shadcss)
-[![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
+[![gzip size](https://img.shields.io/badge/gzipped-16.8%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
 [![components](https://img.shields.io/badge/components-52-blue)](./packages/shadcss#components-52)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE.md)
@@ -23,7 +23,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.4/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.5/dist/shadcss.min.css">
 ```
 
 ```bash

@@ -60,3 +60,8 @@
     opacity: 0.9;
   }
 }
+
+/* --- parity: auto-size inline icons --- */
+@layer components {
+  .badge > svg { width: 0.75rem; height: 0.75rem; flex-shrink: 0; pointer-events: none; }
+}

@@ -25,3 +25,9 @@
     white-space: nowrap;
   }
 }
+
+/* --- parity: group wrapper for multi-key shortcuts --- */
+@layer components {
+  .kbd-group { display: inline-flex; align-items: center; gap: 0.25rem; vertical-align: middle; }
+  .kbd-group .kbd, .kbd-group kbd { vertical-align: baseline; }
+}

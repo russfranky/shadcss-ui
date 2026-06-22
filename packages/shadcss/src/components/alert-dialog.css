@@ -75,3 +75,9 @@
     justify-content: space-between;
   }
 }
+
+/* --- parity: responsive footer (stack on mobile, right-aligned row on sm+) --- */
+@layer components {
+  .alert-dialog-footer { flex-direction: column-reverse; justify-content: flex-end; }
+  @media (min-width: 640px) { .alert-dialog-footer { flex-direction: row; } }
+}

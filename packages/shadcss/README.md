@@ -1,9 +1,9 @@
 # shadcss
 
 > **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.0 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.8 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
-[![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./dist/shadcss.min.css)
+[![gzip size](https://img.shields.io/badge/gzipped-16.8%20KB-success)](./dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
 [![components](https://img.shields.io/badge/components-52-blue)](#components-52)
 [![deps](https://img.shields.io/badge/dependencies-0-blue)](#)
@@ -120,7 +120,7 @@ shadcss ships every shadcn component, plus a few extras:
 
 ```html
 <!-- Pin a version in production so a future major can't silently break you. -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.4/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.5/dist/shadcss.min.css">
 ```
 
 ### npm
@@ -297,7 +297,7 @@ packages/shadcss/
 │   └── shadcss.css          ← main entry, @imports all
 ├── dist/
 │   ├── shadcss.css          ← bundled (165 KB)
-│   └── shadcss.min.css      ← minified (137 KB, 16.0 KB gzipped)
+│   └── shadcss.min.css      ← minified (137 KB, 16.8 KB gzipped)
 ├── scripts/
 │   └── build.mjs            ← Lightning CSS bundler
 ├── registry.json            ← machine-readable component registry

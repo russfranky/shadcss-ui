@@ -51,3 +51,16 @@
     content: "\\";
   }
 }
+
+/* --- parity: ellipsis (collapsed trail) --- */
+@layer components {
+  .breadcrumb-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .breadcrumb-ellipsis > svg { width: 1rem; height: 1rem; }
+}
