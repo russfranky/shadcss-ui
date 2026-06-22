@@ -39,7 +39,10 @@
     color: hsl(var(--foreground));
   }
 
-  /* Hide the underlying input; we style the label */
+  /* Hide the underlying input; we style the label. NOTE: each input MUST be the
+     immediately-preceding sibling of its .toggle-group-item label — the checked
+     highlight uses the adjacent-sibling (input:checked + .toggle-group-item)
+     selector, so anything between the input and its label breaks styling. */
   .toggle-group > input[type="radio"],
   .toggle-group > input[type="checkbox"] {
     appearance: none;
@@ -84,6 +87,30 @@
   .toggle-group[data-variant="outline"] .toggle-group-item:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+  /* Middle items (3+) square all inner corners so adjacent borders collapse cleanly */
+  .toggle-group[data-variant="outline"]
+    .toggle-group-item:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  /* Vertical + outline: collapse top/bottom borders and square inner corners */
+  .toggle-group[data-variant="outline"][data-orientation="vertical"]
+    .toggle-group-item:not(:first-child) {
+    border-inline-start: 1px solid hsl(var(--border));
+    border-block-start: none;
+  }
+  .toggle-group[data-variant="outline"][data-orientation="vertical"]
+    .toggle-group-item:first-child {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  .toggle-group[data-variant="outline"][data-orientation="vertical"]
+    .toggle-group-item:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+  .toggle-group[data-variant="outline"][data-orientation="vertical"]
+    .toggle-group-item:not(:first-child):not(:last-child) {
+    border-radius: 0;
   }
   .toggle-group[data-variant="outline"]
     > input[type="radio"]:checked + .toggle-group-item,

@@ -801,7 +801,7 @@
     color: hsl(var(--muted-foreground));
   }
 
-  .textarea:hover:not(:focus) {
+  .textarea:hover:not(:is(:focus, :disabled)) {
     border-color: hsl(var(--input) / .7);
   }
 
@@ -822,6 +822,14 @@
 
   .textarea:user-invalid {
     border-color: hsl(var(--destructive));
+  }
+
+  .textarea:invalid:not(:placeholder-shown):focus {
+    box-shadow: 0 0 0 2px hsl(var(--destructive) / .25);
+  }
+
+  .textarea:user-invalid:focus {
+    box-shadow: 0 0 0 2px hsl(var(--destructive) / .25);
   }
 
   .label {
@@ -915,7 +923,7 @@
     border-color: hsl(var(--input) / .7);
   }
 
-  .select:focus {
+  .select:focus-visible {
     border-color: hsl(var(--ring));
     box-shadow: 0 0 0 2px hsl(var(--ring) / .25);
     outline: none;
@@ -2293,40 +2301,6 @@
     right: 0;
   }
 
-  @supports (anchor-name: --x) {
-    .popover[data-side="bottom-start"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-    }
-
-    .popover[data-side="bottom-start"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      left: anchor(start);
-    }
-
-    .popover[data-side="bottom-start"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      right: anchor(start);
-    }
-
-    .popover[data-side="bottom-end"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-    }
-
-    .popover[data-side="bottom-end"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      right: anchor(end);
-    }
-
-    .popover[data-side="bottom-end"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      left: anchor(end);
-    }
-  }
-
   .popover-sm {
     width: 16rem;
     padding: var(--space-3);
@@ -2511,19 +2485,40 @@
     transform: rotate(180deg);
   }
 
-  .accordion > details > summary ~ * {
-    transition: grid-template-rows var(--duration-slow) var(--ease-out);
-    grid-template-rows: 0fr;
-    display: grid;
-    overflow: hidden;
+  @supports selector(::details-content) {
+    .accordion {
+      interpolate-size: allow-keywords;
+    }
+
+    .accordion > details::details-content {
+      content-visibility: hidden;
+      height: 0;
+      transition: block-size var(--duration-slow) var(--ease-out),
+        content-visibility var(--duration-slow) allow-discrete;
+      overflow: hidden;
+    }
+
+    .accordion > details[open]::details-content {
+      content-visibility: visible;
+      height: auto;
+    }
   }
 
-  .accordion > details[open] > summary ~ * {
-    grid-template-rows: 1fr;
-  }
+  @supports not selector(::details-content) {
+    .accordion > details > summary ~ * {
+      transition: grid-template-rows var(--duration-slow) var(--ease-out);
+      grid-template-rows: 0fr;
+      display: grid;
+      overflow: hidden;
+    }
 
-  .accordion > details > summary ~ * > * {
-    min-height: 0;
+    .accordion > details[open] > summary ~ * {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion > details > summary ~ * > * {
+      min-height: 0;
+    }
   }
 
   .accordion > details[open] > summary {
@@ -2591,15 +2586,36 @@
     transform: rotate(180deg);
   }
 
-  .collapsible-trigger ~ .collapsible-content {
-    transition: grid-template-rows var(--duration-slow) var(--ease-out);
-    grid-template-rows: 0fr;
-    display: grid;
-    overflow: hidden;
+  @supports selector(::details-content) {
+    .collapsible {
+      interpolate-size: allow-keywords;
+    }
+
+    .collapsible::details-content {
+      content-visibility: hidden;
+      height: 0;
+      transition: block-size var(--duration-slow) var(--ease-out),
+        content-visibility var(--duration-slow) allow-discrete;
+      overflow: hidden;
+    }
+
+    .collapsible[open]::details-content {
+      content-visibility: visible;
+      height: auto;
+    }
   }
 
-  .collapsible[open] .collapsible-trigger ~ .collapsible-content {
-    grid-template-rows: 1fr;
+  @supports not selector(::details-content) {
+    .collapsible-trigger ~ .collapsible-content {
+      transition: grid-template-rows var(--duration-slow) var(--ease-out);
+      grid-template-rows: 0fr;
+      display: grid;
+      overflow: hidden;
+    }
+
+    .collapsible[open] .collapsible-trigger ~ .collapsible-content {
+      grid-template-rows: 1fr;
+    }
   }
 
   .collapsible-content {
@@ -2905,12 +2921,14 @@
     color: hsl(var(--foreground));
     box-shadow: var(--shadow-2xl);
     border: none;
+    flex-direction: column;
     width: 100%;
     max-width: 32rem;
     height: 100vh;
     max-height: 100vh;
     margin: 0;
     padding: 0;
+    display: flex;
     overflow: auto;
   }
 
@@ -3093,8 +3111,10 @@
     max-height: 100vh;
     animation: shadcss-drawer-slide-in var(--duration-slow) var(--ease-out);
     border: none;
+    flex-direction: column;
     margin: 0;
     padding: 0;
+    display: flex;
     overflow: auto;
   }
 
@@ -3328,72 +3348,6 @@
     right: 0;
   }
 
-  @supports (anchor-name: --x) {
-    .dropdown-menu[data-side="bottom-start"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-    }
-
-    .dropdown-menu[data-side="bottom-start"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      left: anchor(start);
-    }
-
-    .dropdown-menu[data-side="bottom-start"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      right: anchor(start);
-    }
-
-    .dropdown-menu[data-side="bottom-end"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-    }
-
-    .dropdown-menu[data-side="bottom-end"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      right: anchor(end);
-    }
-
-    .dropdown-menu[data-side="bottom-end"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      left: anchor(end);
-    }
-
-    .dropdown-menu[data-side="top-start"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      bottom: anchor(top);
-    }
-
-    .dropdown-menu[data-side="top-start"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      left: anchor(start);
-    }
-
-    .dropdown-menu[data-side="top-start"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      right: anchor(start);
-    }
-
-    .dropdown-menu[data-side="top-end"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      bottom: anchor(top);
-    }
-
-    .dropdown-menu[data-side="top-end"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      right: anchor(end);
-    }
-
-    .dropdown-menu[data-side="top-end"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      left: anchor(end);
-    }
-  }
-
   .dropdown-item {
     align-items: center;
     gap: var(--space-2);
@@ -3578,73 +3532,6 @@
     right: 0;
   }
 
-  @supports (anchor-name: --x) {
-    .menubar-menu {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-      position-try-fallbacks: flip-block, flip-inline;
-    }
-
-    .menubar-menu:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      left: anchor(start);
-    }
-
-    .menubar-menu:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      right: anchor(start);
-    }
-
-    .menubar-menu[data-side="bottom-end"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: anchor(bottom);
-    }
-
-    .menubar-menu[data-side="bottom-end"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      right: anchor(end);
-    }
-
-    .menubar-menu[data-side="bottom-end"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      left: anchor(end);
-    }
-
-    .menubar-menu[data-side="top-start"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      bottom: anchor(top);
-    }
-
-    .menubar-menu[data-side="top-start"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      left: anchor(start);
-    }
-
-    .menubar-menu[data-side="top-start"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      right: anchor(start);
-    }
-
-    .menubar-menu[data-side="top-end"] {
-      top: auto;
-      bottom: auto;
-      left: auto;
-      right: auto;
-      bottom: anchor(top);
-    }
-
-    .menubar-menu[data-side="top-end"]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
-      right: anchor(end);
-    }
-
-    .menubar-menu[data-side="top-end"]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-      left: anchor(end);
-    }
-  }
-
   .menubar-menu .dropdown-shortcut {
     color: hsl(var(--muted-foreground));
     font-size: var(--text-xs);
@@ -3726,6 +3613,7 @@
     width: max-content;
     animation: shadcss-nav-in var(--duration-base) var(--ease-out);
     margin: 0;
+    display: none;
     position: absolute;
   }
 
@@ -3735,6 +3623,14 @@
 
   .navigation-menu-content:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
     right: 0;
+  }
+
+  .navigation-menu-item:hover > .navigation-menu-content {
+    display: block;
+  }
+
+  .navigation-menu-item:focus-within > .navigation-menu-content {
+    display: block;
   }
 
   @keyframes shadcss-nav-in {
@@ -5159,20 +5055,17 @@
   }
 
   .resizable {
-    grid-auto-columns: 1fr;
-    grid-auto-flow: column;
+    flex-direction: row;
     gap: 0;
-    display: grid;
+    display: flex;
   }
 
   .resizable[data-direction="horizontal"] {
-    grid-auto-columns: 1fr;
-    grid-auto-flow: column;
+    flex-direction: row;
   }
 
   .resizable[data-direction="vertical"] {
-    grid-auto-rows: 1fr;
-    grid-auto-flow: row;
+    flex-direction: column;
   }
 
   .resizable-panel {
@@ -5181,6 +5074,7 @@
     padding: var(--space-3);
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
+    flex: 1 1 0;
     overflow: auto;
   }
 
@@ -5305,6 +5199,18 @@
 
   .sidebar:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
     border-left: 1px solid hsl(var(--sidebar-border));
+  }
+
+  .sidebar-toggle {
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
   }
 
   .sidebar[data-collapsible="icon"][data-collapsed="true"] {
@@ -5573,6 +5479,13 @@
       transform: translateX(0);
     }
 
+    .sidebar-toggle:checked ~ .sidebar {
+      visibility: visible;
+      transition: transform var(--duration-base) var(--ease-out),
+        visibility 0s;
+      transform: translateX(0);
+    }
+
     .sidebar[data-mobile="true"]:before {
       content: "";
       background: hsl(var(--background) / .6);
@@ -5748,19 +5661,19 @@
     display: flex;
   }
 
-  .field:has(select:invalid) .field-error {
+  .field:has(select:user-invalid) .field-error {
     display: flex;
   }
 
-  .field:has(:user-invalid) .field-description {
+  .field:has(:user-invalid):has(.field-error) .field-description {
     display: none;
   }
 
-  .field:has(:invalid:not(:placeholder-shown)) .field-description {
+  .field:has(:invalid:not(:placeholder-shown)):has(.field-error) .field-description {
     display: none;
   }
 
-  .field:has(select:invalid) .field-description {
+  .field:has(select:user-invalid):has(.field-error) .field-description {
     display: none;
   }
 
@@ -5780,7 +5693,7 @@
     border-color: hsl(var(--destructive));
   }
 
-  .field:has(select:invalid) .select {
+  .field:has(select:user-invalid) .select {
     border-color: hsl(var(--destructive));
   }
 
@@ -5800,7 +5713,7 @@
     box-shadow: 0 0 0 2px hsl(var(--destructive) / .25);
   }
 
-  .field:has(select:invalid) .select:focus {
+  .field:has(select:user-invalid) .select:focus {
     box-shadow: 0 0 0 2px hsl(var(--destructive) / .25);
   }
 
@@ -5837,7 +5750,7 @@
     cursor: not-allowed;
   }
 
-  .otp-input:invalid {
+  .otp-input:user-invalid {
     border-color: hsl(var(--destructive));
   }
 
@@ -6061,6 +5974,38 @@
     border-top-left-radius: 0;
     -webkit-border-bottom-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  .toggle-group[data-variant="outline"] .toggle-group-item:not(:first-child):not(:last-child) {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:not(:first-child) {
+    border-top: none;
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:not(:first-child):not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+    border-left: 1px solid hsl(var(--border));
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:not(:first-child):is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+    border-right: 1px solid hsl(var(--border));
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:first-child {
+    -webkit-border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:last-child {
+    -webkit-border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  .toggle-group[data-variant="outline"][data-orientation="vertical"] .toggle-group-item:not(:first-child):not(:last-child) {
+    -webkit-border-radius: 0;
+    border-radius: 0;
   }
 
   .toggle-group[data-variant="outline"] > input[type="radio"]:checked + .toggle-group-item {

@@ -24,6 +24,26 @@
     top: 0;
   }
 
+  /* Optional CSS-only toggle: a visually-hidden checkbox that drives the
+     mobile slide-in reveal below via :checked ~ .sidebar, so the off-canvas
+     sidebar opens without JS. Pair it with a <label> hamburger. The
+     data-attribute hooks remain for JS-driven setups.
+     NOTE: the icon-collapse variant (data-collapsed) is intentionally left
+     attribute/JS-driven — its many child-hiding rules would need duplicating
+     for a checkbox and a single checkbox can't represent both states cleanly
+     on one page. */
+  .sidebar-toggle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .sidebar[data-collapsible="icon"][data-collapsed="true"] {
     width: var(--sidebar-collapsed-width);
   }
@@ -220,7 +240,11 @@
         transform var(--duration-base) var(--ease-out),
         visibility 0s linear var(--duration-base);
     }
-    .sidebar[data-mobile-open="true"] {
+    .sidebar[data-mobile-open="true"],
+    /* CSS-only reveal: a hidden checkbox before the sidebar — no JS needed.
+       <input type="checkbox" class="sidebar-toggle" id="s"><label for="s">☰</label>
+       <aside class="sidebar">…</aside> */
+    .sidebar-toggle:checked ~ .sidebar {
       transform: translateX(0);
       visibility: visible;
       transition:

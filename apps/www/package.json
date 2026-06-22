@@ -5,8 +5,9 @@
   "description": "shadcss/ui component showcase and docs.",
   "type": "module",
   "scripts": {
+    "predev": "npm run build --workspace=packages/shadcss",
     "dev": "serve . -l 3333",
-    "build": "echo 'Static showcase — no build step. Open index.html.'"
+    "build": "npm run build --workspace=packages/shadcss"
   },
   "devDependencies": {
     "serve": "14.2.3"

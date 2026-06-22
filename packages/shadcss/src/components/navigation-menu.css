@@ -2,12 +2,13 @@
    shadcss · components/navigation-menu.css
    A horizontal nav with dropdown panels containing lists of links.
 
-   POSITIONING MODEL: the panel is positioned with `position: absolute`
+   POSITIONING + OPEN MODEL: the panel is positioned with `position: absolute`
    relative to its `.navigation-menu-item` (a positioned ancestor), so it
-   anchors directly under its trigger. Do NOT add the `popover` attribute to
-   `.navigation-menu-content` — a popover promotes to the top layer where
-   `position: absolute` resolves against the initial containing block, not
-   the trigger, breaking the under-trigger anchoring (see defect D-002).
+   anchors directly under its trigger, and it is revealed on `:hover` /
+   `:focus-within` of the item — pure CSS, no JS, no popover. Do NOT add the
+   `popover` attribute to `.navigation-menu-content`: a popover promotes to the
+   top layer where `position: absolute` resolves against the initial containing
+   block (not the trigger), which detaches the panel (defect D-002).
    ========================================================================== */
 
 @layer components {
@@ -62,6 +63,7 @@
   }
 
   .navigation-menu-content {
+    display: none;
     position: absolute;
     top: calc(100% + var(--space-2));
     inset-inline-start: 0;
@@ -75,6 +77,11 @@
     margin: 0;
     width: max-content;
     animation: shadcss-nav-in var(--duration-base) var(--ease-out);
+  }
+  /* Reveal on hover or keyboard focus — pure CSS, no popover, no JS. */
+  .navigation-menu-item:hover > .navigation-menu-content,
+  .navigation-menu-item:focus-within > .navigation-menu-content {
+    display: block;
   }
   @keyframes shadcss-nav-in {
     from { opacity: 0; transform: translateY(-4px); }

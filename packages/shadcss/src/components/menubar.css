@@ -75,31 +75,11 @@
     margin-bottom: var(--space-2);
   }
 
-  /* Anchor the submenu to its trigger where supported, with try-fallbacks
-     so it flips away from the viewport edge. */
-  @supports (anchor-name: --x) {
-    .menubar-menu {
-      inset: auto;
-      top: anchor(bottom);
-      inset-inline-start: anchor(start);
-      position-try-fallbacks: flip-block, flip-inline;
-    }
-    .menubar-menu[data-side="bottom-end"] {
-      inset: auto;
-      top: anchor(bottom);
-      inset-inline-end: anchor(end);
-    }
-    .menubar-menu[data-side="top-start"] {
-      inset: auto;
-      bottom: anchor(top);
-      inset-inline-start: anchor(start);
-    }
-    .menubar-menu[data-side="top-end"] {
-      inset: auto;
-      bottom: anchor(top);
-      inset-inline-end: anchor(end);
-    }
-  }
+  /* Pixel-perfect anchoring to the trigger needs CSS anchor positioning,
+     which requires the AUTHOR to set `anchor-name` on the trigger and
+     `position-anchor` on the submenu (popovertarget does NOT create an
+     implicit anchor). The [data-side] inset values above are the dependency-
+     free default; opt into anchor() per-instance when you wire the anchor. */
 
   /* Reuse dropdown item styles within menubar */
   .menubar-menu .dropdown-item,

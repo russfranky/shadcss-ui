@@ -7,23 +7,19 @@
    ========================================================================== */
 
 @layer components {
+  /* Flex layout: panels grow to fill, handles stay a thin fixed strip.
+     (Grid auto-columns:1fr would give the handle its own full-width track.) */
   .resizable {
-    display: grid;
+    display: flex;
     gap: 0;
     /* Default to horizontal when data-direction is absent */
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    flex-direction: row;
   }
-  .resizable[data-direction="horizontal"] {
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-  }
-  .resizable[data-direction="vertical"] {
-    grid-auto-flow: row;
-    grid-auto-rows: 1fr;
-  }
+  .resizable[data-direction="horizontal"] { flex-direction: row; }
+  .resizable[data-direction="vertical"]   { flex-direction: column; }
 
   .resizable-panel {
+    flex: 1 1 0;
     overflow: auto;
     min-width: 0;
     min-height: 0;

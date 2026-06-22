@@ -24,10 +24,12 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Positioning variants.
-     Note: these are margin nudges relative to the top-layer default
-     placement. When CSS anchor positioning is available, prefer anchoring
-     the popover to its trigger (see @supports block below). */
+  /* Positioning variants. These are margin nudges relative to the top-layer
+     default placement — a deliberate, dependency-free approximation. Pixel-
+     perfect anchoring to the trigger needs CSS anchor positioning, which
+     requires the AUTHOR to set `anchor-name` on the trigger and
+     `position-anchor` on the popover; the framework cannot wire that for you
+     (popovertarget does NOT create an implicit anchor). Opt in per-instance. */
   .popover[data-side="top"]    { margin-top: 0; margin-bottom: var(--space-2); }
   .popover[data-side="start"]  { margin-top: 0; margin-inline-end: var(--space-2); }
   .popover[data-side="end"]    { margin-top: 0; margin-inline-start: var(--space-2); }
@@ -41,22 +43,6 @@
   .popover[data-side="bottom-end"] {
     inset: auto 0 auto auto;
     margin-top: var(--space-2);
-  }
-
-  /* Anchor the popover to its trigger where supported. Authors set
-     `anchor-name` on the trigger and `position-anchor` on the popover
-     (or rely on the implicit anchor from popovertarget). */
-  @supports (anchor-name: --x) {
-    .popover[data-side="bottom-start"] {
-      inset: auto;
-      top: anchor(bottom);
-      inset-inline-start: anchor(start);
-    }
-    .popover[data-side="bottom-end"] {
-      inset: auto;
-      top: anchor(bottom);
-      inset-inline-end: anchor(end);
-    }
   }
 
   /* Sizes */

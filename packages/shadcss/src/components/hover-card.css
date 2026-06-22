@@ -41,8 +41,12 @@
     display: block;
   }
 
-  /* Touch fallback: when the panel is used as a popover, tap-toggle reveals
-     it (no hover on touch devices). */
+  /* Touch fallback: there is no :hover on touch devices, so for tap support an
+     author opts a *separate* instance into the Popover API — give the panel a
+     `popover` attribute and point a <button popovertarget> at it (do NOT also
+     wrap it in a :hover .hover-card, or the hover rule above would force it
+     permanently open and defeat the popover's own display management). When
+     used that way, this rule reveals it on tap-toggle. */
   .hover-card-panel[popover]:popover-open { display: block; }
 
   .hover-card-header {

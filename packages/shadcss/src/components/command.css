@@ -2,8 +2,7 @@
    shadcss · components/command.css
    A command palette styled to match shadcn's `cmdk`. The actual fuzzy
    search and keyboard navigation require a few lines of JS — shadcss
-   provides the visual layer, accessible markup, and an example pattern
-   using <datalist> for native autocomplete where possible.
+   provides the visual layer and accessible markup only.
 
    Pair with the Popover API to display from a ⌘K trigger:
      <button popovertarget="cmd">⌘K</button>

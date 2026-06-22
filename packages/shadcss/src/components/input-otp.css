@@ -42,7 +42,7 @@
     cursor: not-allowed;
   }
 
-  .otp-input:invalid {
+  .otp-input:user-invalid {
     border-color: hsl(var(--destructive));
   }
 

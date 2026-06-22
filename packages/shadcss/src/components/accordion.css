@@ -53,18 +53,44 @@
     transform: rotate(180deg);
   }
 
-  /* Animated reveal — works in evergreen browsers, gracefully degrades */
-  .accordion > details > summary ~ * {
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows var(--duration-slow) var(--ease-out);
+  /* Animated reveal.
+     The grid 0fr→1fr technique alone CANNOT animate a native <details>: the
+     UA hides closed children, so there is no laid-out box to interpolate until
+     [open] flips — content pops. The correct modern mechanism animates the
+     UA-generated ::details-content box together with `interpolate-size` so the
+     `auto` height is interpolable. Browsers without ::details-content fall back
+     to the grid technique below (which still degrades to an instant reveal on
+     native details there). */
+  @supports selector(::details-content) {
+    .accordion { interpolate-size: allow-keywords; }
+    .accordion > details::details-content {
+      block-size: 0;
+      overflow: hidden;
+      content-visibility: hidden;
+      transition:
+        block-size var(--duration-slow) var(--ease-out),
+        content-visibility var(--duration-slow) allow-discrete;
+    }
+    .accordion > details[open]::details-content {
+      block-size: auto;
+      content-visibility: visible;
+    }
   }
-  .accordion > details[open] > summary ~ * {
-    grid-template-rows: 1fr;
-  }
-  .accordion > details > summary ~ * > * {
-    min-height: 0;
+
+  /* Fallback (no ::details-content support): grid technique. */
+  @supports not selector(::details-content) {
+    .accordion > details > summary ~ * {
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-slow) var(--ease-out);
+    }
+    .accordion > details[open] > summary ~ * {
+      grid-template-rows: 1fr;
+    }
+    .accordion > details > summary ~ * > * {
+      min-height: 0;
+    }
   }
 
   .accordion > details[open] > summary {

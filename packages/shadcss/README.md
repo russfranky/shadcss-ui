@@ -1,7 +1,7 @@
 # shadcss
 
 > **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.0 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
 [![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
@@ -119,7 +119,8 @@ shadcss ships every shadcn component, plus a few extras:
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
+<!-- Pin a version in production so a future major can't silently break you. -->
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.1/dist/shadcss.min.css">
 ```
 
 ### npm
@@ -129,7 +130,13 @@ npm install @russfranky/shadcss
 ```
 
 ```css
+/* Bare-specifier @import resolves ONLY through a bundler (Vite, webpack,
+   Parcel, esbuild…) that honors the package "exports"/"style" field. Plain
+   CSS has no Node resolution, so this 404s without a bundler. */
 @import "@russfranky/shadcss";
+
+/* No bundler? Import the built file by explicit path instead: */
+@import "@russfranky/shadcss/dist/shadcss.min.css";
 ```
 
 ### Copy a single component (shadcn-style)
@@ -227,8 +234,8 @@ npm run dev            # watch
 Output:
 
 ```
-dist/shadcss.css        ~168 KB  (expanded)
-dist/shadcss.min.css    ~140 KB  (minified)
+dist/shadcss.css        ~165 KB  (expanded)
+dist/shadcss.min.css    ~137 KB  (minified)
 gzipped             ~16.0 KB (over the wire)
 ```
 
@@ -289,8 +296,8 @@ packages/shadcss/
 │   ├── components/          ← 52 standalone component files
 │   └── shadcss.css          ← main entry, @imports all
 ├── dist/
-│   ├── shadcss.css          ← bundled (168 KB)
-│   └── shadcss.min.css      ← minified (140 KB, 16.0 KB gzipped)
+│   ├── shadcss.css          ← bundled (165 KB)
+│   └── shadcss.min.css      ← minified (137 KB, 16.0 KB gzipped)
 ├── scripts/
 │   └── build.mjs            ← Lightning CSS bundler
 ├── registry.json            ← machine-readable component registry

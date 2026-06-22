@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shadcss — The complete shadcn aesthetic, no JS framework</title>
-  <meta name="description" content="52 components. 16 KB gzipped. No JS framework — the CSS bundle ships 0 JS. The shadcn aesthetic reimagined for the modern web platform.">
+  <meta name="description" content="52 components. 16.0 KB gzipped. No JS framework — the CSS bundle ships 0 JS. The shadcn aesthetic reimagined for the modern web platform.">
   <link rel="stylesheet" href="./shadcss.min.css">
   <style>
     /* Showcase-only layout — not part of the framework */
@@ -228,7 +228,7 @@
       </div>
       <div class="hero-stats">
         <div><div class="hero-stat-num">52</div><div class="hero-stat-label">Components</div></div>
-        <div><div class="hero-stat-num">16 KB</div><div class="hero-stat-label">Gzipped</div></div>
+        <div><div class="hero-stat-num">16.0 KB</div><div class="hero-stat-label">Gzipped</div></div>
         <div><div class="hero-stat-num">0</div><div class="hero-stat-label">JS in CSS bundle</div></div>
         <div><div class="hero-stat-num">0</div><div class="hero-stat-label">Dependencies</div></div>
         <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Token-driven</div></div>
@@ -362,8 +362,8 @@
           <label class="field-label" for="search">Search with trailing icon</label>
           <div class="field-control">
             <div class="input-wrap">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input class="input" id="search" placeholder="Search projects...">
+              <svg class="icon-trailing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input class="input input-trailing" id="search" placeholder="Search projects...">
             </div>
           </div>
         </div>
@@ -377,10 +377,10 @@
               <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 3">
               <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 4">
               <span class="otp-separator" aria-hidden="true">—</span>
-              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
-              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
-              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
-              <input class="otp-input" maxlength="1" pattern="[0-9]" value="">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 5">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 6">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 7">
+              <input class="otp-input" maxlength="1" pattern="[0-9]" value="" aria-label="Digit 8">
             </div>
           </div>
           <p class="field-description">Enter the 8-digit code sent to your phone.</p>
@@ -407,10 +407,10 @@
         <div class="card">
           <div class="card-header"><div class="card-title">Switches</div></div>
           <div class="card-content demo-stack">
-            <label class="label" style="justify-content: space-between;">Airplane mode<input type="checkbox" class="switch" checked></label>
-            <label class="label" style="justify-content: space-between;">Wi-Fi<input type="checkbox" class="switch"></label>
-            <label class="label" style="justify-content: space-between;">Bluetooth<input type="checkbox" class="switch switch-sm" checked></label>
-            <label class="label" style="justify-content: space-between;">Notifications<input type="checkbox" class="switch switch-lg" checked></label>
+            <label class="label" style="justify-content: space-between;">Airplane mode<input type="checkbox" role="switch" class="switch" checked></label>
+            <label class="label" style="justify-content: space-between;">Wi-Fi<input type="checkbox" role="switch" class="switch"></label>
+            <label class="label" style="justify-content: space-between;">Bluetooth<input type="checkbox" role="switch" class="switch switch-sm" checked></label>
+            <label class="label" style="justify-content: space-between;">Notifications<input type="checkbox" role="switch" class="switch switch-lg" checked></label>
           </div>
         </div>
 
@@ -419,21 +419,21 @@
           <div class="card-content">
             <div class="radio-group">
               <label class="radio-group-item">
-                <input type="radio" name="plan" checked>
+                <input type="radio" class="radio" name="plan" checked>
                 <div class="radio-group-item-body">
                   <div class="radio-group-item-label">Free</div>
                   <div class="radio-group-item-description">Up to 3 projects</div>
                 </div>
               </label>
               <label class="radio-group-item">
-                <input type="radio" name="plan">
+                <input type="radio" class="radio" name="plan">
                 <div class="radio-group-item-body">
                   <div class="radio-group-item-label">Pro · $9/mo</div>
                   <div class="radio-group-item-description">Unlimited projects</div>
                 </div>
               </label>
               <label class="radio-group-item">
-                <input type="radio" name="plan">
+                <input type="radio" class="radio" name="plan">
                 <div class="radio-group-item-body">
                   <div class="radio-group-item-label">Enterprise</div>
                   <div class="radio-group-item-description">Custom limits + SSO</div>
@@ -483,7 +483,7 @@
       <p>Composable container with header, content, and footer zones. Interactive hover-lift variant for clickable cards.</p>
 
       <div class="demo-grid">
-        <div class="card card-interactive">
+        <div class="card card-interactive" tabindex="0">
           <div class="card-header">
             <h3 class="card-title">Create project</h3>
             <div class="card-description">Deploy a new project from a template.</div>
@@ -618,7 +618,7 @@
           </details>
           <details name="faq">
             <summary>How big is the bundle?</summary>
-            <div class="accordion-content">The complete framework gzips to ~16 KB. You can also import individual component files for tree-shaking.</div>
+            <div class="accordion-content">The complete framework gzips to ~16.0 KB. You can also import individual component files for tree-shaking.</div>
           </details>
           <details name="faq">
             <summary>Can I use only some components?</summary>
@@ -630,9 +630,9 @@
           <summary class="collapsible-trigger">Advanced filters</summary>
           <div class="collapsible-content">
             <div class="demo-stack">
-              <label class="label" style="justify-content: space-between;">Hide completed<input type="checkbox" class="switch" checked></label>
-              <label class="label" style="justify-content: space-between;">Show archived<input type="checkbox" class="switch"></label>
-              <label class="label" style="justify-content: space-between;">Include sub-tasks<input type="checkbox" class="switch" checked></label>
+              <label class="label" style="justify-content: space-between;">Hide completed<input type="checkbox" role="switch" class="switch" checked></label>
+              <label class="label" style="justify-content: space-between;">Show archived<input type="checkbox" role="switch" class="switch"></label>
+              <label class="label" style="justify-content: space-between;">Include sub-tasks<input type="checkbox" role="switch" class="switch" checked></label>
             </div>
           </div>
         </details>
@@ -645,25 +645,25 @@
       <p>Pure CSS tabs using radio inputs + <code>:has()</code>. Three variants: default, underline, vertical.</p>
 
       <div class="tabs">
-        <div class="tabs-list" role="tablist">
+        <div class="tabs-list" role="radiogroup" aria-label="Tabs">
           <input type="radio" name="account-tabs" id="account-tabs-1" checked>
-          <label for="account-tabs-1" class="tabs-trigger" role="tab" aria-selected="true">Account</label>
+          <label for="account-tabs-1" class="tabs-trigger">Account</label>
           <input type="radio" name="account-tabs" id="account-tabs-2">
-          <label for="account-tabs-2" class="tabs-trigger" role="tab" aria-selected="false">Password</label>
+          <label for="account-tabs-2" class="tabs-trigger">Password</label>
           <input type="radio" name="account-tabs" id="account-tabs-3">
-          <label for="account-tabs-3" class="tabs-trigger" role="tab" aria-selected="false">Team</label>
+          <label for="account-tabs-3" class="tabs-trigger">Team</label>
         </div>
-        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-1">
+        <div class="tabs-panel" data-tab="account-tabs-1">
           <div class="card"><div class="card-content">
             <p>Account settings go here.</p>
           </div></div>
         </div>
-        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-2">
+        <div class="tabs-panel" data-tab="account-tabs-2">
           <div class="card"><div class="card-content">
             <p>Password change form goes here.</p>
           </div></div>
         </div>
-        <div class="tabs-panel" role="tabpanel" data-tab="account-tabs-3">
+        <div class="tabs-panel" data-tab="account-tabs-3">
           <div class="card"><div class="card-content">
             <p>Team management goes here.</p>
           </div></div>
@@ -672,20 +672,20 @@
 
       <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3); font-size: var(--text-base); font-weight: 600;">Underline variant</h3>
       <div class="tabs" data-variant="underline">
-        <div class="tabs-list" role="tablist">
+        <div class="tabs-list" role="radiogroup" aria-label="Tabs">
           <input type="radio" name="docs-tabs" id="docs-tabs-1" checked>
-          <label for="docs-tabs-1" class="tabs-trigger" role="tab" aria-selected="true">Overview</label>
+          <label for="docs-tabs-1" class="tabs-trigger">Overview</label>
           <input type="radio" name="docs-tabs" id="docs-tabs-2">
-          <label for="docs-tabs-2" class="tabs-trigger" role="tab" aria-selected="false">Features</label>
+          <label for="docs-tabs-2" class="tabs-trigger">Features</label>
           <input type="radio" name="docs-tabs" id="docs-tabs-3">
-          <label for="docs-tabs-3" class="tabs-trigger" role="tab" aria-selected="false">Pricing</label>
+          <label for="docs-tabs-3" class="tabs-trigger">Pricing</label>
           <input type="radio" name="docs-tabs" id="docs-tabs-4">
-          <label for="docs-tabs-4" class="tabs-trigger" role="tab" aria-selected="false">FAQ</label>
+          <label for="docs-tabs-4" class="tabs-trigger">FAQ</label>
         </div>
-        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-1"><p>A high-level overview of what we offer.</p></div>
-        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-2"><p>Everything you get when you sign up.</p></div>
-        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-3"><p>Simple, transparent pricing.</p></div>
-        <div class="tabs-panel" role="tabpanel" data-tab="docs-tabs-4"><p>Frequently asked questions.</p></div>
+        <div class="tabs-panel" data-tab="docs-tabs-1"><p>A high-level overview of what we offer.</p></div>
+        <div class="tabs-panel" data-tab="docs-tabs-2"><p>Everything you get when you sign up.</p></div>
+        <div class="tabs-panel" data-tab="docs-tabs-3"><p>Simple, transparent pricing.</p></div>
+        <div class="tabs-panel" data-tab="docs-tabs-4"><p>Frequently asked questions.</p></div>
       </div>
     </section>
 
@@ -740,9 +740,9 @@
               <label class="field-label">Status</label>
               <div class="field-control">
                 <div class="radio-group">
-                  <label class="radio-group-item"><input type="radio" name="d-status" checked><div class="radio-group-item-body"><div class="radio-group-item-label">All</div></div></label>
-                  <label class="radio-group-item"><input type="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Active</div></div></label>
-                  <label class="radio-group-item"><input type="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Archived</div></div></label>
+                  <label class="radio-group-item"><input type="radio" class="radio" name="d-status" checked><div class="radio-group-item-body"><div class="radio-group-item-label">All</div></div></label>
+                  <label class="radio-group-item"><input type="radio" class="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Active</div></div></label>
+                  <label class="radio-group-item"><input type="radio" class="radio" name="d-status"><div class="radio-group-item-body"><div class="radio-group-item-label">Archived</div></div></label>
                 </div>
               </div>
             </div>
@@ -925,8 +925,8 @@
         </div>
 
         <div class="hover-card">
-          <a href="#" class="btn btn-link">@shadcss</a>
-          <div class="hover-card-panel">
+          <a href="#" class="btn btn-link" aria-describedby="hovercard-shadcss">@shadcss</a>
+          <div class="hover-card-panel" id="hovercard-shadcss">
             <div class="hover-card-header">
               <div class="avatar avatar-ring">Z</div>
               <div>
@@ -953,7 +953,7 @@
     <!-- TOAST + SONNER -->
     <section class="showcase-section" id="toast">
       <h2>Toast & Sonner</h2>
-      <p>Auto-dismissing notifications. CSS animation runs for <code>--sonner-duration</code> then hides itself. Variants for success, error, warning, info, loading.</p>
+      <p>Auto-dismissing notifications. The live demo below uses the Sonner component, whose CSS animation runs for <code>--sonner-duration</code> then hides itself; the sibling <code>.toast</code> component works the same way with its own <code>--toast-duration</code> token. Variants for success, error, warning, info, loading.</p>
 
       <div class="demo-row">
         <button class="btn btn-outline" onclick="document.getElementById('t1').showPopover()">Default toast</button>
@@ -963,8 +963,8 @@
         <button class="btn btn-outline" onclick="document.getElementById('t5').showPopover()">With action</button>
       </div>
 
-      <div class="sonner-region" role="status" aria-live="polite">
-        <div class="sonner" popover id="t1" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+      <div class="sonner-region" aria-live="polite">
+        <div class="sonner" role="status" popover id="t1" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <div class="sonner-content">
             <div class="sonner-title">New message</div>
@@ -974,7 +974,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
-        <div class="sonner sonner-success" popover id="t2" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+        <div class="sonner sonner-success" role="status" popover id="t2" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
           <div class="sonner-content">
             <div class="sonner-title">Saved</div>
@@ -984,7 +984,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
-        <div class="sonner sonner-error" popover id="t3" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+        <div class="sonner sonner-error" role="status" popover id="t3" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
           <div class="sonner-content">
             <div class="sonner-title">Failed to save</div>
@@ -994,7 +994,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
-        <div class="sonner sonner-warning" popover id="t4" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+        <div class="sonner sonner-warning" role="status" popover id="t4" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
           <div class="sonner-content">
             <div class="sonner-title">Storage almost full</div>
@@ -1004,7 +1004,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
-        <div class="sonner sonner-info" popover id="t5" data-persistent="true" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
+        <div class="sonner sonner-info" role="status" popover id="t5" data-persistent="true" style="position: fixed; bottom: var(--space-6); right: var(--space-6);">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           <div class="sonner-content">
             <div class="sonner-title">Subscription expires soon</div>
@@ -1027,11 +1027,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Status</th>
-              <th>Email</th>
-              <th>Amount</th>
-              <th>Method</th>
-              <th data-align="end">Actions</th>
+              <th scope="col">Status</th>
+              <th scope="col">Email</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Method</th>
+              <th scope="col" data-align="end">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -1154,9 +1154,9 @@
 
         <div class="card">
           <div class="card-content">
-            <div class="empty">
+            <div class="empty" role="status">
               <div class="empty-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
               <div class="empty-title">No projects yet</div>
               <div class="empty-description">Get started by creating your first project. It only takes a minute.</div>
@@ -1226,14 +1226,14 @@
               </button>
             </div>
           </div>
-          <div class="calendar-grid" role="grid" aria-label="June 2026">
-            <span class="calendar-weekday" role="columnheader" aria-label="Sunday">S</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Monday">M</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Tuesday">T</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Wednesday">W</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Thursday">T</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Friday">F</span>
-            <span class="calendar-weekday" role="columnheader" aria-label="Saturday">S</span>
+          <div class="calendar-grid" aria-label="June 2026 (display only)">
+            <span class="calendar-weekday" aria-label="Sunday">S</span>
+            <span class="calendar-weekday" aria-label="Monday">M</span>
+            <span class="calendar-weekday" aria-label="Tuesday">T</span>
+            <span class="calendar-weekday" aria-label="Wednesday">W</span>
+            <span class="calendar-weekday" aria-label="Thursday">T</span>
+            <span class="calendar-weekday" aria-label="Friday">F</span>
+            <span class="calendar-weekday" aria-label="Saturday">S</span>
             <button class="calendar-day outside">31</button>
             <button class="calendar-day">1</button>
             <button class="calendar-day">2</button>
@@ -1245,11 +1245,11 @@
             <button class="calendar-day">8</button>
             <button class="calendar-day">9</button>
             <button class="calendar-day">10</button>
-            <button class="calendar-day is-today" role="gridcell" aria-current="date" aria-label="June 11, 2026">11</button>
+            <button class="calendar-day is-today" aria-current="date" aria-label="June 11, 2026">11</button>
             <button class="calendar-day">12</button>
             <button class="calendar-day">13</button>
             <button class="calendar-day">14</button>
-            <button class="calendar-day" role="gridcell" aria-pressed="true" aria-label="June 15, 2026">15</button>
+            <button class="calendar-day" aria-pressed="true" aria-label="June 15, 2026">15</button>
             <button class="calendar-day">16</button>
             <button class="calendar-day">17</button>
             <button class="calendar-day">18</button>
@@ -1329,7 +1329,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
-          <div class="carousel-dots" role="tablist" aria-label="Slide indicators">
+          <div class="carousel-dots" role="group" aria-label="Slide indicators">
             <button class="carousel-dot" style="background: hsl(var(--primary));" aria-label="Slide 1" aria-current="true"></button>
             <button class="carousel-dot" aria-label="Slide 2"></button>
             <button class="carousel-dot" aria-label="Slide 3"></button>
@@ -1352,8 +1352,8 @@
       <nav class="navigation-menu" aria-label="Main" style="margin-bottom: var(--space-6);">
         <ul class="navigation-menu-list">
           <li class="navigation-menu-item">
-            <button class="navigation-menu-trigger" popovertarget="nav-products">Products</button>
-            <div class="navigation-menu-content" popover id="nav-products" data-side="bottom-start">
+            <button class="navigation-menu-trigger">Products</button>
+            <div class="navigation-menu-content" id="nav-products">
               <ul class="navigation-menu-link-list" data-cols="2">
                 <li>
                   <a class="navigation-menu-link" href="#">
@@ -1403,8 +1403,8 @@
             </div>
           </li>
           <li class="navigation-menu-item">
-            <button class="navigation-menu-trigger" popovertarget="nav-resources">Resources</button>
-            <div class="navigation-menu-content" popover id="nav-resources" data-side="bottom-start">
+            <button class="navigation-menu-trigger">Resources</button>
+            <div class="navigation-menu-content" id="nav-resources">
               <ul class="navigation-menu-link-list">
                 <li><a class="navigation-menu-link" href="#"><span class="navigation-menu-link-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span><div class="navigation-menu-link-title">Blog</div><div class="navigation-menu-link-description">Latest news and articles.</div></span></a></li>
                 <li><a class="navigation-menu-link" href="#"><span class="navigation-menu-link-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg></span><span><div class="navigation-menu-link-title">Tutorials</div><div class="navigation-menu-link-description">Video walkthroughs.</div></span></a></li>
@@ -1415,10 +1415,10 @@
       </nav>
 
       <nav aria-label="Pagination">
-      <ul class="pagination">
+      <ul class="pagination" role="list">
         <li class="pagination-item"><a href="#" class="pagination-link pagination-prev" aria-label="Previous">‹</a></li>
         <li class="pagination-item"><a href="#" class="pagination-link">1</a></li>
-        <li class="pagination-item"><a href="#" class="pagination-link" aria-current="page">2</a></li>
+        <li class="pagination-item"><span class="pagination-link" aria-current="page">2</span></li>
         <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
         <li class="pagination-item"><span class="pagination-ellipsis">…</span></li>
         <li class="pagination-item"><a href="#" class="pagination-link">10</a></li>
@@ -1542,7 +1542,7 @@
 
 <footer>
   <div class="container">
-    <p>shadcss v0.1.0 · 52 components · 16 KB gzipped · 0 JS in the CSS bundle · MIT licensed</p>
+    <p>shadcss v0.1.1 · 52 components · 16.0 KB gzipped · 0 JS in the CSS bundle · MIT licensed</p>
   </div>
 </footer>
 

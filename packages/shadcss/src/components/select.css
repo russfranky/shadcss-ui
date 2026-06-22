@@ -34,7 +34,7 @@
 
   .select:hover:not(:disabled) { border-color: hsl(var(--input) / 0.7); }
 
-  .select:focus {
+  .select:focus-visible {
     outline: none;
     border-color: hsl(var(--ring));
     box-shadow: 0 0 0 2px hsl(var(--ring) / 0.25);

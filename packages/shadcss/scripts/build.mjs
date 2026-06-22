@@ -60,7 +60,15 @@ async function build() {
   await fs.writeFile(outMinCss, minified);
 
   // Copy the minified bundle into the showcase app for the local dev preview.
-  await fs.writeFile(wwwCss, minified);
+  // The showcase is a sibling app that may be absent (e.g. when the package is
+  // built in isolation), so guard the copy and never fail the package build on
+  // its account.
+  try {
+    await fs.access(path.dirname(wwwCss));
+    await fs.writeFile(wwwCss, minified);
+  } catch {
+    // apps/www not present — skip the showcase copy.
+  }
 
   const kbRaw = (code.length / 1024).toFixed(1);
   const kbMin = (minified.length / 1024).toFixed(1);

@@ -1,7 +1,7 @@
 {
   "name": "@russfranky/shadcss",
-  "version": "0.1.0",
-  "description": "shadcn's beauty, zero JavaScript. A modular HTML+CSS-only component library built on modern web standards.",
+  "version": "0.1.1",
+  "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "type": "module",
   "main": "dist/shadcss.min.css",
   "style": "dist/shadcss.min.css",
@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "dev": "node scripts/build.mjs --watch"
+    "dev": "node scripts/build.mjs --watch",
+    "prepublishOnly": "node scripts/build.mjs"
   },
   "keywords": [
     "css",

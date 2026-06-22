@@ -20,7 +20,7 @@
       box-shadow var(--duration-base) var(--ease-out);
   }
   .textarea::placeholder { color: hsl(var(--muted-foreground)); }
-  .textarea:hover:not(:focus) { border-color: hsl(var(--input) / 0.7); }
+  .textarea:hover:not(:focus, :disabled) { border-color: hsl(var(--input) / 0.7); }
   .textarea:focus {
     outline: none;
     border-color: hsl(var(--ring));
@@ -29,4 +29,8 @@
   .textarea:disabled { opacity: 0.5; cursor: not-allowed; }
   .textarea:invalid:not(:placeholder-shown),
   .textarea:user-invalid { border-color: hsl(var(--destructive)); }
+  .textarea:invalid:not(:placeholder-shown):focus,
+  .textarea:user-invalid:focus {
+    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
+  }
 }

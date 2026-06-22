@@ -1,8 +1,8 @@
 {
-  "note": "This is a custom shadcss manifest describing an HTML+CSS component library — it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
+  "note": "This is a custom shadcss manifest describing an HTML+CSS component library \u2014 it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
   "name": "shadcss",
-  "version": "0.1.0",
-  "description": "shadcn's beauty, zero JavaScript. A modular HTML+CSS-only component library built on modern web standards.",
+  "version": "0.1.1",
+  "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "homepage": "https://github.com/russfranky/shadcss-ui",
   "license": "MIT",
   "style": "dist/shadcss.min.css",
@@ -14,434 +14,931 @@
     {
       "name": "accordion",
       "file": "src/components/accordion.css",
-      "deps": ["base/tokens", "base/theme"],
+      "deps": [
+        "base/tokens",
+        "base/theme"
+      ],
       "description": "Collapsible content panels built on native <details>.",
       "markup": "<div class=\"accordion\"><details name=\"X\"><summary>Q</summary><div class=\"accordion-content\">A</div></details></div>",
-      "classes": ["accordion", "accordion-content"],
-      "attributes": ["name (on details for exclusive mode)"]
+      "classes": [
+        "accordion",
+        "accordion-content"
+      ],
+      "attributes": [
+        "name (on details for exclusive mode)"
+      ]
     },
     {
       "name": "alert",
       "file": "src/components/alert.css",
-      "deps": ["base/tokens", "base/theme"],
+      "deps": [
+        "base/tokens",
+        "base/theme"
+      ],
       "description": "Inline message banner with icon, title, description.",
-      "markup": "<div class=\"alert alert-info\" role=\"alert\"><svg aria-hidden=\"true\">…</svg><div><div class=\"alert-title\">T</div><div class=\"alert-description\">D</div></div></div>",
-      "classes": ["alert", "alert-title", "alert-description", "alert-dismissible", "alert-default", "alert-info", "alert-success", "alert-warning", "alert-destructive"]
+      "markup": "<div class=\"alert alert-info\" role=\"alert\"><svg aria-hidden=\"true\">\u2026</svg><div><div class=\"alert-title\">T</div><div class=\"alert-description\">D</div></div></div>",
+      "classes": [
+        "alert",
+        "alert-title",
+        "alert-description",
+        "alert-dismissible",
+        "alert-default",
+        "alert-info",
+        "alert-success",
+        "alert-warning",
+        "alert-destructive"
+      ]
     },
     {
       "name": "alert-dialog",
       "file": "src/components/alert-dialog.css",
-      "deps": ["base/tokens", "base/theme", "dialog"],
+      "deps": [
+        "base/tokens",
+        "base/theme",
+        "dialog"
+      ],
       "description": "Confirmation modal for destructive actions.",
       "markup": "<dialog class=\"alert-dialog\" id=\"X\" role=\"alertdialog\" aria-labelledby=\"X-title\" aria-describedby=\"X-desc\"><div class=\"alert-dialog-header\"><div class=\"alert-dialog-title\" id=\"X-title\">T</div><div class=\"alert-dialog-description\" id=\"X-desc\">D</div></div><div class=\"alert-dialog-footer\"><form method=\"dialog\"><button class=\"btn btn-ghost\">Cancel</button></form><button class=\"btn btn-destructive\">Confirm</button></div></dialog>",
-      "classes": ["alert-dialog", "alert-dialog-header", "alert-dialog-title", "alert-dialog-description", "alert-dialog-body", "alert-dialog-footer"]
+      "classes": [
+        "alert-dialog",
+        "alert-dialog-header",
+        "alert-dialog-title",
+        "alert-dialog-description",
+        "alert-dialog-body",
+        "alert-dialog-footer"
+      ]
     },
     {
       "name": "aspect-ratio",
       "file": "src/components/aspect-ratio.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Lock an element to a width/height ratio.",
-      "markup": "<div class=\"aspect-ratio\"><img src=\"…\" alt=\"…\"></div>",
-      "classes": ["aspect-ratio", "aspect-square", "aspect-video", "aspect-photo", "aspect-portrait", "aspect-cinema", "aspect-wide", "aspect-ultra"]
+      "markup": "<div class=\"aspect-ratio\"><img src=\"\u2026\" alt=\"\u2026\"></div>",
+      "classes": [
+        "aspect-ratio",
+        "aspect-square",
+        "aspect-video",
+        "aspect-photo",
+        "aspect-portrait",
+        "aspect-cinema",
+        "aspect-wide",
+        "aspect-ultra"
+      ]
     },
     {
       "name": "avatar",
       "file": "src/components/avatar.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Image with text fallback. Sizes, ring, square, group.",
-      "markup": "<div class=\"avatar\"><img src=\"…\" alt=\"…\"></div>",
-      "classes": ["avatar", "avatar-sm", "avatar-lg", "avatar-xl", "avatar-square", "avatar-ring", "avatar-group"]
+      "markup": "<div class=\"avatar\"><img src=\"\u2026\" alt=\"\u2026\"></div>",
+      "classes": [
+        "avatar",
+        "avatar-sm",
+        "avatar-lg",
+        "avatar-xl",
+        "avatar-square",
+        "avatar-ring",
+        "avatar-group"
+      ]
     },
     {
       "name": "badge",
       "file": "src/components/badge.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Inline status indicator.",
       "markup": "<span class=\"badge badge-primary\">T</span>",
-      "classes": ["badge", "badge-primary", "badge-secondary", "badge-destructive", "badge-success", "badge-warning", "badge-info", "badge-outline", "badge-dot"]
+      "classes": [
+        "badge",
+        "badge-primary",
+        "badge-secondary",
+        "badge-destructive",
+        "badge-success",
+        "badge-warning",
+        "badge-info",
+        "badge-outline",
+        "badge-dot"
+      ]
     },
     {
       "name": "breadcrumb",
       "file": "src/components/breadcrumb.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Hierarchical navigation trail.",
       "markup": "<nav class=\"breadcrumb\"><span class=\"breadcrumb-item\"><a class=\"breadcrumb-link\" href=\"#\">A</a></span><span class=\"breadcrumb-item\"><span class=\"breadcrumb-current\">B</span></span></nav>",
-      "classes": ["breadcrumb", "breadcrumb-item", "breadcrumb-link", "breadcrumb-current"]
+      "classes": [
+        "breadcrumb",
+        "breadcrumb-item",
+        "breadcrumb-link",
+        "breadcrumb-current"
+      ]
     },
     {
       "name": "button",
       "file": "src/components/button.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "The primary action trigger. 6 variants, 4 sizes, loading + icon + group modes.",
       "markup": "<button class=\"btn\">Default</button>",
-      "classes": ["btn", "btn-secondary", "btn-outline", "btn-ghost", "btn-destructive", "btn-link", "btn-sm", "btn-lg", "btn-icon", "btn-group"],
-      "attributes": ["aria-busy=\"true\" (loading)", "disabled"]
+      "classes": [
+        "btn",
+        "btn-secondary",
+        "btn-outline",
+        "btn-ghost",
+        "btn-destructive",
+        "btn-link",
+        "btn-sm",
+        "btn-lg",
+        "btn-icon",
+        "btn-group"
+      ],
+      "attributes": [
+        "aria-busy=\"true\" (loading)",
+        "disabled"
+      ]
     },
     {
       "name": "calendar",
       "file": "src/components/calendar.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Pure-CSS month calendar. Day cells with today/selected/disabled states.",
-      "markup": "<div class=\"calendar\"><div class=\"calendar-header\"><span class=\"calendar-title\">Month Year</span><div class=\"calendar-nav\"><button class=\"calendar-nav-btn\">‹</button><button class=\"calendar-nav-btn\">›</button></div></div><div class=\"calendar-grid\"><span class=\"calendar-weekday\">S</span>…<button class=\"calendar-day\">1</button>…</div></div>",
-      "classes": ["calendar", "calendar-header", "calendar-title", "calendar-nav", "calendar-nav-btn", "calendar-grid", "calendar-weekday", "calendar-day", "calendar-sm", "is-today", "outside"]
+      "markup": "<div class=\"calendar\"><div class=\"calendar-header\"><span class=\"calendar-title\">Month Year</span><div class=\"calendar-nav\"><button class=\"calendar-nav-btn\">\u2039</button><button class=\"calendar-nav-btn\">\u203a</button></div></div><div class=\"calendar-grid\"><span class=\"calendar-weekday\">S</span>\u2026<button class=\"calendar-day\">1</button>\u2026</div></div>",
+      "classes": [
+        "calendar",
+        "calendar-header",
+        "calendar-title",
+        "calendar-nav",
+        "calendar-nav-btn",
+        "calendar-grid",
+        "calendar-weekday",
+        "calendar-day",
+        "calendar-sm",
+        "is-today",
+        "outside"
+      ]
     },
     {
       "name": "card",
       "file": "src/components/card.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Container with header, content, footer zones.",
-      "markup": "<div class=\"card\"><div class=\"card-header\"><div class=\"card-title\">T</div><div class=\"card-description\">D</div></div><div class=\"card-content\">…</div><div class=\"card-footer\" data-justify=\"end\">…</div></div>",
-      "classes": ["card", "card-header", "card-title", "card-description", "card-content", "card-footer", "card-interactive"]
+      "markup": "<div class=\"card\"><div class=\"card-header\"><div class=\"card-title\">T</div><div class=\"card-description\">D</div></div><div class=\"card-content\">\u2026</div><div class=\"card-footer\" data-justify=\"end\">\u2026</div></div>",
+      "classes": [
+        "card",
+        "card-header",
+        "card-title",
+        "card-description",
+        "card-content",
+        "card-footer",
+        "card-interactive"
+      ],
+      "notes": ".card-interactive provides hover/focus-visible styling but is not focusable on its own \u2014 add tabindex=\"0\" (and a role/href such as a wrapping <a>) so keyboard users can reach it and the focus-visible ring can fire."
     },
     {
       "name": "carousel",
       "file": "src/components/carousel.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Scroll-snap carousel with optional dots.",
-      "markup": "<div class=\"carousel\"><div class=\"carousel-viewport\"><div class=\"carousel-track\"><div class=\"carousel-item\">…</div></div></div><div class=\"carousel-controls\"><button class=\"carousel-btn\">‹</button><div class=\"carousel-dots\"><button class=\"carousel-dot\"></button></div><button class=\"carousel-btn\">›</button></div></div>",
-      "classes": ["carousel", "carousel-viewport", "carousel-track", "carousel-item", "carousel-controls", "carousel-btn", "carousel-dots", "carousel-dot"]
+      "markup": "<div class=\"carousel\"><div class=\"carousel-viewport\"><div class=\"carousel-track\"><div class=\"carousel-item\">\u2026</div></div></div><div class=\"carousel-controls\"><button class=\"carousel-btn\">\u2039</button><div class=\"carousel-dots\"><button class=\"carousel-dot\"></button></div><button class=\"carousel-btn\">\u203a</button></div></div>",
+      "classes": [
+        "carousel",
+        "carousel-viewport",
+        "carousel-track",
+        "carousel-item",
+        "carousel-controls",
+        "carousel-btn",
+        "carousel-dots",
+        "carousel-dot"
+      ]
     },
     {
       "name": "checkbox",
       "file": "src/components/checkbox.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Native checkbox styled to match shadcn. Supports indeterminate.",
       "markup": "<input type=\"checkbox\" class=\"checkbox\" checked>",
-      "classes": ["checkbox"],
-      "attributes": ["checked", "data-indeterminate=\"true\""]
+      "classes": [
+        "checkbox"
+      ],
+      "attributes": [
+        "checked",
+        "data-indeterminate=\"true\""
+      ]
     },
     {
       "name": "collapsible",
       "file": "src/components/collapsible.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Standalone collapsible (like accordion but unstyled).",
-      "markup": "<details class=\"collapsible\"><summary class=\"collapsible-trigger\">T</summary><div class=\"collapsible-content\">…</div></details>",
-      "classes": ["collapsible", "collapsible-trigger", "collapsible-content"]
+      "markup": "<details class=\"collapsible\"><summary class=\"collapsible-trigger\">T</summary><div class=\"collapsible-content\">\u2026</div></details>",
+      "classes": [
+        "collapsible",
+        "collapsible-trigger",
+        "collapsible-content"
+      ]
     },
     {
       "name": "command",
       "file": "src/components/command.css",
-      "deps": ["base/tokens", "popover"],
-      "description": "Command palette UI shell. Pair with Popover API for ⌘K.",
-      "markup": "<div class=\"command\"><div class=\"command-input-wrap\"><svg>…</svg><input class=\"command-input\" placeholder=\"Type a command…\"></div><div class=\"command-list\"><div class=\"command-group-heading\">Suggestions</div><div class=\"command-item\">…</div></div></div>",
-      "classes": ["command", "command-input-wrap", "command-input", "command-list", "command-group", "command-group-heading", "command-item", "command-separator", "command-shortcut", "command-empty", "command-footer"]
+      "deps": [
+        "base/tokens",
+        "popover"
+      ],
+      "description": "Command palette UI shell. Pair with Popover API for \u2318K.",
+      "markup": "<div class=\"command\"><div class=\"command-input-wrap\"><svg>\u2026</svg><input class=\"command-input\" placeholder=\"Type a command\u2026\"></div><div class=\"command-list\"><div class=\"command-group-heading\">Suggestions</div><div class=\"command-item\">\u2026</div></div></div>",
+      "classes": [
+        "command",
+        "command-input-wrap",
+        "command-input",
+        "command-list",
+        "command-group",
+        "command-group-heading",
+        "command-item",
+        "command-separator",
+        "command-shortcut",
+        "command-empty",
+        "command-footer"
+      ]
     },
     {
       "name": "container",
       "file": "src/components/container.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Centered, max-width page/content wrapper with responsive padding.",
-      "markup": "<div class=\"container container-lg\">…</div>",
-      "classes": ["container", "container-sm", "container-md", "container-lg", "container-xl", "container-full"]
+      "markup": "<div class=\"container container-lg\">\u2026</div>",
+      "classes": [
+        "container",
+        "container-sm",
+        "container-md",
+        "container-lg",
+        "container-xl",
+        "container-full"
+      ]
     },
     {
       "name": "context-menu",
       "file": "src/components/context-menu.css",
-      "deps": ["base/tokens", "dropdown"],
+      "deps": [
+        "base/tokens",
+        "dropdown"
+      ],
       "description": "Right-click menu. Uses Popover API + inline oncontextmenu.",
-      "markup": "<div class=\"context-menu\" popover id=\"X\" role=\"menu\">…</div>",
-      "classes": ["context-menu"]
+      "markup": "<div oncontextmenu=\"event.preventDefault();document.getElementById('X').showPopover()\">Right-click here</div><div class=\"context-menu\" popover id=\"X\" role=\"menu\"><button class=\"dropdown-item\" role=\"menuitem\">Back</button><button class=\"dropdown-item\" role=\"menuitemcheckbox\" aria-checked=\"true\" data-checked>Show bookmarks</button><div class=\"dropdown-separator\" role=\"separator\"></div><button class=\"dropdown-item\" role=\"menuitem\">Reload</button></div>",
+      "classes": [
+        "context-menu"
+      ],
+      "notes": "role=menuitemcheckbox + aria-checked here are authored statically to mirror the [data-checked] CSS state; toggling aria-checked live on click requires a few lines of consumer JS (not shippable in a CSS-only framework)."
     },
     {
       "name": "dialog",
       "file": "src/components/dialog.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Native <dialog> modal. Backdrop blur, slide-in animation.",
-      "markup": "<dialog class=\"dialog\" id=\"X\"><header class=\"dialog-header\"><div class=\"dialog-title\">T</div><div class=\"dialog-description\">D</div></header><div class=\"dialog-body\">…</div><footer class=\"dialog-footer\"><form method=\"dialog\"><button class=\"btn btn-ghost\">Cancel</button></form><button class=\"btn\">OK</button></footer></dialog>",
-      "classes": ["dialog", "dialog-header", "dialog-title", "dialog-description", "dialog-body", "dialog-footer", "dialog-close"]
+      "markup": "<dialog class=\"dialog\" id=\"X\"><header class=\"dialog-header\"><div class=\"dialog-title\">T</div><div class=\"dialog-description\">D</div></header><div class=\"dialog-body\">\u2026</div><footer class=\"dialog-footer\"><form method=\"dialog\"><button class=\"btn btn-ghost\">Cancel</button></form><button class=\"btn\">OK</button></footer></dialog>",
+      "classes": [
+        "dialog",
+        "dialog-header",
+        "dialog-title",
+        "dialog-description",
+        "dialog-body",
+        "dialog-footer",
+        "dialog-close"
+      ]
     },
     {
       "name": "drawer",
       "file": "src/components/drawer.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Side panel sliding from any edge. Built on <dialog>.",
-      "markup": "<dialog class=\"drawer\" data-side=\"right\" id=\"X\">…</dialog>",
-      "classes": ["drawer", "drawer-header", "drawer-title", "drawer-description", "drawer-body", "drawer-footer"],
-      "attributes": ["data-side=\"right|left|top|bottom\""]
+      "markup": "<dialog class=\"drawer\" data-side=\"right\" id=\"X\">\u2026</dialog>",
+      "classes": [
+        "drawer",
+        "drawer-header",
+        "drawer-title",
+        "drawer-description",
+        "drawer-body",
+        "drawer-footer"
+      ],
+      "attributes": [
+        "data-side=\"right|left|top|bottom\""
+      ]
     },
     {
       "name": "dropdown",
       "file": "src/components/dropdown.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Menu of actions. Uses Popover API via popovertarget attribute.",
-      "markup": "<div class=\"dropdown\"><button class=\"btn\" popovertarget=\"X\" aria-haspopup=\"menu\">Open</button><div class=\"dropdown-menu\" popover id=\"X\" role=\"menu\" data-side=\"bottom-start\"><button class=\"dropdown-item\" role=\"menuitem\">…</button></div></div>",
-      "classes": ["dropdown-menu", "dropdown-item", "dropdown-label", "dropdown-separator", "dropdown-destructive", "dropdown-shortcut"],
-      "attributes": ["popover", "popovertarget", "data-side=\"bottom-start|bottom-end|top-start|top-end\""]
+      "markup": "<div class=\"dropdown\"><button class=\"btn\" popovertarget=\"X\" aria-haspopup=\"menu\">Open</button><div class=\"dropdown-menu\" popover id=\"X\" role=\"menu\" data-side=\"bottom-start\"><button class=\"dropdown-item\" role=\"menuitem\">\u2026</button></div></div>",
+      "classes": [
+        "dropdown-menu",
+        "dropdown-item",
+        "dropdown-label",
+        "dropdown-separator",
+        "dropdown-destructive",
+        "dropdown-shortcut"
+      ],
+      "attributes": [
+        "popover",
+        "popovertarget",
+        "data-side=\"bottom-start|bottom-end|top-start|top-end\""
+      ]
     },
     {
       "name": "empty",
       "file": "src/components/empty.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Placeholder for empty states.",
-      "markup": "<div class=\"empty\"><div class=\"empty-icon\"><svg>…</svg></div><div class=\"empty-title\">T</div><div class=\"empty-description\">D</div><div class=\"empty-actions\"><button class=\"btn\">A</button></div></div>",
-      "classes": ["empty", "empty-icon", "empty-title", "empty-description", "empty-actions", "empty-error", "empty-success", "empty-warning"]
+      "markup": "<div class=\"empty\"><div class=\"empty-icon\"><svg>\u2026</svg></div><div class=\"empty-title\">T</div><div class=\"empty-description\">D</div><div class=\"empty-actions\"><button class=\"btn\">A</button></div></div>",
+      "classes": [
+        "empty",
+        "empty-icon",
+        "empty-title",
+        "empty-description",
+        "empty-actions",
+        "empty-error",
+        "empty-success",
+        "empty-warning"
+      ]
     },
     {
       "name": "field",
       "file": "src/components/field.css",
-      "deps": ["base/tokens", "label"],
+      "deps": [
+        "base/tokens",
+        "label"
+      ],
       "description": "Higher-level form field wrapper with label, description, and validation error.",
-      "markup": "<div class=\"field\" data-required=\"true\"><label class=\"field-label\" for=\"X\">L</label><div class=\"field-control\"><input class=\"input\" id=\"X\" required></div><p class=\"field-description\">D</p><p class=\"field-error\"><svg>…</svg>E</p></div>",
-      "classes": ["field", "field-label", "field-control", "field-description", "field-error"],
-      "attributes": ["data-required=\"true\""]
+      "markup": "<div class=\"field\" data-required=\"true\"><label class=\"field-label\" for=\"X\">L</label><div class=\"field-control\"><input class=\"input\" id=\"X\" required></div><p class=\"field-description\">D</p><p class=\"field-error\"><svg>\u2026</svg>E</p></div>",
+      "classes": [
+        "field",
+        "field-label",
+        "field-control",
+        "field-description",
+        "field-error"
+      ],
+      "attributes": [
+        "data-required=\"true\""
+      ]
     },
     {
       "name": "hover-card",
       "file": "src/components/hover-card.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Rich tooltip showing on hover. Contains header, body, footer.",
-      "markup": "<div class=\"hover-card\"><a href=\"#\">…</a><div class=\"hover-card-panel\"><div class=\"hover-card-header\">…</div>…</div></div>",
-      "classes": ["hover-card", "hover-card-panel", "hover-card-header", "hover-card-title", "hover-card-description", "hover-card-footer", "hover-card-stat", "hover-card-stat-value"]
+      "markup": "<div class=\"hover-card\"><a href=\"#\">\u2026</a><div class=\"hover-card-panel\"><div class=\"hover-card-header\">\u2026</div>\u2026</div></div>",
+      "classes": [
+        "hover-card",
+        "hover-card-panel",
+        "hover-card-header",
+        "hover-card-title",
+        "hover-card-description",
+        "hover-card-footer",
+        "hover-card-stat",
+        "hover-card-stat-value"
+      ]
     },
     {
       "name": "input",
       "file": "src/components/input.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Single-line text input. Leading/trailing icon support.",
-      "markup": "<input class=\"input\" type=\"email\" placeholder=\"…\">",
-      "classes": ["input", "input-sm", "input-lg", "input-wrap"]
+      "markup": "<input class=\"input\" type=\"email\" placeholder=\"\u2026\">",
+      "classes": [
+        "input",
+        "input-sm",
+        "input-lg",
+        "input-wrap"
+      ]
     },
     {
       "name": "input-otp",
       "file": "src/components/input-otp.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "One-time-password input boxes.",
-      "markup": "<div class=\"otp\"><input class=\"otp-input\" maxlength=\"1\" pattern=\"[0-9]\">…</div>",
-      "classes": ["otp", "otp-input", "otp-separator", "otp-sm", "otp-lg"]
+      "markup": "<div class=\"otp\"><input class=\"otp-input\" maxlength=\"1\" pattern=\"[0-9]\">\u2026</div>",
+      "classes": [
+        "otp",
+        "otp-input",
+        "otp-separator",
+        "otp-sm",
+        "otp-lg"
+      ]
     },
     {
       "name": "kbd",
       "file": "src/components/kbd.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Keyboard shortcut indicator.",
-      "markup": "<kbd>⌘</kbd> <kbd>K</kbd>",
-      "classes": ["kbd"]
+      "markup": "<kbd>\u2318</kbd> <kbd>K</kbd>",
+      "classes": [
+        "kbd"
+      ]
     },
     {
       "name": "label",
       "file": "src/components/label.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Form label with required, muted variants.",
       "markup": "<label class=\"label label-required\" for=\"X\">L</label>",
-      "classes": ["label", "label-required", "label-muted", "form-field"]
+      "classes": [
+        "label",
+        "label-required",
+        "label-muted",
+        "form-field"
+      ]
     },
     {
       "name": "menubar",
       "file": "src/components/menubar.css",
-      "deps": ["base/tokens", "dropdown"],
+      "deps": [
+        "base/tokens",
+        "dropdown"
+      ],
       "description": "Horizontal menu bar with dropdown submenus.",
-      "markup": "<div class=\"menubar\" role=\"menubar\"><div class=\"menubar-menu-item\"><button class=\"menubar-trigger\" popovertarget=\"X\" aria-haspopup=\"menu\">File</button><div class=\"menubar-menu\" popover id=\"X\" role=\"menu\">…</div></div></div>",
-      "classes": ["menubar", "menubar-trigger", "menubar-menu"]
+      "markup": "<div class=\"menubar\" role=\"menubar\"><div class=\"menubar-menu-item\"><button class=\"menubar-trigger\" popovertarget=\"X\" aria-haspopup=\"menu\">File</button><div class=\"menubar-menu\" popover id=\"X\" role=\"menu\">\u2026</div></div></div>",
+      "classes": [
+        "menubar",
+        "menubar-trigger",
+        "menubar-menu"
+      ]
     },
     {
       "name": "navigation-menu",
       "file": "src/components/navigation-menu.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Horizontal nav with dropdown panels of links.",
-      "markup": "<nav class=\"navigation-menu\"><ul class=\"navigation-menu-list\"><li class=\"navigation-menu-item\"><button class=\"navigation-menu-trigger\" popovertarget=\"X\">Trigger</button><div class=\"navigation-menu-content\" popover id=\"X\"><ul class=\"navigation-menu-link-list\"><li><a class=\"navigation-menu-link\" href=\"#\">…</a></li></ul></div></li></ul></nav>",
-      "classes": ["navigation-menu", "navigation-menu-list", "navigation-menu-item", "navigation-menu-trigger", "navigation-menu-content", "navigation-menu-link-list", "navigation-menu-link", "navigation-menu-link-icon", "navigation-menu-link-title", "navigation-menu-link-description"]
+      "markup": "<nav class=\"navigation-menu\"><ul class=\"navigation-menu-list\"><li class=\"navigation-menu-item\"><button class=\"navigation-menu-trigger\">Trigger</button><div class=\"navigation-menu-content\"><ul class=\"navigation-menu-link-list\"><li><a class=\"navigation-menu-link\" href=\"#\">\u2026</a></li></ul></div></li></ul></nav>",
+      "classes": [
+        "navigation-menu",
+        "navigation-menu-list",
+        "navigation-menu-item",
+        "navigation-menu-trigger",
+        "navigation-menu-content",
+        "navigation-menu-link-list",
+        "navigation-menu-link",
+        "navigation-menu-link-icon",
+        "navigation-menu-link-title",
+        "navigation-menu-link-description"
+      ]
     },
     {
       "name": "pagination",
       "file": "src/components/pagination.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Page navigation.",
       "markup": "<ul class=\"pagination\"><li class=\"pagination-item\"><a class=\"pagination-link\" href=\"#\" aria-current=\"page\">1</a></li></ul>",
-      "classes": ["pagination", "pagination-item", "pagination-link", "pagination-ellipsis", "pagination-prev", "pagination-next"]
+      "classes": [
+        "pagination",
+        "pagination-item",
+        "pagination-link",
+        "pagination-ellipsis",
+        "pagination-prev",
+        "pagination-next"
+      ]
     },
     {
       "name": "popover",
       "file": "src/components/popover.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Floating panel with arbitrary content.",
-      "markup": "<button popovertarget=\"X\">Open</button><div class=\"popover\" popover id=\"X\">…</div>",
-      "classes": ["popover", "popover-sm", "popover-lg", "popover-header", "popover-title", "popover-description", "popover-footer"],
-      "attributes": ["data-side=\"top|start|end\""]
+      "markup": "<button popovertarget=\"X\">Open</button><div class=\"popover\" popover id=\"X\">\u2026</div>",
+      "classes": [
+        "popover",
+        "popover-sm",
+        "popover-lg",
+        "popover-header",
+        "popover-title",
+        "popover-description",
+        "popover-footer"
+      ],
+      "attributes": [
+        "data-side=\"top|start|end|bottom-start|bottom-end\""
+      ]
     },
     {
       "name": "progress",
       "file": "src/components/progress.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Native <progress> restyled.",
       "markup": "<progress class=\"progress\" value=\"67\" max=\"100\"></progress>",
-      "classes": ["progress"]
+      "classes": [
+        "progress"
+      ]
     },
     {
       "name": "radio",
       "file": "src/components/radio.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Native radio styled to match shadcn.",
       "markup": "<input type=\"radio\" class=\"radio\" name=\"X\" checked>",
-      "classes": ["radio"]
+      "classes": [
+        "radio"
+      ]
     },
     {
       "name": "radio-group",
       "file": "src/components/radio-group.css",
-      "deps": ["base/tokens", "radio"],
+      "deps": [
+        "base/tokens",
+        "radio"
+      ],
       "description": "Card-style radio group with label and description per option.",
-      "markup": "<div class=\"radio-group\"><label class=\"radio-group-item\"><input type=\"radio\" name=\"X\" checked><div class=\"radio-group-item-body\"><div class=\"radio-group-item-label\">L</div><div class=\"radio-group-item-description\">D</div></div></label></div>",
-      "classes": ["radio-group", "radio-group-item", "radio-group-item-body", "radio-group-item-label", "radio-group-item-description"],
-      "attributes": ["data-orientation=\"horizontal|vertical\"", "data-variant=\"inline\""]
+      "markup": "<div class=\"radio-group\"><label class=\"radio-group-item\"><input type=\"radio\" class=\"radio\" name=\"X\" checked><div class=\"radio-group-item-body\"><div class=\"radio-group-item-label\">L</div><div class=\"radio-group-item-description\">D</div></div></label></div>",
+      "classes": [
+        "radio-group",
+        "radio-group-item",
+        "radio-group-item-body",
+        "radio-group-item-label",
+        "radio-group-item-description"
+      ],
+      "attributes": [
+        "data-orientation=\"horizontal|vertical\"",
+        "data-variant=\"inline\""
+      ]
     },
     {
       "name": "resizable",
       "file": "src/components/resizable.css",
-      "deps": ["base/tokens"],
-      "description": "Panel group with drag handles. Visual + a11y only — pair with 10 lines of JS for actual resize.",
-      "markup": "<div class=\"resizable\" data-direction=\"horizontal\"><div class=\"resizable-panel\">A</div><div class=\"resizable-handle\"></div><div class=\"resizable-panel\">B</div></div>",
-      "classes": ["resizable", "resizable-panel", "resizable-handle"],
-      "attributes": ["data-direction=\"horizontal|vertical\""]
+      "deps": [
+        "base/tokens"
+      ],
+      "description": "Panel group with drag handles. Visual + a11y only \u2014 pair with 10 lines of JS for actual resize.",
+      "markup": "<div class=\"resizable\" data-direction=\"horizontal\"><div class=\"resizable-panel\">A</div><div class=\"resizable-handle\" tabindex=\"0\" role=\"separator\" aria-orientation=\"vertical\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div><div class=\"resizable-panel\">B</div></div>",
+      "classes": [
+        "resizable",
+        "resizable-panel",
+        "resizable-handle"
+      ],
+      "attributes": [
+        "data-direction=\"horizontal|vertical\""
+      ]
     },
     {
       "name": "scroll-area",
       "file": "src/components/scroll-area.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Restyled scroll container with thin custom scrollbar.",
-      "markup": "<div class=\"scroll-area\">…</div>",
-      "classes": ["scroll-area", "scroll-area-sm", "scroll-area-lg", "scroll-area-hidden"]
+      "markup": "<div class=\"scroll-area\">\u2026</div>",
+      "classes": [
+        "scroll-area",
+        "scroll-area-sm",
+        "scroll-area-lg",
+        "scroll-area-hidden"
+      ]
     },
     {
       "name": "select",
       "file": "src/components/select.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Native <select> restyled with CSS-only chevron.",
       "markup": "<select class=\"select\"><option>A</option></select>",
-      "classes": ["select", "select-sm", "select-lg"]
+      "classes": [
+        "select",
+        "select-sm",
+        "select-lg"
+      ]
     },
     {
       "name": "separator",
       "file": "src/components/separator.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Horizontal or vertical divider.",
       "markup": "<div class=\"separator\" role=\"separator\" data-orientation=\"horizontal\"></div>",
-      "classes": ["separator"],
-      "attributes": ["data-orientation=\"horizontal|vertical\""]
+      "classes": [
+        "separator"
+      ],
+      "attributes": [
+        "data-orientation=\"horizontal|vertical\""
+      ]
     },
     {
       "name": "sheet",
       "file": "src/components/sheet.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Wider drawer for full-page experiences. Built on <dialog>.",
-      "markup": "<dialog class=\"sheet\" data-side=\"right\" id=\"X\">…</dialog>",
-      "classes": ["sheet", "sheet-header", "sheet-title-block", "sheet-title", "sheet-description", "sheet-body", "sheet-footer"],
-      "attributes": ["data-side=\"right|left|top|bottom\""]
+      "markup": "<dialog class=\"sheet\" data-side=\"right\" id=\"X\">\u2026</dialog>",
+      "classes": [
+        "sheet",
+        "sheet-header",
+        "sheet-title-block",
+        "sheet-title",
+        "sheet-description",
+        "sheet-body",
+        "sheet-footer"
+      ],
+      "attributes": [
+        "data-side=\"right|left|top|bottom\""
+      ]
     },
     {
       "name": "sidebar",
       "file": "src/components/sidebar.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Modern app sidebar. Header, content, footer, collapsible, mobile slide-in.",
-      "markup": "<aside class=\"sidebar\"><div class=\"sidebar-header\"><a class=\"sidebar-brand\"><span class=\"sidebar-brand-logo\">…</span><span class=\"sidebar-brand-text\">Brand</span></a></div><nav class=\"sidebar-content\"><div class=\"sidebar-group\"><div class=\"sidebar-group-label\">Group</div><ul class=\"sidebar-menu\"><li class=\"sidebar-menu-item\"><a class=\"sidebar-menu-button\" aria-current=\"page\"><svg>…</svg><span>Item</span></a></li></ul></div></nav><div class=\"sidebar-footer\">…</div></aside>",
-      "classes": ["sidebar", "sidebar-header", "sidebar-brand", "sidebar-brand-logo", "sidebar-brand-text", "sidebar-content", "sidebar-group", "sidebar-group-label", "sidebar-menu", "sidebar-menu-item", "sidebar-menu-button", "sidebar-menu-badge", "sidebar-menu-sub", "sidebar-menu-sub-button", "sidebar-footer"],
-      "attributes": ["data-collapsible=\"icon\"", "data-collapsed=\"true\"", "data-variant=\"inset|floating\"", "data-mobile-open=\"true\"", "aria-current=\"page\""]
+      "markup": "<aside class=\"sidebar\"><div class=\"sidebar-header\"><a class=\"sidebar-brand\"><span class=\"sidebar-brand-logo\">\u2026</span><span class=\"sidebar-brand-text\">Brand</span></a></div><nav class=\"sidebar-content\"><div class=\"sidebar-group\"><div class=\"sidebar-group-label\">Group</div><ul class=\"sidebar-menu\"><li class=\"sidebar-menu-item\"><a class=\"sidebar-menu-button\" aria-current=\"page\"><svg>\u2026</svg><span>Item</span></a></li></ul></div></nav><div class=\"sidebar-footer\">\u2026</div></aside>",
+      "classes": [
+        "sidebar",
+        "sidebar-header",
+        "sidebar-brand",
+        "sidebar-brand-logo",
+        "sidebar-brand-text",
+        "sidebar-content",
+        "sidebar-group",
+        "sidebar-group-label",
+        "sidebar-menu",
+        "sidebar-menu-item",
+        "sidebar-menu-button",
+        "sidebar-menu-badge",
+        "sidebar-menu-sub",
+        "sidebar-menu-sub-button",
+        "sidebar-footer"
+      ],
+      "attributes": [
+        "data-collapsible=\"icon\"",
+        "data-collapsed=\"true\"",
+        "data-variant=\"inset|floating\"",
+        "data-mobile-open=\"true\"",
+        "aria-current=\"page\""
+      ]
     },
     {
       "name": "skeleton",
       "file": "src/components/skeleton.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Loading placeholder with shimmer animation.",
       "markup": "<div class=\"skeleton\"></div>",
-      "classes": ["skeleton", "skeleton-circle", "skeleton-text"]
+      "classes": [
+        "skeleton",
+        "skeleton-circle",
+        "skeleton-text"
+      ]
     },
     {
       "name": "slider",
       "file": "src/components/slider.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Restyled native range input with filled track.",
       "markup": "<input type=\"range\" class=\"slider\" min=\"0\" max=\"100\" value=\"50\" style=\"--slider-fill: 50%\">",
-      "classes": ["slider", "slider-sm", "slider-lg"],
-      "attributes": ["data-orientation=\"vertical\"", "style=\"--slider-fill: X%\""]
+      "classes": [
+        "slider",
+        "slider-sm",
+        "slider-lg"
+      ],
+      "attributes": [
+        "data-orientation=\"vertical\"",
+        "style=\"--slider-fill: X%\""
+      ]
     },
     {
       "name": "sonner",
       "file": "src/components/sonner.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Rich toast with title, description, action. Auto-dismisses.",
-      "markup": "<div class=\"sonner-region\" aria-live=\"polite\"><div class=\"sonner sonner-success\" role=\"status\"><svg aria-hidden=\"true\">…</svg><div class=\"sonner-content\"><div class=\"sonner-title\">T</div><div class=\"sonner-description\">D</div></div></div></div>",
-      "classes": ["sonner", "sonner-region", "sonner-content", "sonner-title", "sonner-description", "sonner-action", "sonner-close", "sonner-success", "sonner-error", "sonner-warning", "sonner-info", "sonner-loading"]
+      "markup": "<div class=\"sonner-region\" aria-live=\"polite\"><div class=\"sonner sonner-success\" role=\"status\"><svg aria-hidden=\"true\">\u2026</svg><div class=\"sonner-content\"><div class=\"sonner-title\">T</div><div class=\"sonner-description\">D</div></div></div></div>",
+      "classes": [
+        "sonner",
+        "sonner-region",
+        "sonner-content",
+        "sonner-title",
+        "sonner-description",
+        "sonner-action",
+        "sonner-close",
+        "sonner-success",
+        "sonner-error",
+        "sonner-warning",
+        "sonner-info",
+        "sonner-loading"
+      ]
     },
     {
       "name": "spinner",
       "file": "src/components/spinner.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Pure CSS loading spinner.",
       "markup": "<div class=\"spinner\"></div>",
-      "classes": ["spinner", "spinner-sm", "spinner-lg", "spinner-xl", "spinner-primary", "spinner-destructive", "spinner-success", "spinner-muted", "spinner-inherit", "spinner-inline"]
+      "classes": [
+        "spinner",
+        "spinner-sm",
+        "spinner-lg",
+        "spinner-xl",
+        "spinner-primary",
+        "spinner-destructive",
+        "spinner-success",
+        "spinner-muted",
+        "spinner-inherit",
+        "spinner-inline"
+      ]
     },
     {
       "name": "switch",
       "file": "src/components/switch.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Toggle switch built on <input type=checkbox>.",
       "markup": "<input type=\"checkbox\" class=\"switch\" checked>",
-      "classes": ["switch", "switch-sm", "switch-lg"]
+      "classes": [
+        "switch",
+        "switch-sm",
+        "switch-lg"
+      ]
     },
     {
       "name": "table",
       "file": "src/components/table.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Restyled HTML table. Hover rows, alignment, sticky header.",
-      "markup": "<div class=\"table-wrapper\"><table class=\"table\"><thead><tr><th>H</th></tr></thead><tbody><tr><td>D</td></tr></tbody></table></div>",
-      "classes": ["table-wrapper", "table", "table-compact"]
+      "markup": "<div class=\"table-wrapper\"><table class=\"table\"><thead><tr><th scope=\"col\">H</th></tr></thead><tbody><tr><td>D</td></tr></tbody></table></div>",
+      "classes": [
+        "table-wrapper",
+        "table",
+        "table-compact"
+      ]
     },
     {
       "name": "tabs",
       "file": "src/components/tabs.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Pure CSS tabs using radios + :has(). No JS.",
-      "markup": "<div class=\"tabs\"><div class=\"tabs-list\" role=\"tablist\"><input type=\"radio\" name=\"X\" id=\"X-1\" checked><label for=\"X-1\" class=\"tabs-trigger\" role=\"tab\" aria-selected=\"true\">T1</label></div><div class=\"tabs-panel\" role=\"tabpanel\" data-tab=\"X-1\">…</div></div>",
-      "classes": ["tabs", "tabs-list", "tabs-trigger", "tabs-panel"],
-      "attributes": ["data-variant=\"underline\"", "data-orientation=\"vertical\""]
+      "markup": "<div class=\"tabs\"><div class=\"tabs-list\" role=\"radiogroup\" aria-label=\"X tabs\"><input type=\"radio\" name=\"X\" id=\"X-1\" checked><label for=\"X-1\" class=\"tabs-trigger\">T1</label></div><div class=\"tabs-panel\" data-tab=\"X-1\">\u2026</div></div>",
+      "classes": [
+        "tabs",
+        "tabs-list",
+        "tabs-trigger",
+        "tabs-panel"
+      ],
+      "attributes": [
+        "data-variant=\"underline\"",
+        "data-orientation=\"vertical\""
+      ],
+      "notes": "Selection lives on the native radios. role=tab/tablist/tabpanel are intentionally omitted: CSS cannot keep a static aria-selected in sync with :checked, so the honest, accessible model is a native radiogroup (true ARIA tabs/tabpanels with aria-controls/aria-labelledby require consumer JS to move selection)."
     },
     {
       "name": "textarea",
       "file": "src/components/textarea.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Multi-line text input.",
       "markup": "<textarea class=\"textarea\"></textarea>",
-      "classes": ["textarea"]
+      "classes": [
+        "textarea"
+      ]
     },
     {
       "name": "toast",
       "file": "src/components/toast.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Auto-dismissing notification. Built on Popover API.",
-      "markup": "<div class=\"toast-region\"><div class=\"toast toast-success\" popover id=\"X\" role=\"status\" aria-live=\"polite\"><svg aria-hidden=\"true\">…</svg><div><div class=\"toast-title\">T</div><div class=\"toast-description\">D</div></div><button class=\"toast-close\" aria-label=\"Dismiss\" onclick=\"X.hidePopover()\">×</button></div></div>",
-      "classes": ["toast", "toast-region", "toast-title", "toast-description", "toast-close", "toast-success", "toast-destructive", "toast-warning", "toast-info"]
+      "markup": "<div class=\"toast-region\"><div class=\"toast toast-success\" popover id=\"X\" role=\"status\" aria-live=\"polite\"><svg aria-hidden=\"true\">\u2026</svg><div><div class=\"toast-title\">T</div><div class=\"toast-description\">D</div></div><button class=\"toast-close\" aria-label=\"Dismiss\" onclick=\"X.hidePopover()\">\u00d7</button></div></div>",
+      "classes": [
+        "toast",
+        "toast-region",
+        "toast-title",
+        "toast-description",
+        "toast-close",
+        "toast-success",
+        "toast-destructive",
+        "toast-warning",
+        "toast-info"
+      ]
     },
     {
       "name": "toggle",
       "file": "src/components/toggle.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Two-state button with aria-pressed.",
-      "markup": "<button class=\"toggle\" aria-pressed=\"true\" aria-label=\"Toggle bold\"><svg aria-hidden=\"true\">…</svg></button>",
-      "classes": ["toggle", "toggle-sm", "toggle-lg", "toggle-outline", "has-text"]
+      "markup": "<button class=\"toggle\" aria-pressed=\"true\" aria-label=\"Toggle bold\"><svg aria-hidden=\"true\">\u2026</svg></button>",
+      "classes": [
+        "toggle",
+        "toggle-sm",
+        "toggle-lg",
+        "toggle-outline",
+        "has-text"
+      ]
     },
     {
       "name": "toggle-group",
       "file": "src/components/toggle-group.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Group of single/multi-select toggles via radios/checkboxes.",
       "markup": "<div class=\"toggle-group\"><input type=\"radio\" name=\"X\" id=\"X-1\" checked><label for=\"X-1\" class=\"toggle-group-item\">A</label></div>",
-      "classes": ["toggle-group", "toggle-group-item", "toggle-group-sm", "toggle-group-lg"],
-      "attributes": ["data-variant=\"outline\"", "data-orientation=\"vertical\""]
+      "classes": [
+        "toggle-group",
+        "toggle-group-item",
+        "toggle-group-sm",
+        "toggle-group-lg"
+      ],
+      "attributes": [
+        "data-variant=\"outline\"",
+        "data-orientation=\"vertical\""
+      ],
+      "notes": "Order is mandatory: each <input> MUST be the immediately-preceding sibling of its <label class=\"toggle-group-item\">. The checked-highlight relies on the adjacent-sibling selector (input:checked + .toggle-group-item), so any element between the input and its label breaks the styling."
     },
     {
       "name": "tooltip",
       "file": "src/components/tooltip.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Hover/focus tooltip with 4 positions. Pure CSS via ::after.",
-      "markup": "<button class=\"btn tooltip\" data-tooltip=\"T\">…</button>",
-      "classes": ["tooltip"],
-      "attributes": ["data-tooltip=\"…\"", "data-position=\"top|bottom|start|end\""]
+      "markup": "<button class=\"btn tooltip\" data-tooltip=\"T\">\u2026</button>",
+      "classes": [
+        "tooltip"
+      ],
+      "attributes": [
+        "data-tooltip=\"\u2026\"",
+        "data-position=\"top|bottom|start|end\""
+      ]
     },
     {
       "name": "typography",
       "file": "src/components/typography.css",
-      "deps": ["base/tokens"],
+      "deps": [
+        "base/tokens"
+      ],
       "description": "Prose styles for long-form text. Drop on blog posts / docs.",
-      "markup": "<article class=\"prose\"><h1>…</h1><p>…</p></article>",
-      "classes": ["prose", "lead"]
+      "markup": "<article class=\"prose\"><h1>\u2026</h1><p>\u2026</p></article>",
+      "classes": [
+        "prose",
+        "lead"
+      ]
     }
   ]
 }

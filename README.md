@@ -1,7 +1,7 @@
 # shadcss/ui
 
 > **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.0 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
 [![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
@@ -21,8 +21,8 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 ## Install
 
 ```html
-<!-- CDN -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
+<!-- CDN — pin a version in production so a future major can't break you -->
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.1/dist/shadcss.min.css">
 ```
 
 ```bash
@@ -31,7 +31,13 @@ npm install @russfranky/shadcss
 ```
 
 ```css
+/* Bare-specifier @import — resolves ONLY through a bundler (Vite, webpack,
+   Parcel, esbuild, etc.) that honors the package "exports"/"style" field.
+   Plain CSS has no Node resolution, so this 404s without a bundler. */
 @import "@russfranky/shadcss";
+
+/* Plain CSS / no bundler: import the built file by path instead. */
+@import "@russfranky/shadcss/dist/shadcss.min.css";
 ```
 
 ## Monorepo structure
@@ -58,6 +64,11 @@ npm run build      # build the framework → packages/shadcss/dist
 npm run dev        # rebuild on change (watch)
 npm run www        # serve the showcase at http://localhost:3333
 ```
+
+> The showcase (`apps/www/index.html`) links the built `shadcss.min.css`, which
+> the framework build generates and copies in. Run `npm run build` first (the
+> `www` dev/build scripts now do this for you) — opening the raw `index.html`
+> before any build produces an unstyled page.
 
 ## Documentation
 

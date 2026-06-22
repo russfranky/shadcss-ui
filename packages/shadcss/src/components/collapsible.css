@@ -50,15 +50,37 @@
   }
   .collapsible[open] .collapsible-trigger::after { transform: rotate(180deg); }
 
-  /* Smooth reveal */
-  .collapsible-trigger ~ .collapsible-content {
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows var(--duration-slow) var(--ease-out);
+  /* Smooth reveal.
+     Like accordion: animate the UA ::details-content box with interpolate-size
+     where supported (a native <details> hides closed children, so the grid
+     0fr→1fr technique alone pops instead of animating). Older engines fall back
+     to the grid technique (instant reveal on native details there). */
+  @supports selector(::details-content) {
+    .collapsible { interpolate-size: allow-keywords; }
+    .collapsible::details-content {
+      block-size: 0;
+      overflow: hidden;
+      content-visibility: hidden;
+      transition:
+        block-size var(--duration-slow) var(--ease-out),
+        content-visibility var(--duration-slow) allow-discrete;
+    }
+    .collapsible[open]::details-content {
+      block-size: auto;
+      content-visibility: visible;
+    }
   }
-  .collapsible[open] .collapsible-trigger ~ .collapsible-content {
-    grid-template-rows: 1fr;
+
+  @supports not selector(::details-content) {
+    .collapsible-trigger ~ .collapsible-content {
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-slow) var(--ease-out);
+    }
+    .collapsible[open] .collapsible-trigger ~ .collapsible-content {
+      grid-template-rows: 1fr;
+    }
   }
 
   .collapsible-content {

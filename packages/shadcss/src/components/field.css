@@ -66,12 +66,14 @@
      a progressive-enhancement fallback for older engines. */
   .field:has(:user-invalid) .field-error,
   .field:has(:invalid:not(:placeholder-shown)) .field-error,
-  .field:has(select:invalid) .field-error {
+  .field:has(select:user-invalid) .field-error {
     display: flex;
   }
-  .field:has(:user-invalid) .field-description,
-  .field:has(:invalid:not(:placeholder-shown)) .field-description,
-  .field:has(select:invalid) .field-description {
+  /* Hide the description only when an error node is actually being shown, so
+     fields without a .field-error keep their description on invalid. */
+  .field:has(:user-invalid):has(.field-error) .field-description,
+  .field:has(:invalid:not(:placeholder-shown)):has(.field-error) .field-description,
+  .field:has(select:user-invalid):has(.field-error) .field-description {
     display: none;
   }
 
@@ -80,14 +82,14 @@
   .field:has(:user-invalid) .textarea,
   .field:has(:invalid:not(:placeholder-shown)) .input,
   .field:has(:invalid:not(:placeholder-shown)) .textarea,
-  .field:has(select:invalid) .select {
+  .field:has(select:user-invalid) .select {
     border-color: hsl(var(--destructive));
   }
   .field:has(:user-invalid) .input:focus,
   .field:has(:user-invalid) .textarea:focus,
   .field:has(:invalid:not(:placeholder-shown)) .input:focus,
   .field:has(:invalid:not(:placeholder-shown)) .textarea:focus,
-  .field:has(select:invalid) .select:focus {
+  .field:has(select:user-invalid) .select:focus {
     box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
   }
 }
