@@ -10,6 +10,8 @@
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![AI-ready](https://img.shields.io/badge/AI--ready-registry%20%2B%20guide-orange)](./AI_GUIDE.md)
 
+**▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)**
+
 `shadcss` is a complete clone of the shadcn/ui aesthetic — every component,
 every variant, every detail — rebuilt for the modern web platform. Where
 shadcn uses React + Radix + Tailwind + 10 JS dependencies per component,

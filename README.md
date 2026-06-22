@@ -3,11 +3,14 @@
 > **shadcn's beauty, no JS framework.**
 > A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.8 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
+[![live demo](https://img.shields.io/badge/demo-shadcss.vercel.app-black)](https://shadcss.vercel.app)
 [![npm](https://img.shields.io/npm/v/@russfranky/shadcss)](https://www.npmjs.com/package/@russfranky/shadcss)
 [![gzip size](https://img.shields.io/badge/gzipped-16.8%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
 [![components](https://img.shields.io/badge/components-52-blue)](./packages/shadcss#components-52)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE.md)
+
+**▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)** — all 52 components, light/dark, responsive.
 
 `shadcss` rebuilds every shadcn/ui component — every variant, every detail —
 for the modern web platform. Where shadcn uses React + Radix + Tailwind,
