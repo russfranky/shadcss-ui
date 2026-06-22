@@ -101,6 +101,14 @@ npm run www        # serve the showcase at http://localhost:3333
 > `www` dev/build scripts now do this for you) — opening the raw `index.html`
 > before any build produces an unstyled page.
 
+### Deploy the demo
+
+```bash
+VERCEL_TOKEN=xxx npm run deploy
+```
+
+Builds, stages a self-contained copy (CSS + doc-links repointed to GitHub), and ships it to the `shadcss` Vercel project → [shadcss.vercel.app](https://shadcss.vercel.app). The token is read from the environment (never committed); override the team/project with `VERCEL_SCOPE` / `VERCEL_PROJECT_ID` if needed.
+
 ## Quality gates (run locally)
 
 ```bash
