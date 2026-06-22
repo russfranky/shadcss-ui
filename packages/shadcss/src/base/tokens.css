@@ -46,17 +46,20 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
 
-  --destructive: 0 84.2% 60.2%;
+  /* Status colors darkened from shadcn's defaults so white-on-color AND
+     color-on-white both clear WCAG AA (4.5:1). Warning is dark amber with
+     light foreground — bright yellow cannot carry accessible text. */
+  --destructive: 0 70% 40%;
   --destructive-foreground: 0 0% 98%;
 
   /* 3. Status */
-  --success: 142.1 76.2% 36.3%;
+  --success: 142 72% 26%;
   --success-foreground: 0 0% 98%;
 
-  --warning: 47.9 95.8% 53.1%;
-  --warning-foreground: 240 10% 3.9%;
+  --warning: 32 90% 32%;
+  --warning-foreground: 0 0% 98%;
 
-  --info: 217.2 91.2% 59.8%;
+  --info: 217 80% 42%;
   --info-foreground: 0 0% 98%;
 
   /* 4. Borders, inputs, rings */
