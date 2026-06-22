@@ -2416,6 +2416,10 @@
     display: flex;
   }
 
+  [popover]:not(:popover-open) {
+    display: none;
+  }
+
   .hover-card {
     display: inline-block;
     position: relative;

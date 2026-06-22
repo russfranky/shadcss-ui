@@ -5,6 +5,13 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.6
+- **Fix: closed popovers could render visible.** Components that set `display` on
+  a `[popover]` element (`.command`, `.sonner`) overrode the UA closed-state
+  `display:none`, so they floated over the page until triggered (caught by an
+  actual visual review of the deployed demo, not the automated gates). Re-assert
+  `[popover]:not(:popover-open){display:none}` in the components layer.
+
 ## 0.1.5
 - **Component parity pass (vs shadcn/ui).** Grounded 52-component audit found 39
   gaps; closed the 21 high-confidence ones: `aria-invalid` error state on all form

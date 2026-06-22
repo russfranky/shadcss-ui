@@ -76,3 +76,12 @@
     border-top: 1px solid hsl(var(--border));
   }
 }
+
+/* --- A closed popover must stay hidden even when a component sets `display`
+   on the [popover] element (e.g. .command, .sonner use display:flex). Author
+   `display` overrides the UA `[popover]:not(:popover-open){display:none}`, so
+   we re-assert it here with higher specificity. Inline (non-popover) instances
+   are unaffected. --- */
+@layer components {
+  [popover]:not(:popover-open) { display: none; }
+}
