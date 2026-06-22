@@ -1,0 +1,26 @@
+{
+  "name": "shadcss",
+  "version": "0.0.1",
+  "description": "Lightweight, HTML/CSS-first UI components. A minimal alternative to shadcn/ui.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./components/*": "./src/components/*"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "ui",
+    "components",
+    "shadcn",
+    "css",
+    "html",
+    "lightweight"
+  ],
+  "scripts": {
+    "release": "npm publish --access public"
+  }
+}

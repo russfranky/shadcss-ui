@@ -1,0 +1,62 @@
+.sc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--sc-radius, 0.375rem);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms, border-color 150ms, opacity 150ms;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.sc-btn:focus-visible {
+  outline: 2px solid var(--sc-ring, #000);
+  outline-offset: 2px;
+}
+
+.sc-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Variants */
+.sc-btn-default {
+  background-color: var(--sc-primary, #18181b);
+  color: var(--sc-primary-fg, #fafafa);
+}
+.sc-btn-default:hover { opacity: 0.9; }
+
+.sc-btn-outline {
+  background-color: transparent;
+  border-color: var(--sc-border, #e4e4e7);
+  color: var(--sc-foreground, #18181b);
+}
+.sc-btn-outline:hover {
+  background-color: var(--sc-accent, #f4f4f5);
+}
+
+.sc-btn-ghost {
+  background-color: transparent;
+  color: var(--sc-foreground, #18181b);
+}
+.sc-btn-ghost:hover {
+  background-color: var(--sc-accent, #f4f4f5);
+}
+
+.sc-btn-destructive {
+  background-color: var(--sc-destructive, #ef4444);
+  color: #fff;
+}
+.sc-btn-destructive:hover { opacity: 0.9; }
+
+/* Sizes */
+.sc-btn-sm { padding: 0.375rem 0.75rem; font-size: 0.8125rem; }
+.sc-btn-lg { padding: 0.625rem 1.5rem; font-size: 1rem; }
+.sc-btn-icon { padding: 0.5rem; width: 2.25rem; height: 2.25rem; }

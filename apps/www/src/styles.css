@@ -1,0 +1,63 @@
+:root {
+  --sc-primary: #18181b;
+  --sc-primary-fg: #fafafa;
+  --sc-foreground: #18181b;
+  --sc-border: #e4e4e7;
+  --sc-accent: #f4f4f5;
+  --sc-destructive: #ef4444;
+  --sc-ring: #18181b;
+  --sc-radius: 0.375rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #fff;
+  color: #18181b;
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.site-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.site-header p {
+  color: #71717a;
+  font-size: 1rem;
+}
+
+.component-section {
+  margin-bottom: 3rem;
+}
+
+.component-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.component-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border: 1px solid #e4e4e7;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
