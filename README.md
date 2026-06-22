@@ -22,16 +22,16 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN -->
-<link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
 ```
 
 ```bash
 # npm
-npm install shadcss
+npm install @russfranky/shadcss
 ```
 
 ```css
-@import "shadcss";
+@import "@russfranky/shadcss";
 ```
 
 ## Monorepo structure

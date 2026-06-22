@@ -12,10 +12,12 @@
 | Features audited | 97 |
 | Test cases executed | 408 |
 | Defects logged (Phase 3) | 155 |
-| Defects **Fixed** | 125 |
+| Defects **Fixed** | 128 |
 | Defects **Waived** (explicit) | 27 |
-| Defects **Pending-publish** | 3 |
+| Defects **Pending-publish** | 0 |
 | Defects **Open** (unresolved) | **0** |
+
+> **Published:** `@russfranky/shadcss@0.1.0` is live on npm (public) and resolves on unpkg + jsDelivr (HTTP 200). The bare name `shadcss` was blocked by npm as too similar to `shadcn`, so the package is scoped under the russfranky account. D-005/006/087 closed.
 
 ---
 
@@ -24,10 +26,10 @@
 | Severity | Logged | Fixed | Waived | Pending-publish | Open |
 |---|---|---|---|---|---|
 | Critical | 0 | 0 | 0 | 0 | 0 |
-| High | 9 | 7 | 0 | 2 | 0 |
+| High | 9 | 9 | 0 | 0 | 0 |
 | Medium | 72 | 61 | 11 | 0 | 0 |
-| Low | 74 | 57 | 16 | 1 | 0 |
-| **Total** | **155** | **125** | **27** | **3** | **0** |
+| Low | 74 | 58 | 16 | 0 | 0 |
+| **Total** | **155** | **128** | **27** | **0** | **0** |
 
 **Regressions introduced by remediation:** 2 found, 2 fixed in-pass (dead README anchor; a stale calendar header comment). Lightning CSS build passes; HTML tag-balanced; registry.json valid.
 
@@ -66,12 +68,10 @@ Every waiver is the kind of thing shadcn solves *with* React/Radix JS — shadcs
 
 ---
 
-## Pending-publish (3) — requires owner action
+## Publish — DONE
 
-- **D-005 / D-006** — `npm install shadcss` and the unpkg CDN URL resolve **once the package is published**. Package is publish-ready (name, version 0.1.0, files, exports, `publishConfig.access=public`).
-- **D-087** — reserve the npm name by publishing.
-
-**Action:** `npm publish --workspace=packages/shadcss` (needs your npm auth). Not run automatically.
+- **D-005 / D-006 / D-087 closed.** `@russfranky/shadcss@0.1.0` published to npm (public access). Install (`npm install @russfranky/shadcss`) and the CDN URLs (`unpkg.com/@russfranky/shadcss/...`, `cdn.jsdelivr.net/npm/@russfranky/shadcss/...`) resolve (verified HTTP 200).
+- npm rejected the bare name `shadcss` (too similar to `shadcn`); scoped under the russfranky account instead. Docs/CDN snippets updated to the scoped specifier.
 
 ---
 
@@ -84,19 +84,18 @@ Every waiver is the kind of thing shadcn solves *with* React/Radix JS — shadcs
 
 ---
 
-## Confidence Score: **83 / 100**
+## Confidence Score: **86 / 100**
 
 **Justification (honest, not inflated):**
 
-- **+** All 9 original High-severity defects resolved or reduced to the single owner-action of publishing. **Zero open Critical/High/Medium/Low** functional defects.
+- **+** All 9 original High-severity defects fixed. **Zero open defects; zero pending.** Package published and install/CDN verified live.
 - **+** The repo is now **internally consistent and honest**: claims match code, version/count/size unified, registry no longer misrepresents itself, dev preview works, build is green at 16.0 KB.
 - **+** Real CSS bugs fixed with localized, validated edits; remediation introduced only 2 regressions, both fixed.
 - **−** Not runtime/AT-tested — a11y correctness is by-inspection only (caps the score below ~90).
-- **−** Install/CDN remain unproven until `npm publish` (owner action).
 - **−** No CI/regression guard committed yet; future drift is possible.
 - **−** 27 waivers mean a class of interactivity genuinely still needs consumer code — legitimate for a CSS-only library, but it is *not* a drop-in Radix replacement, and the score reflects "honest and shippable," not "feature-equal to shadcn."
 
-**83/100** = "real, honest, internally-consistent, and shippable as a CSS-first library — pending the publish action and a future runtime-a11y + CI pass." Up from the pre-remediation **34/100**.
+**86/100** = "real, honest, internally-consistent, published, and installable — pending only a future runtime-a11y + CI pass." Up from the pre-remediation **34/100**.
 
 ---
 

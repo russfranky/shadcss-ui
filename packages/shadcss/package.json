@@ -1,5 +1,5 @@
 {
-  "name": "shadcss",
+  "name": "@russfranky/shadcss",
   "version": "0.1.0",
   "description": "shadcn's beauty, zero JavaScript. A modular HTML+CSS-only component library built on modern web standards.",
   "type": "module",

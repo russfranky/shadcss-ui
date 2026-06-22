@@ -12,7 +12,7 @@ native `<dialog>`/Popover/toast need a one-line native trigger
 (`showModal()`/`showPopover()`). To use:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
 ```
 
 Then write semantic HTML with shadcss class names. **No framework, no build
@@ -518,7 +518,7 @@ and notifications. Include a sidebar nav and a save button.
 <head>
   <meta charset="UTF-8">
   <title>Settings — Acme</title>
-  <link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
 </head>
 <body>
 

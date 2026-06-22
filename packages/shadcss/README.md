@@ -119,17 +119,17 @@ shadcss ships every shadcn component, plus a few extras:
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/shadcss/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss/dist/shadcss.min.css">
 ```
 
 ### npm
 
 ```bash
-npm install shadcss
+npm install @russfranky/shadcss
 ```
 
 ```css
-@import "shadcss";
+@import "@russfranky/shadcss";
 ```
 
 ### Copy a single component (shadcn-style)
