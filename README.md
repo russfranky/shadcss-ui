@@ -3,6 +3,8 @@
 > **shadcn's beauty, no JS framework.**
 > A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.0 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
 
+[![CI](https://github.com/russfranky/shadcss-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/russfranky/shadcss-ui/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@russfranky/shadcss)](https://www.npmjs.com/package/@russfranky/shadcss)
 [![gzip size](https://img.shields.io/badge/gzipped-16.0%20KB-success)](./packages/shadcss/dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
 [![components](https://img.shields.io/badge/components-52-blue)](./packages/shadcss#components-52)
@@ -69,6 +71,16 @@ npm run www        # serve the showcase at http://localhost:3333
 > the framework build generates and copies in. Run `npm run build` first (the
 > `www` dev/build scripts now do this for you) — opening the raw `index.html`
 > before any build produces an unstyled page.
+
+## Quality gates (CI)
+
+Every push/PR to `main` runs [`.github/workflows/ci.yml`](./.github/workflows/ci.yml):
+
+- **`npm run build`** — Lightning CSS bundles + minifies; fails on invalid CSS.
+- **`npm run check`** — two no-dependency guards that encode the regressions prior QA passes found, so they can't return:
+  - `check-consistency.mjs` — version, component count, gzip badge, and "no absolutist 0-JS claim" / "no false shadcn `$schema`" are all asserted against reality.
+  - `check-markup.mjs` — no `anchor()` without an `anchor-name` producer, no `popover` on `.navigation-menu-content`, no static `aria-selected` on tabs, no invalid `focus-visible-anchor`, balanced markup, valid registry JSON.
+- **`npm run check:a11y`** — renders the showcase in headless Chromium and runs **axe-core**; fails the build on any *critical* violation (serious/moderate/minor are reported as warnings, since some interactivity legitimately needs consumer-supplied JS/ARIA in a CSS-only library).
 
 ## Documentation
 

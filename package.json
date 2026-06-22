@@ -2,7 +2,7 @@
   "name": "shadcss-ui",
   "version": "0.1.1",
   "private": true,
-  "description": "shadcn's beauty, zero JavaScript. A modular HTML+CSS-only component library.",
+  "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library.",
   "license": "MIT",
   "type": "module",
   "workspaces": [
@@ -13,7 +13,13 @@
     "build": "npm run build --workspace=packages/shadcss",
     "dev": "npm run dev --workspace=packages/shadcss",
     "www": "npm run build -w packages/shadcss && npm run dev -w apps/www",
+    "check": "node scripts/check-consistency.mjs && node scripts/check-markup.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
     "release": "npm run build --workspace=packages/shadcss && npm publish --workspace=packages/shadcss"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0",
+    "axe-core": "^4.10.0"
   },
   "packageManager": "npm@10.0.0"
 }
