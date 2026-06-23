@@ -4134,8 +4134,8 @@
   }
 
   .breadcrumb-ellipsis {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
     color: var(--muted-foreground);
     justify-content: center;
     align-items: center;
@@ -4194,8 +4194,8 @@
   }
 
   .pagination-ellipsis {
-    min-width: 2rem;
-    height: 2rem;
+    min-width: 2.25rem;
+    height: 2.25rem;
     color: var(--muted-foreground);
     justify-content: center;
     align-items: center;
