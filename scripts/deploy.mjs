@@ -10,7 +10,7 @@
 // ==========================================================================
 
 import { execSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, copyFileSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { mkdtempSync, mkdirSync, copyFileSync, cpSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -50,6 +50,7 @@ const html = readFileSync(wwwIndex, "utf8")
 writeFileSync(path.join(stage, "index.html"), html);
 copyFileSync(wwwCss, path.join(stage, "shadcss.min.css"));
 try { copyFileSync(path.join(root, "apps/www/llms.txt"), path.join(stage, "llms.txt")); } catch {}
+try { cpSync(path.join(root, "apps/www/docs"), path.join(stage, "docs"), { recursive: true }); } catch {}
 // Link the staging dir to the existing project so the random temp-dir name
 // isn't used to create a new one.
 mkdirSync(path.join(stage, ".vercel"), { recursive: true });

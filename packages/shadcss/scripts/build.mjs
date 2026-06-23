@@ -9,6 +9,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { gzipSync } from "node:zlib";
 import { bundle, transform } from "lightningcss";
+import { genDocs } from "../../../scripts/gen-docs.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -84,6 +85,9 @@ async function build() {
   const t0 = performance.now();
   await ensureDir(distDir);
   await genLlms();
+  // Regenerate the docs site from the registry (apps/www/docs/). Guard the
+  // sibling-app path so an isolated package build never fails on its account.
+  try { genDocs(path.resolve(root, "..", "..")); } catch { /* apps/www absent */ }
   const { code } = readAndBundle();
 
   await fs.writeFile(outCss, code);

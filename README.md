@@ -10,7 +10,7 @@
 [![components](https://img.shields.io/badge/components-52-blue)](./packages/shadcss#components-52)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE.md)
 
-**▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)** — all 52 components, light/dark, responsive.
+**▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)** · **📖 Docs: [/docs](https://shadcss.vercel.app/docs/)** · **🤖 [/llms.txt](https://shadcss.vercel.app/llms.txt)**
 
 `shadcss` rebuilds every shadcn/ui component — every variant, every detail —
 for the modern web platform. Where shadcn uses React + Radix + Tailwind,
