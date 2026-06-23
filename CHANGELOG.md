@@ -5,6 +5,14 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.8
+- **Existential overlay hardening.** Add a global `dialog:not([open])` /
+  `[popover]:not(:popover-open) { display:none !important }` guard in the reset
+  layer so a closed overlay can never render — even if a component or a consumer
+  sets `display` on it. Covers the bug class that shipped twice. A markup-check
+  assertion prevents the guard from being removed; the runtime a11y gate already
+  fails on any visible closed overlay.
+
 ## 0.1.7
 - **Visual QA pass (rendered, not static).** A screenshot-based review of the live
   showcase caught what code gates couldn't: the **sheet/drawer dialogs rendered

@@ -85,6 +85,14 @@
   :where([popover], dialog[open]) {
     color: inherit;
   }
+
+  dialog:not([open]) {
+    display: none !important;
+  }
+
+  [popover]:not(:popover-open) {
+    display: none !important;
+  }
 }
 
 @layer theme {

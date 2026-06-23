@@ -63,6 +63,14 @@
   }
 
   :where([popover], dialog[open]) { color: inherit; }
+
+  /* OVERLAY SAFETY (existential for a CSS-only library): a closed <dialog> or
+     [popover] must NEVER render, even if a component or a consumer sets
+     `display` on it — author `display` otherwise overrides the UA closed-state
+     hide, leaving sheets/menus/toasts floating over content. `!important` in
+     the reset layer beats every later normal AND important author rule. */
+  dialog:not([open]) { display: none !important; }
+  [popover]:not(:popover-open) { display: none !important; }
 }
 
 /* Reduced motion is global and should not be overridable by components */

@@ -53,6 +53,14 @@ for (const f of readdirSync(r(compDir)).filter((x) => x.endsWith(".css"))) {
 }
 pass(`no invalid focus-visible-anchor property`);
 
+// 5b) The global closed-overlay safety guard must exist (the bug class that
+//     shipped twice). Without it, any author `display` on a dialog/popover can
+//     leave a closed overlay visible.
+const resetCss = read("packages/shadcss/src/base/reset.css");
+if (/dialog:not\(\[open\]\)\s*\{\s*display:\s*none/.test(resetCss) && /\[popover\]:not\(:popover-open\)\s*\{\s*display:\s*none/.test(resetCss))
+  pass(`global closed-overlay guard present in reset.css`);
+else fail(`missing global closed-overlay guard (dialog:not([open]) / [popover]:not(:popover-open) { display:none }) in reset.css`);
+
 // 6) registry.json must be valid JSON (parse already happened in consistency, re-affirm)
 try { JSON.parse(read("packages/shadcss/registry.json")); pass(`registry.json valid JSON`); }
 catch (e) { fail(`registry.json invalid JSON: ${e.message}`); }
