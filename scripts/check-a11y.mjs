@@ -37,9 +37,20 @@ async function scan(theme) {
   }
   await page.evaluate(axeSource);
   const results = await page.evaluate(async () => await axe.run(document, { resultTypes: ["violations"] }));
+  // Guard: a CLOSED dialog/popover must not be visible. This exact class of bug
+  // (sheet/command/sonner rendering over content) escaped every static gate twice.
+  const stuckOverlays = await page.evaluate(() => {
+    const bad = [];
+    for (const d of document.querySelectorAll("dialog"))
+      if (!d.open && getComputedStyle(d).display !== "none") bad.push("dialog." + (d.className || "(unnamed)"));
+    for (const e of document.querySelectorAll("[popover]"))
+      if (!e.matches(":popover-open") && getComputedStyle(e).display !== "none") bad.push("popover." + (e.className || "(unnamed)"));
+    return [...new Set(bad)];
+  });
   await page.close();
   const byImpact = { critical: [], serious: [], moderate: [], minor: [] };
   for (const v of results.violations) for (const n of v.nodes) (byImpact[v.impact] || byImpact.minor).push(`${v.id}: ${n.target.join(" ").slice(0, 60)}`);
+  for (const o of stuckOverlays) byImpact.critical.push(`stuck-overlay: a closed overlay is visible (${o})`);
   return byImpact;
 }
 
