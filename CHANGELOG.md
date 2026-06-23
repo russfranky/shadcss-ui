@@ -5,6 +5,12 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.12
+- **Retrofit-friendly aliases + guide.** Add common-convention button aliases
+  (`.btn-primary`, `.btn-danger`/`.btn-error`) so existing apps need less glue,
+  and a "Retrofit an existing app" docs page (case study: a plain HTML/CSS/JS
+  Express app restyled to shadcss with zero markup/JS changes).
+
 ## 0.1.11
 - **Defensible positioning + honesty.** Reworded the headline/claims away from
   "complete clone / every component, every variant" to the technical wedge

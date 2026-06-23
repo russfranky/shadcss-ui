@@ -122,7 +122,7 @@ shadcss covers the shadcn component set as CSS — 52 components and patterns; c
 
 ```html
 <!-- Pin a version in production so a future major can't silently break you. -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.11/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.12/dist/shadcss.min.css">
 ```
 
 ### npm

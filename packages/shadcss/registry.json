@@ -1,7 +1,7 @@
 {
   "note": "This is a custom shadcss manifest describing an HTML+CSS component library \u2014 it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
   "name": "shadcss",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "homepage": "https://github.com/russfranky/shadcss-ui",
   "license": "MIT",
@@ -187,7 +187,10 @@
         "btn-sm",
         "btn-lg",
         "btn-icon",
-        "btn-group"
+        "btn-group",
+        "btn-primary",
+        "btn-danger",
+        "btn-error"
       ],
       "attributes": [
         "aria-busy=\"true\" (loading)",

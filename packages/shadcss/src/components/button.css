@@ -84,6 +84,22 @@
     background: hsl(var(--destructive) / 0.9);
   }
 
+  /* Common-convention aliases — so retrofitting an existing app (Bootstrap /
+     Bulma-style class names) needs less glue. `.btn` alone is already the
+     primary variant; these map the other familiar names onto shadcss. */
+  .btn-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .btn-danger, .btn-error {
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+  .btn-danger:hover:not(:disabled, [aria-busy="true"]),
+  .btn-error:hover:not(:disabled, [aria-busy="true"]) {
+    background: hsl(var(--destructive) / 0.9);
+  }
+
   /* Scoped out of .btn-group: link's height:auto/padding:0 break the
      joined group's uniform height + border-radius assumptions. */
   .btn-link:not(.btn-group .btn) {

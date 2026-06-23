@@ -56,7 +56,7 @@ Markup: <nav class="breadcrumb"><span class="breadcrumb-item"><a class="breadcru
 
 ### button — status:stable · js:none · support:baseline
 The primary action trigger. 6 variants, 4 sizes, loading + icon + group modes.
-Classes: btn btn-secondary btn-outline btn-ghost btn-destructive btn-link btn-sm btn-lg btn-icon btn-group
+Classes: btn btn-secondary btn-outline btn-ghost btn-destructive btn-link btn-sm btn-lg btn-icon btn-group btn-primary btn-danger btn-error
 A11y: Use <button>; aria-busy=true for loading; disabled for inert
 Markup: <button class="btn">Default</button>
 

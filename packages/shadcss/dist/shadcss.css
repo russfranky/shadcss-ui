@@ -492,6 +492,24 @@
     background: hsl(var(--destructive) / .9);
   }
 
+  .btn-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .btn-danger, .btn-error {
+    background: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+  }
+
+  .btn-danger:hover:not(:is(:disabled, [aria-busy="true"])) {
+    background: hsl(var(--destructive) / .9);
+  }
+
+  .btn-error:hover:not(:is(:disabled, [aria-busy="true"])) {
+    background: hsl(var(--destructive) / .9);
+  }
+
   .btn-link:not(.btn-group .btn) {
     color: hsl(var(--primary));
     text-underline-offset: 4px;

@@ -58,7 +58,7 @@ function sidebar(components, current) {
   return `<aside class="docs-sidebar">
   <div class="docs-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <a href="../index.html" style="color:inherit;text-decoration:none">shadcss</a></div>
   <div class="docs-nav-label">Getting started</div>
-  <nav class="docs-nav"><a href="./index.html"${current === "__index" ? ' aria-current="page"' : ""}>Overview</a><a href="./support.html"${current === "__support" ? ' aria-current="page"' : ""}>Browser support &amp; limits</a><a href="../index.html">Live demo</a></nav>
+  <nav class="docs-nav"><a href="./index.html"${current === "__index" ? ' aria-current="page"' : ""}>Overview</a><a href="./retrofit.html"${current === "__retrofit" ? ' aria-current="page"' : ""}>Retrofit an existing app</a><a href="./support.html"${current === "__support" ? ' aria-current="page"' : ""}>Browser support &amp; limits</a><a href="../index.html">Live demo</a></nav>
   <div class="docs-nav-label">Components</div>
   <nav class="docs-nav">${links}</nav>
 </aside>`;
@@ -175,6 +175,35 @@ function supportPage(reg) {
   return shell("Browser support & limits", body, reg.components, "__support");
 }
 
+function retrofitPage(reg) {
+  const body = `
+<div class="docs-breadcrumb">Documentation</div>
+<h1 class="docs-h1">Retrofit an existing app</h1>
+<p class="docs-lead">shadcss is plain CSS, so you can drop it onto an existing server-rendered or static app — no build, no markup rewrite, no JS framework — and restyle it through a small adapter.</p>
+
+<div class="docs-section"><h2>1. Add the CSS</h2>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">Vendor or link the bundle, then an adapter stylesheet of your own (loaded <em>after</em>, so its token-driven rules win). Set the theme on <code>&lt;html&gt;</code>.</p>
+<pre class="docs-code"><code>&lt;html data-theme="dark"&gt;
+  &lt;link rel="stylesheet" href="shadcss.min.css"&gt;
+  &lt;link rel="stylesheet" href="app-adapter.css"&gt;</code></pre></div>
+
+<div class="docs-section"><h2>2. Reuse what matches, alias what's close</h2>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">shadcss already styles <code>.btn</code>, <code>.btn-secondary</code>, <code>.input</code>, <code>.kbd</code>, <code>.card</code>, etc. Common convention names are built-in aliases: <code>.btn-primary</code>, <code>.btn-danger</code>/<code>.btn-error</code> → the right variant automatically. So existing Bootstrap-style buttons often just work.</p></div>
+
+<div class="docs-section"><h2>3. Map your structural classes to tokens</h2>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">Your app's layout classes (sidebars, panels, custom buttons) won't exist in shadcss — restyle them with the design tokens. That's the whole adapter.</p>
+<pre class="docs-code"><code>.sidebar { background: hsl(var(--card)); border-right: 1px solid hsl(var(--border)); }
+.info-panel { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius-lg); }
+.your-btn { background: transparent; border: 1px solid hsl(var(--border)); border-radius: var(--radius-md); }
+.your-btn:hover { background: hsl(var(--accent)); }</code></pre>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">Every token lives on <code>:root</code> — see <a href="./index.html" style="color:hsl(var(--primary))">the components</a> and override any of them to retheme everything.</p></div>
+
+<div class="docs-section"><h2>Case study: Cleanshot Sorter</h2>
+<div class="alert alert-info" role="alert"><div><div class="alert-description">A plain HTML/CSS/JS Express app was restyled to the shadcss look with <strong>zero markup or JS changes</strong> — one vendored stylesheet plus a ~120-line adapter mapping its existing classes to tokens. The app's buttons (<code>.btn</code>, <code>.btn-secondary</code>, <code>.btn-danger</code>) mapped directly; only the bespoke layout classes needed glue.</div></div></div></div>
+`;
+  return shell("Retrofit an existing app", body, reg.components, "__retrofit");
+}
+
 export function genDocs(repoRoot) {
   const reg = JSON.parse(readFileSync(path.join(repoRoot, "packages/shadcss/registry.json"), "utf8"));
   const out = path.join(repoRoot, "apps/www/docs");
@@ -182,6 +211,7 @@ export function genDocs(repoRoot) {
   mkdirSync(out, { recursive: true });
   writeFileSync(path.join(out, "index.html"), indexPage(reg));
   writeFileSync(path.join(out, "support.html"), supportPage(reg));
+  writeFileSync(path.join(out, "retrofit.html"), retrofitPage(reg));
   for (const c of reg.components) writeFileSync(path.join(out, `${c.name}.html`), componentPage(c, reg.components));
   return reg.components.length;
 }
