@@ -1,7 +1,7 @@
 # shadcss
 
-> **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.8 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> **Zero-runtime UI with the shadcn aesthetic — no React, no Tailwind, no Radix, no hydration.**
+> 52 HTML/CSS components and patterns for server-rendered, static, HTMX, Astro, and AI-generated apps. ~16.8 KB gzipped, zero dependencies, zero JS runtime. Complex widgets are clearly marked.
 
 [![gzip size](https://img.shields.io/badge/gzipped-16.8%20KB-success)](./dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
@@ -12,10 +12,10 @@
 
 **▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)**
 
-`shadcss` is a complete clone of the shadcn/ui aesthetic — every component,
-every variant, every detail — rebuilt for the modern web platform. Where
-shadcn uses React + Radix + Tailwind + 10 JS dependencies per component,
-shadcss uses `:has()`, the Popover API, native `<dialog>`, and modern CSS.
+`shadcss` brings the shadcn/ui visual language to plain HTML and CSS. Where
+shadcn uses React + Radix + Tailwind, shadcss is CSS you paste into any
+server-rendered template — built on `:has()`, the Popover API, native
+`<dialog>`, and design tokens.
 **No JS framework. Zero dependencies. Zero framework lock-in.** The CSS bundle
 ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 (`showModal()`/`showPopover()`).
@@ -55,7 +55,7 @@ framework lock-in. The cost of HTML + CSS is — nothing.
 
 ## Components (52)
 
-shadcss ships every shadcn component, plus a few extras:
+shadcss covers the shadcn component set as CSS — 52 components and patterns; complex widgets are marked with their `js`/`support` needs (see [llms.txt](./llms.txt) or `shadcss info`):
 
 | Component | File | Status |
 | --- | --- | --- |
@@ -122,7 +122,7 @@ shadcss ships every shadcn component, plus a few extras:
 
 ```html
 <!-- Pin a version in production so a future major can't silently break you. -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.10/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.11/dist/shadcss.min.css">
 ```
 
 ### npm

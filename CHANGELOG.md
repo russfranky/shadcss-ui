@@ -5,6 +5,14 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.11
+- **Defensible positioning + honesty.** Reworded the headline/claims away from
+  "complete clone / every component, every variant" to the technical wedge
+  (zero-runtime HTML/CSS, no React/Tailwind/Radix; complex widgets marked).
+  Added a non-affiliation note to the showcase. New docs page: "Browser support
+  & limits" (per-component status/js/support matrix + an honest limitations list),
+  generated from the registry.
+
 ## @russfranky/shadcss-js 0.1.0
 - New optional helpers package: `menu` (dropdown/menubar keyboard nav — roving
   focus, type-ahead, Escape + focus return, menu roles) and `tabs` (full ARIA

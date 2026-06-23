@@ -1,7 +1,7 @@
 # shadcss/ui
 
-> **shadcn's beauty, no JS framework.**
-> A complete HTML + CSS-only clone of the shadcn/ui aesthetic. 52 components. 16.8 KB gzipped. Zero-runtime — the CSS bundle ships 0 JS.
+> **Zero-runtime UI with the shadcn aesthetic — no React, no Tailwind, no Radix, no hydration.**
+> 52 HTML/CSS components and patterns for server-rendered, static, HTMX, Astro, and AI-generated apps. ~16.8 KB gzipped, zero dependencies, zero JS runtime. Complex widgets are clearly marked.
 
 [![live demo](https://img.shields.io/badge/demo-shadcss.vercel.app-black)](https://shadcss.vercel.app)
 [![npm](https://img.shields.io/npm/v/@russfranky/shadcss)](https://www.npmjs.com/package/@russfranky/shadcss)
@@ -12,9 +12,10 @@
 
 **▶ Live demo: [shadcss.vercel.app](https://shadcss.vercel.app)** · **📖 Docs: [/docs](https://shadcss.vercel.app/docs/)** · **🤖 [/llms.txt](https://shadcss.vercel.app/llms.txt)**
 
-`shadcss` rebuilds every shadcn/ui component — every variant, every detail —
-for the modern web platform. Where shadcn uses React + Radix + Tailwind,
-shadcss uses `:has()`, the Popover API, native `<dialog>`, and modern CSS.
+`shadcss` brings the shadcn/ui visual language to plain HTML and CSS. Where
+shadcn uses React + Radix + Tailwind, shadcss is CSS you paste into any
+server-rendered template — built on `:has()`, the Popover API, native
+`<dialog>`, and design tokens.
 **No JS framework. Zero dependencies. Zero framework lock-in.** The CSS bundle
 ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 (`showModal()`/`showPopover()`).
@@ -26,7 +27,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.10/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.11/dist/shadcss.min.css">
 ```
 
 ```bash

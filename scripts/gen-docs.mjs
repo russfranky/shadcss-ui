@@ -58,7 +58,7 @@ function sidebar(components, current) {
   return `<aside class="docs-sidebar">
   <div class="docs-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <a href="../index.html" style="color:inherit;text-decoration:none">shadcss</a></div>
   <div class="docs-nav-label">Getting started</div>
-  <nav class="docs-nav"><a href="./index.html"${current === "__index" ? ' aria-current="page"' : ""}>Overview</a><a href="../index.html">Live demo</a></nav>
+  <nav class="docs-nav"><a href="./index.html"${current === "__index" ? ' aria-current="page"' : ""}>Overview</a><a href="./support.html"${current === "__support" ? ' aria-current="page"' : ""}>Browser support &amp; limits</a><a href="../index.html">Live demo</a></nav>
   <div class="docs-nav-label">Components</div>
   <nav class="docs-nav">${links}</nav>
 </aside>`;
@@ -139,12 +139,49 @@ function indexPage(reg) {
   return shell("Components", body, reg.components, "__index");
 }
 
+const SUPPORT_NOTES = {
+  baseline: "All evergreen browsers.",
+  "popover-api": "Popover API — Chrome 114+, Safari 17+, Firefox 125+.",
+  "has-selector": "CSS :has() — Chrome 105+, Safari 15.4+, Firefox 121+.",
+  dialog: "Native &lt;dialog&gt; showModal() — Chrome 37+, Safari 15.4+, Firefox 98+.",
+  details: "Native &lt;details&gt;/&lt;summary&gt; — all evergreen browsers.",
+};
+
+function supportPage(reg) {
+  const rows = reg.components
+    .map((c) => `<tr><td><a href="./${c.name}.html" style="color:hsl(var(--primary));text-decoration:none">${esc(c.name)}</a></td><td>${badge("", c.status || "stable").replace(": ", "")}</td><td>${badge("", c.js || "none").replace(": ", "")}</td><td><code style="font-size:var(--text-xs)">${esc(c.support || "baseline")}</code></td></tr>`)
+    .join("\n");
+  const supportLegend = Object.entries(SUPPORT_NOTES).map(([k, v]) => `<li><code>${esc(k)}</code> — ${v}</li>`).join("");
+  const needsJs = reg.components.filter((c) => c.js === "consumer" || c.status === "visual-only" || c.status === "partial");
+  const limits = needsJs.map((c) => `<li><strong>${esc(c.name)}</strong> <span class="badge badge-secondary">${esc(c.status)}</span> — ${esc(c.a11y || c.description || "")}</li>`).join("");
+  const body = `
+<div class="docs-breadcrumb">Documentation</div>
+<h1 class="docs-h1">Browser support &amp; limits</h1>
+<p class="docs-lead">Honest about what works where. Every component declares its platform <code>support</code> and how much JavaScript it needs.</p>
+
+<div class="docs-section"><h2>What "js" means</h2>
+<div class="alert alert-info" role="alert"><div><div class="alert-description"><strong>none</strong> = zero JS · <strong>trigger</strong> = one native one-liner (<code>showModal()</code>/<code>showPopover()</code>) · <strong>consumer</strong> = you write real JS for full behavior (or add an optional <a href="https://www.npmjs.com/package/@russfranky/shadcss-js" style="color:hsl(var(--primary))">@russfranky/shadcss-js</a> helper).</div></div></div></div>
+
+<div class="docs-section"><h2>Platform support</h2>
+<ul style="line-height:1.9">${supportLegend}</ul></div>
+
+<div class="docs-section"><h2>Limitations (${needsJs.length} components need JS or are visual-only)</h2>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">These are intentionally not "fake-accessible" CSS shells. They style the component; the interactive/keyboard layer is yours (or an optional helper).</p>
+<ul style="line-height:1.8">${limits}</ul></div>
+
+<div class="docs-section"><h2>Full matrix</h2>
+<div style="overflow:auto"><table class="table" style="width:100%"><thead><tr><th scope="col">Component</th><th scope="col">Status</th><th scope="col">JS</th><th scope="col">Support</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+`;
+  return shell("Browser support & limits", body, reg.components, "__support");
+}
+
 export function genDocs(repoRoot) {
   const reg = JSON.parse(readFileSync(path.join(repoRoot, "packages/shadcss/registry.json"), "utf8"));
   const out = path.join(repoRoot, "apps/www/docs");
   rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
   writeFileSync(path.join(out, "index.html"), indexPage(reg));
+  writeFileSync(path.join(out, "support.html"), supportPage(reg));
   for (const c of reg.components) writeFileSync(path.join(out, `${c.name}.html`), componentPage(c, reg.components));
   return reg.components.length;
 }
