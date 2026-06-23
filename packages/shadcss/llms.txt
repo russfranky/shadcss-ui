@@ -123,7 +123,7 @@ Markup: <dialog class="drawer" data-side="right" id="X">…</dialog>
 ### dropdown — status:stable · js:trigger · support:popover-api
 Menu of actions. Uses Popover API via popovertarget attribute.
 Classes: dropdown-menu dropdown-item dropdown-label dropdown-separator dropdown-destructive dropdown-shortcut dropdown-checkbox-item dropdown-radio-item dropdown-sub-trigger dropdown-sub-content
-A11y: Opens via popovertarget (no JS); arrow-key roving focus + role=menu/menuitem need JS
+A11y: Opens via popovertarget (no JS). For full keyboard menu (arrow-key roving focus, type-ahead, Escape, role=menu/menuitem) add @russfranky/shadcss-js/menu and data-sc-menu
 Markup: <div class="dropdown"><button class="btn" popovertarget="X" aria-haspopup="menu">Open</button><div class="dropdown-menu" popover id="X" role="menu" data-side="bottom-start"><button class="dropdown-item" role="menuitem">…</button></div></div>
 
 ### empty — status:stable · js:none · support:baseline
@@ -171,7 +171,7 @@ Markup: <label class="label label-required" for="X">L</label>
 ### menubar — status:stable · js:trigger · support:popover-api
 Horizontal menu bar with dropdown submenus.
 Classes: menubar menubar-trigger menubar-menu
-A11y: Opens via popovertarget; menubar roles + arrow-key nav need JS
+A11y: Opens via popovertarget. For arrow-key roving focus + menubar roles add @russfranky/shadcss-js/menu and data-sc-menu
 Markup: <div class="menubar" role="menubar"><div class="menubar-menu-item"><button class="menubar-trigger" popovertarget="X" aria-haspopup="menu">File</button><div class="menubar-menu" popover id="X" role="menu">…</div></div></div>
 
 ### navigation-menu — status:stable · js:none · support:baseline
@@ -285,7 +285,7 @@ Markup: <div class="table-wrapper"><table class="table"><thead><tr><th scope="co
 ### tabs — status:stable · js:none · support:has-selector
 Pure CSS tabs using radios + :has(). No JS.
 Classes: tabs tabs-list tabs-trigger tabs-panel
-A11y: radio + :has() — no JS; exposes as a radiogroup; true tab roles need a one-line aria-selected sync
+A11y: radio + :has() — exposes as an accessible radiogroup with no JS. For full ARIA tabs (role=tab/tablist/tabpanel + arrow-key nav) add @russfranky/shadcss-js/tabs and data-sc-tabs
 Markup: <div class="tabs"><div class="tabs-list" role="radiogroup" aria-label="X tabs"><input type="radio" name="X" id="X-1" checked><label for="X-1" class="tabs-trigger">T1</label></div><div class="tabs-panel" data-tab="X-1">…</div></div>
 
 ### textarea — status:stable · js:none · support:baseline

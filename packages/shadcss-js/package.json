@@ -1,0 +1,40 @@
+{
+  "name": "@russfranky/shadcss-js",
+  "version": "0.1.0",
+  "description": "Optional, tiny, dependency-free progressive-enhancement helpers for shadcss — the interactions the platform doesn't fully solve yet (menu keyboard nav, ARIA tabs). Opt-in per element; no runtime, no framework.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./menu": "./src/menu.js",
+    "./tabs": "./src/tabs.js"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "./src/index.js",
+    "./src/menu.js",
+    "./src/tabs.js"
+  ],
+  "keywords": [
+    "shadcss",
+    "progressive-enhancement",
+    "accessibility",
+    "keyboard",
+    "menu",
+    "tabs",
+    "no-dependencies"
+  ],
+  "author": "russfranky",
+  "license": "MIT",
+  "homepage": "https://github.com/russfranky/shadcss-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russfranky/shadcss-ui.git",
+    "directory": "packages/shadcss-js"
+  },
+  "bugs": "https://github.com/russfranky/shadcss-ui/issues",
+  "publishConfig": {
+    "access": "public"
+  }
+}

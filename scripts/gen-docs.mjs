@@ -98,7 +98,11 @@ function componentPage(c, components) {
 <p class="docs-lead">${esc(c.description || "")}</p>
 <div class="docs-meta">${meta}</div>
 
-<div class="docs-section"><h2>Preview</h2><div class="docs-preview">${c.markup || ""}</div></div>
+<div class="docs-section"><h2>Preview</h2>${
+  c.js === "trigger"
+    ? `<div class="docs-preview" style="justify-content:center;color:hsl(var(--muted-foreground));font-size:var(--text-sm)">This overlay stays hidden until triggered — <a href="../index.html" style="color:hsl(var(--primary));font-weight:500">open it in the live demo →</a></div>`
+    : `<div class="docs-preview">${c.markup || ""}</div>`
+}</div>
 
 <div class="docs-section"><h2>Markup</h2><pre class="docs-code"><code>${esc(c.markup || "")}</code></pre></div>
 

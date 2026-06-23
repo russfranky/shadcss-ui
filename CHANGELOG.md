@@ -5,6 +5,17 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## @russfranky/shadcss-js 0.1.0
+- New optional helpers package: `menu` (dropdown/menubar keyboard nav — roving
+  focus, type-ahead, Escape + focus return, menu roles) and `tabs` (full ARIA
+  tabs + arrow-key nav). ~1 KB each, zero deps, opt-in via data-attributes,
+  no global runtime. Components stay accessible native HTML without them.
+
+## 0.1.10
+- Docs: overlay components show a "open it in the live demo" note instead of an
+  empty preview (closed overlays are correctly hidden). Component a11y notes now
+  reference the optional shadcss-js helpers where relevant.
+
 ## 0.1.9
 - **Honest per-component metadata + AI contracts.** registry.json now carries
   `status`, `js` (none/trigger/consumer), `support`, and an `a11y` contract for

@@ -1,7 +1,7 @@
 {
   "note": "This is a custom shadcss manifest describing an HTML+CSS component library \u2014 it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
   "name": "shadcss",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "homepage": "https://github.com/russfranky/shadcss-ui",
   "license": "MIT",
@@ -450,7 +450,7 @@
       "status": "stable",
       "js": "trigger",
       "support": "popover-api",
-      "a11y": "Opens via popovertarget (no JS); arrow-key roving focus + role=menu/menuitem need JS"
+      "a11y": "Opens via popovertarget (no JS). For full keyboard menu (arrow-key roving focus, type-ahead, Escape, role=menu/menuitem) add @russfranky/shadcss-js/menu and data-sc-menu"
     },
     {
       "name": "empty",
@@ -615,7 +615,7 @@
       "status": "stable",
       "js": "trigger",
       "support": "popover-api",
-      "a11y": "Opens via popovertarget; menubar roles + arrow-key nav need JS"
+      "a11y": "Opens via popovertarget. For arrow-key roving focus + menubar roles add @russfranky/shadcss-js/menu and data-sc-menu"
     },
     {
       "name": "navigation-menu",
@@ -1036,7 +1036,7 @@
       "status": "stable",
       "js": "none",
       "support": "has-selector",
-      "a11y": "radio + :has() \u2014 no JS; exposes as a radiogroup; true tab roles need a one-line aria-selected sync"
+      "a11y": "radio + :has() \u2014 exposes as an accessible radiogroup with no JS. For full ARIA tabs (role=tab/tablist/tabpanel + arrow-key nav) add @russfranky/shadcss-js/tabs and data-sc-tabs"
     },
     {
       "name": "textarea",

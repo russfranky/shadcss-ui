@@ -26,7 +26,7 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 ```html
 <!-- CDN — pin a version in production so a future major can't break you -->
-<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.9/dist/shadcss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@russfranky/shadcss@0.1.10/dist/shadcss.min.css">
 ```
 
 ```bash
@@ -54,6 +54,18 @@ npx @russfranky/shadcss-cli list                     # all 52 components
 ```
 
 `add` gives you shadcn-style ownership (the CSS lives in your repo); `diff` answers shadcn's #1 complaint by showing exactly what changed upstream so fixes don't silently pass you by. Zero dependencies, fetches from the CDN. See [`packages/cli`](./packages/cli).
+
+## Optional JS helpers (only where the platform falls short)
+
+shadcss is zero-runtime CSS by default. For the few interactions the platform can't yet complete (menu keyboard nav, full ARIA tabs), `@russfranky/shadcss-js` ships **tiny, dependency-free, opt-in** helpers — ~1 KB each, per-element, no global runtime.
+
+```html
+<div class="dropdown-menu" popover id="m" data-sc-menu> … </div>
+<div class="tabs" data-sc-tabs> … </div>
+<script type="module">import "@russfranky/shadcss-js/menu"; import "@russfranky/shadcss-js/tabs";</script>
+```
+
+Without them the components stay accessible native HTML (tabs are a real radiogroup); with them you get the full keyboard/ARIA pattern. See [`packages/shadcss-js`](./packages/shadcss-js).
 
 ## Why shadcss — the common shadcn/ui complaints, answered
 

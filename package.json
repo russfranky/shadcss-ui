@@ -1,6 +1,6 @@
 {
   "name": "shadcss-ui",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library.",
   "license": "MIT",
