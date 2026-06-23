@@ -2775,8 +2775,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--space-4);
-    padding: var(--space-6);
-    padding-bottom: var(--space-3);
+    padding: var(--space-4);
     display: flex;
   }
 
@@ -2808,8 +2807,7 @@
 
   .sheet-footer {
     gap: var(--space-2);
-    padding: var(--space-6);
-    padding-top: var(--space-4);
+    padding: var(--space-4);
     display: flex;
   }
 
@@ -3520,7 +3518,7 @@
   .command-item {
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-2);
     border-radius: var(--radius-sm);
     color: var(--popover-foreground);
     font-size: var(--text-sm);
@@ -3561,7 +3559,7 @@
   }
 
   .command-empty {
-    padding: var(--space-8);
+    padding: var(--space-6);
     text-align: center;
     color: var(--muted-foreground);
     font-size: var(--text-sm);
