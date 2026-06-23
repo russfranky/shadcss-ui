@@ -1,6 +1,6 @@
 {
   "name": "@russfranky/shadcss",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "type": "module",
   "main": "dist/shadcss.min.css",
@@ -9,7 +9,8 @@
     "dist",
     "src",
     "registry.json",
-    "AI_GUIDE.md"
+    "AI_GUIDE.md",
+    "llms.txt"
   ],
   "exports": {
     ".": "./dist/shadcss.min.css",

@@ -5,6 +5,13 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.9
+- **Honest per-component metadata + AI contracts.** registry.json now carries
+  `status`, `js` (none/trigger/consumer), `support`, and an `a11y` contract for
+  every component (35 zero-JS, 9 one-line-trigger, 8 consumer-JS). Generated
+  `llms.txt` (served at /llms.txt) so AI agents emit correct, accessible markup.
+  `shadcss info` surfaces the new fields.
+
 ## 0.1.8
 - **Existential overlay hardening.** Add a global `dialog:not([open])` /
   `[popover]:not(:popover-open) { display:none !important }` guard in the reset

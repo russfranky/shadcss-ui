@@ -49,6 +49,7 @@ const html = readFileSync(wwwIndex, "utf8")
   .replaceAll('href="../../packages/shadcss/registry.json"', `href="${gh}/registry.json"`);
 writeFileSync(path.join(stage, "index.html"), html);
 copyFileSync(wwwCss, path.join(stage, "shadcss.min.css"));
+try { copyFileSync(path.join(root, "apps/www/llms.txt"), path.join(stage, "llms.txt")); } catch {}
 // Link the staging dir to the existing project so the random temp-dir name
 // isn't used to create a new one.
 mkdirSync(path.join(stage, ".vercel"), { recursive: true });

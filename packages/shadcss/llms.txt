@@ -1,0 +1,325 @@
+# shadcss
+
+> shadcn/ui's aesthetic as zero-runtime HTML + CSS. 52 components, no React/Radix/Tailwind, no JS framework, zero dependencies. Theme via CSS custom-property design tokens.
+
+Live demo: https://shadcss.vercel.app  ·  npm: @russfranky/shadcss  ·  CLI: npx @russfranky/shadcss-cli add <component>
+
+## How to use
+- Import the bundle (`@import "@russfranky/shadcss"` via a bundler, or `dist/shadcss.min.css` by path / CDN), or copy individual `src/components/<name>.css` files (each depends only on `src/base/tokens.css`).
+- Write semantic HTML with the classes below. Prefer native elements; only add ARIA where the component's a11y contract says to.
+- `js` legend: none = zero JS · trigger = one native one-liner (showModal()/showPopover()) · consumer = you write real JS for full behavior.
+- `status` legend: stable · partial (works, limited) · visual-only (styling only; behavior needs JS).
+
+## Components
+
+### accordion — status:stable · js:none · support:details
+Collapsible content panels built on native <details>.
+Classes: accordion accordion-content
+A11y: Native <details>/<summary> — keyboard + SR for free; exclusive mode via name=
+Markup: <div class="accordion"><details name="X"><summary>Q</summary><div class="accordion-content">A</div></details></div>
+
+### alert — status:stable · js:none · support:baseline
+Inline message banner with icon, title, description.
+Classes: alert alert-title alert-description alert-dismissible alert-default alert-info alert-success alert-warning alert-destructive
+A11y: Add role=alert for live announcement
+Markup: <div class="alert alert-info" role="alert"><svg aria-hidden="true">…</svg><div><div class="alert-title">T</div><div class="alert-description">D</div></div></div>
+
+### alert-dialog — status:stable · js:trigger · support:dialog
+Confirmation modal for destructive actions.
+Classes: alert-dialog alert-dialog-header alert-dialog-title alert-dialog-description alert-dialog-body alert-dialog-footer
+A11y: Open via showModal(); role=alertdialog + aria-labelledby/-describedby; native focus trap
+Markup: <dialog class="alert-dialog" id="X" role="alertdialog" aria-labelledby="X-title" aria-describedby="X-desc"><div class="alert-dialog-header"><div class="alert-dialog-title" id="X-title">T</div><div class="alert-dialog-description" id="X-desc">D</div></div><div class="alert-dialog-footer"><form method="dialog"><button class="btn btn-ghost">Cancel</button></form><button class="btn btn-destructive">Confirm</button></div></dialog>
+
+### aspect-ratio — status:stable · js:none · support:baseline
+Lock an element to a width/height ratio.
+Classes: aspect-ratio aspect-square aspect-video aspect-photo aspect-portrait aspect-cinema aspect-wide aspect-ultra
+A11y: Decorative wrapper; alt text on media
+Markup: <div class="aspect-ratio"><img src="…" alt="…"></div>
+
+### avatar — status:stable · js:none · support:baseline
+Image with text fallback. Sizes, ring, square, group.
+Classes: avatar avatar-sm avatar-lg avatar-xl avatar-square avatar-ring avatar-group
+A11y: img alt; image-error fallback needs a one-line onerror
+Markup: <div class="avatar"><img src="…" alt="…"></div>
+
+### badge — status:stable · js:none · support:baseline
+Inline status indicator.
+Classes: badge badge-primary badge-secondary badge-destructive badge-success badge-warning badge-info badge-outline badge-dot
+A11y: Decorative; colored fills use AA-contrast tokens
+Markup: <span class="badge badge-primary">T</span>
+
+### breadcrumb — status:stable · js:none · support:baseline
+Hierarchical navigation trail.
+Classes: breadcrumb breadcrumb-item breadcrumb-link breadcrumb-current breadcrumb-ellipsis
+A11y: nav landmark + aria-label; aria-current=page on the current item
+Markup: <nav class="breadcrumb"><span class="breadcrumb-item"><a class="breadcrumb-link" href="#">A</a></span><span class="breadcrumb-item"><span class="breadcrumb-current">B</span></span></nav>
+
+### button — status:stable · js:none · support:baseline
+The primary action trigger. 6 variants, 4 sizes, loading + icon + group modes.
+Classes: btn btn-secondary btn-outline btn-ghost btn-destructive btn-link btn-sm btn-lg btn-icon btn-group
+A11y: Use <button>; aria-busy=true for loading; disabled for inert
+Markup: <button class="btn">Default</button>
+
+### calendar — status:visual-only · js:consumer · support:baseline
+Pure-CSS month calendar. Day cells with today/selected/disabled states.
+Classes: calendar calendar-header calendar-title calendar-nav calendar-nav-btn calendar-grid calendar-weekday calendar-day calendar-sm is-today outside
+A11y: Visual month grid; month nav + date logic need JS; add role=grid/row/gridcell for an interactive picker
+Markup: <div class="calendar"><div class="calendar-header"><span class="calendar-title">Month Year</span><div class="calendar-nav"><button class="calendar-nav-btn">‹</button><button class="calendar-nav-btn">›</button></div></div><div class="calendar-grid"><span class="calendar-weekday">S</span>…<button class="calendar-day">1</button>…</div></div>
+
+### card — status:stable · js:none · support:baseline
+Container with header, content, footer zones.
+Classes: card card-header card-title card-description card-action card-content card-footer card-interactive
+A11y: Use a heading for card-title; card-action slot is top-right
+Markup: <div class="card"><div class="card-header"><div class="card-title">T</div><div class="card-description">D</div></div><div class="card-content">…</div><div class="card-footer" data-justify="end">…</div></div>
+
+### carousel — status:partial · js:consumer · support:baseline
+Scroll-snap carousel with optional dots.
+Classes: carousel carousel-viewport carousel-track carousel-item carousel-controls carousel-btn carousel-dots carousel-dot
+A11y: Scroll-snap works with no JS; arrows/dots need JS; viewport is keyboard-focusable
+Markup: <div class="carousel"><div class="carousel-viewport"><div class="carousel-track"><div class="carousel-item">…</div></div></div><div class="carousel-controls"><button class="carousel-btn">‹</button><div class="carousel-dots"><button class="carousel-dot"></button></div><button class="carousel-btn">›</button></div></div>
+
+### checkbox — status:stable · js:none · support:baseline
+Native checkbox styled to match shadcn. Supports indeterminate.
+Classes: checkbox
+A11y: Native input; aria-invalid for error; indeterminate needs el.indeterminate via JS
+Markup: <input type="checkbox" class="checkbox" checked>
+
+### collapsible — status:stable · js:none · support:details
+Standalone collapsible (like accordion but unstyled).
+Classes: collapsible collapsible-trigger collapsible-content
+A11y: Native <details>; must be a <details> element
+Markup: <details class="collapsible"><summary class="collapsible-trigger">T</summary><div class="collapsible-content">…</div></details>
+
+### command — status:visual-only · js:consumer · support:popover-api
+Command palette UI shell. Pair with Popover API for ⌘K.
+Classes: command command-input-wrap command-input command-list command-group command-group-heading command-item command-separator command-shortcut command-empty command-footer
+A11y: Styled shell; fuzzy search + arrow-key nav + listbox/option roles need JS
+Markup: <div class="command"><div class="command-input-wrap"><svg>…</svg><input class="command-input" placeholder="Type a command…"></div><div class="command-list"><div class="command-group-heading">Suggestions</div><div class="command-item">…</div></div></div>
+
+### container — status:stable · js:none · support:baseline
+Centered, max-width page/content wrapper with responsive padding.
+Classes: container container-sm container-md container-lg container-xl container-full
+A11y: Layout helper
+Markup: <div class="container container-lg">…</div>
+
+### context-menu — status:partial · js:consumer · support:popover-api
+Right-click menu. Uses Popover API + inline oncontextmenu.
+Classes: context-menu
+A11y: Right-click positioning needs oncontextmenu + showPopover(); add menu roles
+Markup: <div oncontextmenu="event.preventDefault();document.getElementById('X').showPopover()">Right-click here</div><div class="context-menu" popover id="X" role="menu"><button class="dropdown-item" role="menuitem">Back</button><button class="dropdown-item" role="menuitemcheckbox" aria-checked="true" data-checked>Show bookmarks</button><div class="dropdown-separator" role="separator"></div><button class="dropdown-item" role="menuitem">Reload</button></div>
+
+### dialog — status:stable · js:trigger · support:dialog
+Native <dialog> modal. Backdrop blur, slide-in animation.
+Classes: dialog dialog-header dialog-title dialog-description dialog-body dialog-footer dialog-close
+A11y: Open via showModal(); native focus trap; add aria-labelledby
+Markup: <dialog class="dialog" id="X"><header class="dialog-header"><div class="dialog-title">T</div><div class="dialog-description">D</div></header><div class="dialog-body">…</div><footer class="dialog-footer"><form method="dialog"><button class="btn btn-ghost">Cancel</button></form><button class="btn">OK</button></footer></dialog>
+
+### drawer — status:stable · js:trigger · support:dialog
+Side panel sliding from any edge. Built on <dialog>.
+Classes: drawer drawer-header drawer-title drawer-description drawer-body drawer-footer drawer-handle
+A11y: Open via showModal(); native <dialog>; data-side edge
+Markup: <dialog class="drawer" data-side="right" id="X">…</dialog>
+
+### dropdown — status:stable · js:trigger · support:popover-api
+Menu of actions. Uses Popover API via popovertarget attribute.
+Classes: dropdown-menu dropdown-item dropdown-label dropdown-separator dropdown-destructive dropdown-shortcut dropdown-checkbox-item dropdown-radio-item dropdown-sub-trigger dropdown-sub-content
+A11y: Opens via popovertarget (no JS); arrow-key roving focus + role=menu/menuitem need JS
+Markup: <div class="dropdown"><button class="btn" popovertarget="X" aria-haspopup="menu">Open</button><div class="dropdown-menu" popover id="X" role="menu" data-side="bottom-start"><button class="dropdown-item" role="menuitem">…</button></div></div>
+
+### empty — status:stable · js:none · support:baseline
+Placeholder for empty states.
+Classes: empty empty-icon empty-title empty-description empty-actions empty-error empty-success empty-warning
+A11y: Empty-state layout
+Markup: <div class="empty"><div class="empty-icon"><svg>…</svg></div><div class="empty-title">T</div><div class="empty-description">D</div><div class="empty-actions"><button class="btn">A</button></div></div>
+
+### field — status:stable · js:none · support:baseline
+Higher-level form field wrapper with label, description, and validation error.
+Classes: field field-label field-control field-description field-error field-group
+A11y: Error shows via :user-invalid OR data-invalid/aria-invalid; wire aria-describedby
+Markup: <div class="field" data-required="true"><label class="field-label" for="X">L</label><div class="field-control"><input class="input" id="X" required></div><p class="field-description">D</p><p class="field-error"><svg>…</svg>E</p></div>
+
+### hover-card — status:stable · js:none · support:baseline
+Rich tooltip showing on hover. Contains header, body, footer.
+Classes: hover-card hover-card-panel hover-card-header hover-card-title hover-card-description hover-card-footer hover-card-stat hover-card-stat-value
+A11y: Reveals on :hover/:focus-within — no JS; touch open needs JS; add aria-describedby
+Markup: <div class="hover-card"><a href="#">…</a><div class="hover-card-panel"><div class="hover-card-header">…</div>…</div></div>
+
+### input — status:stable · js:none · support:baseline
+Single-line text input. Leading/trailing icon support.
+Classes: input input-sm input-lg input-wrap
+A11y: Native input; pair with a <label>; aria-invalid for error
+Markup: <input class="input" type="email" placeholder="…">
+
+### input-otp — status:partial · js:consumer · support:baseline
+One-time-password input boxes.
+Classes: otp otp-input otp-separator otp-sm otp-lg
+A11y: Visual boxes; auto-advance needs JS; per-input aria-label + group label
+Markup: <div class="otp"><input class="otp-input" maxlength="1" pattern="[0-9]">…</div>
+
+### kbd — status:stable · js:none · support:baseline
+Keyboard shortcut indicator.
+Classes: kbd kbd-group
+A11y: Use <kbd>; kbd-group for shortcuts
+Markup: <kbd>⌘</kbd> <kbd>K</kbd>
+
+### label — status:stable · js:none · support:baseline
+Form label with required, muted variants.
+Classes: label label-required label-muted form-field
+A11y: Native <label for>
+Markup: <label class="label label-required" for="X">L</label>
+
+### menubar — status:stable · js:trigger · support:popover-api
+Horizontal menu bar with dropdown submenus.
+Classes: menubar menubar-trigger menubar-menu
+A11y: Opens via popovertarget; menubar roles + arrow-key nav need JS
+Markup: <div class="menubar" role="menubar"><div class="menubar-menu-item"><button class="menubar-trigger" popovertarget="X" aria-haspopup="menu">File</button><div class="menubar-menu" popover id="X" role="menu">…</div></div></div>
+
+### navigation-menu — status:stable · js:none · support:baseline
+Horizontal nav with dropdown panels of links.
+Classes: navigation-menu navigation-menu-list navigation-menu-item navigation-menu-trigger navigation-menu-content navigation-menu-link-list navigation-menu-link navigation-menu-link-icon navigation-menu-link-title navigation-menu-link-description
+A11y: Reveals on :hover/:focus-within — pure CSS, no JS trigger; nav landmark + aria-current=page
+Markup: <nav class="navigation-menu"><ul class="navigation-menu-list"><li class="navigation-menu-item"><button class="navigation-menu-trigger">Trigger</button><div class="navigation-menu-content"><ul class="navigation-menu-link-list"><li><a class="navigation-menu-link" href="#">…</a></li></ul></div></li></ul></nav>
+
+### pagination — status:stable · js:none · support:baseline
+Page navigation.
+Classes: pagination pagination-item pagination-link pagination-ellipsis pagination-prev pagination-next
+A11y: nav + aria-label; aria-current=page; remove href or tabindex=-1 on disabled
+Markup: <ul class="pagination"><li class="pagination-item"><a class="pagination-link" href="#" aria-current="page">1</a></li></ul>
+
+### popover — status:stable · js:trigger · support:popover-api
+Floating panel with arbitrary content.
+Classes: popover popover-sm popover-lg popover-header popover-title popover-description popover-footer
+A11y: Open via showPopover()/popovertarget; add role=dialog + aria-labelledby
+Markup: <button popovertarget="X">Open</button><div class="popover" popover id="X">…</div>
+
+### progress — status:stable · js:none · support:baseline
+Native <progress> restyled.
+Classes: progress
+A11y: Native <progress>; or role=progressbar with aria-valuenow
+Markup: <progress class="progress" value="67" max="100"></progress>
+
+### radio — status:stable · js:none · support:baseline
+Native radio styled to match shadcn.
+Classes: radio
+A11y: Native input; aria-invalid for error
+Markup: <input type="radio" class="radio" name="X" checked>
+
+### radio-group — status:stable · js:none · support:has-selector
+Card-style radio group with label and description per option.
+Classes: radio-group radio-group-item radio-group-item-body radio-group-item-label radio-group-item-description
+A11y: Native radios; selection via :has(:checked)
+Markup: <div class="radio-group"><label class="radio-group-item"><input type="radio" class="radio" name="X" checked><div class="radio-group-item-body"><div class="radio-group-item-label">L</div><div class="radio-group-item-description">D</div></div></label></div>
+
+### resizable — status:visual-only · js:consumer · support:baseline
+Panel group with drag handles. Visual + a11y only — pair with 10 lines of JS for actual resize.
+Classes: resizable resizable-panel resizable-handle
+A11y: Visual layout; drag needs JS; handle: tabindex=0 role=separator aria-valuenow
+Markup: <div class="resizable" data-direction="horizontal"><div class="resizable-panel">A</div><div class="resizable-handle" tabindex="0" role="separator" aria-orientation="vertical" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div><div class="resizable-panel">B</div></div>
+
+### scroll-area — status:stable · js:none · support:baseline
+Restyled scroll container with thin custom scrollbar.
+Classes: scroll-area scroll-area-sm scroll-area-lg scroll-area-hidden
+A11y: Styled native overflow; size variants are WebKit-only
+Markup: <div class="scroll-area">…</div>
+
+### select — status:stable · js:none · support:baseline
+Native <select> restyled with CSS-only chevron.
+Classes: select select-sm select-lg
+A11y: Native <select> — full keyboard + a11y for free; aria-invalid for error
+Markup: <select class="select"><option>A</option></select>
+
+### separator — status:stable · js:none · support:baseline
+Horizontal or vertical divider.
+Classes: separator
+A11y: Use role=separator or <hr>
+Markup: <div class="separator" role="separator" data-orientation="horizontal"></div>
+
+### sheet — status:stable · js:trigger · support:dialog
+Wider drawer for full-page experiences. Built on <dialog>.
+Classes: sheet sheet-header sheet-title-block sheet-title sheet-description sheet-body sheet-footer
+A11y: Open via showModal(); native <dialog>; data-side edge; full-page backdrop
+Markup: <dialog class="sheet" data-side="right" id="X">…</dialog>
+
+### sidebar — status:stable · js:none · support:baseline
+Modern app sidebar. Header, content, footer, collapsible, mobile slide-in.
+Classes: sidebar sidebar-header sidebar-brand sidebar-brand-logo sidebar-brand-text sidebar-content sidebar-group sidebar-group-label sidebar-menu sidebar-menu-item sidebar-menu-button sidebar-menu-badge sidebar-menu-sub sidebar-menu-sub-button sidebar-footer sidebar-menu-action sidebar-separator
+A11y: nav landmark; mobile reveal via a CSS-only checkbox toggle
+Markup: <aside class="sidebar"><div class="sidebar-header"><a class="sidebar-brand"><span class="sidebar-brand-logo">…</span><span class="sidebar-brand-text">Brand</span></a></div><nav class="sidebar-content"><div class="sidebar-group"><div class="sidebar-group-label">Group</div><ul class="sidebar-menu"><li class="sidebar-menu-item"><a class="sidebar-menu-button" aria-current="page"><svg>…</svg><span>Item</span></a></li></ul></div></nav><div class="sidebar-footer">…</div></aside>
+
+### skeleton — status:stable · js:none · support:baseline
+Loading placeholder with shimmer animation.
+Classes: skeleton skeleton-circle skeleton-text
+A11y: Decorative; aria-hidden or a loading status nearby
+Markup: <div class="skeleton"></div>
+
+### slider — status:stable · js:consumer · support:baseline
+Restyled native range input with filled track.
+Classes: slider slider-sm slider-lg
+A11y: Native <input type=range>; fill-track tracking needs a one-line oninput; label it
+Markup: <input type="range" class="slider" min="0" max="100" value="50" style="--slider-fill: 50%">
+
+### sonner — status:stable · js:trigger · support:popover-api
+Rich toast with title, description, action. Auto-dismisses.
+Classes: sonner sonner-region sonner-content sonner-title sonner-description sonner-action sonner-close sonner-success sonner-error sonner-warning sonner-info sonner-loading
+A11y: Open via showPopover(); role=status/aria-live; full removal needs hidePopover()
+Markup: <div class="sonner-region" aria-live="polite"><div class="sonner sonner-success" role="status"><svg aria-hidden="true">…</svg><div class="sonner-content"><div class="sonner-title">T</div><div class="sonner-description">D</div></div></div></div>
+
+### spinner — status:stable · js:none · support:baseline
+Pure CSS loading spinner.
+Classes: spinner spinner-sm spinner-lg spinner-xl spinner-primary spinner-destructive spinner-success spinner-muted spinner-inherit spinner-inline
+A11y: Add role=status + aria-label=Loading
+Markup: <div class="spinner"></div>
+
+### switch — status:stable · js:none · support:baseline
+Toggle switch built on <input type=checkbox>.
+Classes: switch switch-sm switch-lg
+A11y: Native checkbox; add role=switch for SR
+Markup: <input type="checkbox" class="switch" checked>
+
+### table — status:stable · js:none · support:baseline
+Restyled HTML table. Hover rows, alignment, sticky header.
+Classes: table-wrapper table table-compact
+A11y: Native table; th scope=col; <caption>
+Markup: <div class="table-wrapper"><table class="table"><thead><tr><th scope="col">H</th></tr></thead><tbody><tr><td>D</td></tr></tbody></table></div>
+
+### tabs — status:stable · js:none · support:has-selector
+Pure CSS tabs using radios + :has(). No JS.
+Classes: tabs tabs-list tabs-trigger tabs-panel
+A11y: radio + :has() — no JS; exposes as a radiogroup; true tab roles need a one-line aria-selected sync
+Markup: <div class="tabs"><div class="tabs-list" role="radiogroup" aria-label="X tabs"><input type="radio" name="X" id="X-1" checked><label for="X-1" class="tabs-trigger">T1</label></div><div class="tabs-panel" data-tab="X-1">…</div></div>
+
+### textarea — status:stable · js:none · support:baseline
+Multi-line text input.
+Classes: textarea
+A11y: Native textarea; aria-invalid for error
+Markup: <textarea class="textarea"></textarea>
+
+### toast — status:stable · js:trigger · support:popover-api
+Auto-dismissing notification. Built on Popover API.
+Classes: toast toast-region toast-title toast-description toast-close toast-success toast-destructive toast-warning toast-info
+A11y: Open via showPopover(); role=status/aria-live; stacking/auto-dismiss need JS
+Markup: <div class="toast-region"><div class="toast toast-success" popover id="X" role="status" aria-live="polite"><svg aria-hidden="true">…</svg><div><div class="toast-title">T</div><div class="toast-description">D</div></div><button class="toast-close" aria-label="Dismiss" onclick="X.hidePopover()">×</button></div></div>
+
+### toggle — status:partial · js:consumer · support:baseline
+Two-state button with aria-pressed.
+Classes: toggle toggle-sm toggle-lg toggle-outline has-text
+A11y: Standalone needs JS to flip aria-pressed; use toggle-group for zero-JS
+Markup: <button class="toggle" aria-pressed="true" aria-label="Toggle bold"><svg aria-hidden="true">…</svg></button>
+
+### toggle-group — status:stable · js:none · support:has-selector
+Group of single/multi-select toggles via radios/checkboxes.
+Classes: toggle-group toggle-group-item toggle-group-sm toggle-group-lg
+A11y: Native radios/checkboxes; no JS
+Markup: <div class="toggle-group"><input type="radio" name="X" id="X-1" checked><label for="X-1" class="toggle-group-item">A</label></div>
+
+### tooltip — status:stable · js:none · support:baseline
+Hover/focus tooltip with 4 positions. Pure CSS via ::after.
+Classes: tooltip
+A11y: Hover/focus via CSS — but ::after content is not in the AT tree; add aria-label/aria-describedby
+Markup: <button class="btn tooltip" data-tooltip="T">…</button>
+
+### typography — status:stable · js:none · support:baseline
+Prose styles for long-form text. Drop on blog posts / docs.
+Classes: prose lead
+A11y: Prose styles + large/small/muted helpers
+Markup: <article class="prose"><h1>…</h1><p>…</p></article>

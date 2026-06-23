@@ -1,7 +1,7 @@
 {
   "note": "This is a custom shadcss manifest describing an HTML+CSS component library \u2014 it is NOT a shadcn CLI registry and intentionally does not conform to https://ui.shadcn.com/schema.json. It is a machine-readable reference only (no CLI consumes it). Each component lists its CSS file, dependencies, example markup, and the classes it defines.",
   "name": "shadcss",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "homepage": "https://github.com/russfranky/shadcss-ui",
   "license": "MIT",
@@ -26,7 +26,11 @@
       ],
       "attributes": [
         "name (on details for exclusive mode)"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "details",
+      "a11y": "Native <details>/<summary> \u2014 keyboard + SR for free; exclusive mode via name="
     },
     {
       "name": "alert",
@@ -47,7 +51,11 @@
         "alert-success",
         "alert-warning",
         "alert-destructive"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Add role=alert for live announcement"
     },
     {
       "name": "alert-dialog",
@@ -66,7 +74,11 @@
         "alert-dialog-description",
         "alert-dialog-body",
         "alert-dialog-footer"
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "dialog",
+      "a11y": "Open via showModal(); role=alertdialog + aria-labelledby/-describedby; native focus trap"
     },
     {
       "name": "aspect-ratio",
@@ -85,7 +97,11 @@
         "aspect-cinema",
         "aspect-wide",
         "aspect-ultra"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Decorative wrapper; alt text on media"
     },
     {
       "name": "avatar",
@@ -103,7 +119,11 @@
         "avatar-square",
         "avatar-ring",
         "avatar-group"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "img alt; image-error fallback needs a one-line onerror"
     },
     {
       "name": "badge",
@@ -123,7 +143,11 @@
         "badge-info",
         "badge-outline",
         "badge-dot"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Decorative; colored fills use AA-contrast tokens"
     },
     {
       "name": "breadcrumb",
@@ -139,7 +163,11 @@
         "breadcrumb-link",
         "breadcrumb-current",
         "breadcrumb-ellipsis"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "nav landmark + aria-label; aria-current=page on the current item"
     },
     {
       "name": "button",
@@ -164,7 +192,11 @@
       "attributes": [
         "aria-busy=\"true\" (loading)",
         "disabled"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Use <button>; aria-busy=true for loading; disabled for inert"
     },
     {
       "name": "calendar",
@@ -186,7 +218,11 @@
         "calendar-sm",
         "is-today",
         "outside"
-      ]
+      ],
+      "status": "visual-only",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Visual month grid; month nav + date logic need JS; add role=grid/row/gridcell for an interactive picker"
     },
     {
       "name": "card",
@@ -206,7 +242,11 @@
         "card-footer",
         "card-interactive"
       ],
-      "notes": ".card-interactive provides hover/focus-visible styling but is not focusable on its own \u2014 add tabindex=\"0\" (and a role/href such as a wrapping <a>) so keyboard users can reach it and the focus-visible ring can fire."
+      "notes": ".card-interactive provides hover/focus-visible styling but is not focusable on its own \u2014 add tabindex=\"0\" (and a role/href such as a wrapping <a>) so keyboard users can reach it and the focus-visible ring can fire.",
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Use a heading for card-title; card-action slot is top-right"
     },
     {
       "name": "carousel",
@@ -225,7 +265,11 @@
         "carousel-btn",
         "carousel-dots",
         "carousel-dot"
-      ]
+      ],
+      "status": "partial",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Scroll-snap works with no JS; arrows/dots need JS; viewport is keyboard-focusable"
     },
     {
       "name": "checkbox",
@@ -241,7 +285,11 @@
       "attributes": [
         "checked",
         "data-indeterminate=\"true\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native input; aria-invalid for error; indeterminate needs el.indeterminate via JS"
     },
     {
       "name": "collapsible",
@@ -255,7 +303,11 @@
         "collapsible",
         "collapsible-trigger",
         "collapsible-content"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "details",
+      "a11y": "Native <details>; must be a <details> element"
     },
     {
       "name": "command",
@@ -278,7 +330,11 @@
         "command-shortcut",
         "command-empty",
         "command-footer"
-      ]
+      ],
+      "status": "visual-only",
+      "js": "consumer",
+      "support": "popover-api",
+      "a11y": "Styled shell; fuzzy search + arrow-key nav + listbox/option roles need JS"
     },
     {
       "name": "container",
@@ -295,7 +351,11 @@
         "container-lg",
         "container-xl",
         "container-full"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Layout helper"
     },
     {
       "name": "context-menu",
@@ -309,7 +369,11 @@
       "classes": [
         "context-menu"
       ],
-      "notes": "role=menuitemcheckbox + aria-checked here are authored statically to mirror the [data-checked] CSS state; toggling aria-checked live on click requires a few lines of consumer JS (not shippable in a CSS-only framework)."
+      "notes": "role=menuitemcheckbox + aria-checked here are authored statically to mirror the [data-checked] CSS state; toggling aria-checked live on click requires a few lines of consumer JS (not shippable in a CSS-only framework).",
+      "status": "partial",
+      "js": "consumer",
+      "support": "popover-api",
+      "a11y": "Right-click positioning needs oncontextmenu + showPopover(); add menu roles"
     },
     {
       "name": "dialog",
@@ -327,7 +391,11 @@
         "dialog-body",
         "dialog-footer",
         "dialog-close"
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "dialog",
+      "a11y": "Open via showModal(); native focus trap; add aria-labelledby"
     },
     {
       "name": "drawer",
@@ -348,7 +416,11 @@
       ],
       "attributes": [
         "data-side=\"right|left|top|bottom\""
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "dialog",
+      "a11y": "Open via showModal(); native <dialog>; data-side edge"
     },
     {
       "name": "dropdown",
@@ -374,7 +446,11 @@
         "popover",
         "popovertarget",
         "data-side=\"bottom-start|bottom-end|top-start|top-end\""
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "popover-api",
+      "a11y": "Opens via popovertarget (no JS); arrow-key roving focus + role=menu/menuitem need JS"
     },
     {
       "name": "empty",
@@ -393,7 +469,11 @@
         "empty-error",
         "empty-success",
         "empty-warning"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Empty-state layout"
     },
     {
       "name": "field",
@@ -414,7 +494,11 @@
       ],
       "attributes": [
         "data-required=\"true\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Error shows via :user-invalid OR data-invalid/aria-invalid; wire aria-describedby"
     },
     {
       "name": "hover-card",
@@ -433,7 +517,11 @@
         "hover-card-footer",
         "hover-card-stat",
         "hover-card-stat-value"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Reveals on :hover/:focus-within \u2014 no JS; touch open needs JS; add aria-describedby"
     },
     {
       "name": "input",
@@ -448,7 +536,11 @@
         "input-sm",
         "input-lg",
         "input-wrap"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native input; pair with a <label>; aria-invalid for error"
     },
     {
       "name": "input-otp",
@@ -464,7 +556,11 @@
         "otp-separator",
         "otp-sm",
         "otp-lg"
-      ]
+      ],
+      "status": "partial",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Visual boxes; auto-advance needs JS; per-input aria-label + group label"
     },
     {
       "name": "kbd",
@@ -477,7 +573,11 @@
       "classes": [
         "kbd",
         "kbd-group"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Use <kbd>; kbd-group for shortcuts"
     },
     {
       "name": "label",
@@ -492,7 +592,11 @@
         "label-required",
         "label-muted",
         "form-field"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native <label for>"
     },
     {
       "name": "menubar",
@@ -507,7 +611,11 @@
         "menubar",
         "menubar-trigger",
         "menubar-menu"
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "popover-api",
+      "a11y": "Opens via popovertarget; menubar roles + arrow-key nav need JS"
     },
     {
       "name": "navigation-menu",
@@ -528,7 +636,11 @@
         "navigation-menu-link-icon",
         "navigation-menu-link-title",
         "navigation-menu-link-description"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Reveals on :hover/:focus-within \u2014 pure CSS, no JS trigger; nav landmark + aria-current=page"
     },
     {
       "name": "pagination",
@@ -545,7 +657,11 @@
         "pagination-ellipsis",
         "pagination-prev",
         "pagination-next"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "nav + aria-label; aria-current=page; remove href or tabindex=-1 on disabled"
     },
     {
       "name": "popover",
@@ -566,7 +682,11 @@
       ],
       "attributes": [
         "data-side=\"top|start|end|bottom-start|bottom-end\""
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "popover-api",
+      "a11y": "Open via showPopover()/popovertarget; add role=dialog + aria-labelledby"
     },
     {
       "name": "progress",
@@ -578,7 +698,11 @@
       "markup": "<progress class=\"progress\" value=\"67\" max=\"100\"></progress>",
       "classes": [
         "progress"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native <progress>; or role=progressbar with aria-valuenow"
     },
     {
       "name": "radio",
@@ -590,7 +714,11 @@
       "markup": "<input type=\"radio\" class=\"radio\" name=\"X\" checked>",
       "classes": [
         "radio"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native input; aria-invalid for error"
     },
     {
       "name": "radio-group",
@@ -611,7 +739,11 @@
       "attributes": [
         "data-orientation=\"horizontal|vertical\"",
         "data-variant=\"inline\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "has-selector",
+      "a11y": "Native radios; selection via :has(:checked)"
     },
     {
       "name": "resizable",
@@ -628,7 +760,11 @@
       ],
       "attributes": [
         "data-direction=\"horizontal|vertical\""
-      ]
+      ],
+      "status": "visual-only",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Visual layout; drag needs JS; handle: tabindex=0 role=separator aria-valuenow"
     },
     {
       "name": "scroll-area",
@@ -643,7 +779,11 @@
         "scroll-area-sm",
         "scroll-area-lg",
         "scroll-area-hidden"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Styled native overflow; size variants are WebKit-only"
     },
     {
       "name": "select",
@@ -657,7 +797,11 @@
         "select",
         "select-sm",
         "select-lg"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native <select> \u2014 full keyboard + a11y for free; aria-invalid for error"
     },
     {
       "name": "separator",
@@ -672,7 +816,11 @@
       ],
       "attributes": [
         "data-orientation=\"horizontal|vertical\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Use role=separator or <hr>"
     },
     {
       "name": "sheet",
@@ -693,7 +841,11 @@
       ],
       "attributes": [
         "data-side=\"right|left|top|bottom\""
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "dialog",
+      "a11y": "Open via showModal(); native <dialog>; data-side edge; full-page backdrop"
     },
     {
       "name": "sidebar",
@@ -728,7 +880,11 @@
         "data-variant=\"inset|floating\"",
         "data-mobile-open=\"true\"",
         "aria-current=\"page\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "nav landmark; mobile reveal via a CSS-only checkbox toggle"
     },
     {
       "name": "skeleton",
@@ -742,7 +898,11 @@
         "skeleton",
         "skeleton-circle",
         "skeleton-text"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Decorative; aria-hidden or a loading status nearby"
     },
     {
       "name": "slider",
@@ -760,7 +920,11 @@
       "attributes": [
         "data-orientation=\"vertical\"",
         "style=\"--slider-fill: X%\""
-      ]
+      ],
+      "status": "stable",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Native <input type=range>; fill-track tracking needs a one-line oninput; label it"
     },
     {
       "name": "sonner",
@@ -783,7 +947,11 @@
         "sonner-warning",
         "sonner-info",
         "sonner-loading"
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "popover-api",
+      "a11y": "Open via showPopover(); role=status/aria-live; full removal needs hidePopover()"
     },
     {
       "name": "spinner",
@@ -804,7 +972,11 @@
         "spinner-muted",
         "spinner-inherit",
         "spinner-inline"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Add role=status + aria-label=Loading"
     },
     {
       "name": "switch",
@@ -818,7 +990,11 @@
         "switch",
         "switch-sm",
         "switch-lg"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native checkbox; add role=switch for SR"
     },
     {
       "name": "table",
@@ -832,7 +1008,11 @@
         "table-wrapper",
         "table",
         "table-compact"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native table; th scope=col; <caption>"
     },
     {
       "name": "tabs",
@@ -852,7 +1032,11 @@
         "data-variant=\"underline\"",
         "data-orientation=\"vertical\""
       ],
-      "notes": "Selection lives on the native radios. role=tab/tablist/tabpanel are intentionally omitted: CSS cannot keep a static aria-selected in sync with :checked, so the honest, accessible model is a native radiogroup (true ARIA tabs/tabpanels with aria-controls/aria-labelledby require consumer JS to move selection)."
+      "notes": "Selection lives on the native radios. role=tab/tablist/tabpanel are intentionally omitted: CSS cannot keep a static aria-selected in sync with :checked, so the honest, accessible model is a native radiogroup (true ARIA tabs/tabpanels with aria-controls/aria-labelledby require consumer JS to move selection).",
+      "status": "stable",
+      "js": "none",
+      "support": "has-selector",
+      "a11y": "radio + :has() \u2014 no JS; exposes as a radiogroup; true tab roles need a one-line aria-selected sync"
     },
     {
       "name": "textarea",
@@ -864,7 +1048,11 @@
       "markup": "<textarea class=\"textarea\"></textarea>",
       "classes": [
         "textarea"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Native textarea; aria-invalid for error"
     },
     {
       "name": "toast",
@@ -884,7 +1072,11 @@
         "toast-destructive",
         "toast-warning",
         "toast-info"
-      ]
+      ],
+      "status": "stable",
+      "js": "trigger",
+      "support": "popover-api",
+      "a11y": "Open via showPopover(); role=status/aria-live; stacking/auto-dismiss need JS"
     },
     {
       "name": "toggle",
@@ -900,7 +1092,11 @@
         "toggle-lg",
         "toggle-outline",
         "has-text"
-      ]
+      ],
+      "status": "partial",
+      "js": "consumer",
+      "support": "baseline",
+      "a11y": "Standalone needs JS to flip aria-pressed; use toggle-group for zero-JS"
     },
     {
       "name": "toggle-group",
@@ -920,7 +1116,11 @@
         "data-variant=\"outline\"",
         "data-orientation=\"vertical\""
       ],
-      "notes": "Order is mandatory: each <input> MUST be the immediately-preceding sibling of its <label class=\"toggle-group-item\">. The checked-highlight relies on the adjacent-sibling selector (input:checked + .toggle-group-item), so any element between the input and its label breaks the styling."
+      "notes": "Order is mandatory: each <input> MUST be the immediately-preceding sibling of its <label class=\"toggle-group-item\">. The checked-highlight relies on the adjacent-sibling selector (input:checked + .toggle-group-item), so any element between the input and its label breaks the styling.",
+      "status": "stable",
+      "js": "none",
+      "support": "has-selector",
+      "a11y": "Native radios/checkboxes; no JS"
     },
     {
       "name": "tooltip",
@@ -936,7 +1136,11 @@
       "attributes": [
         "data-tooltip=\"\u2026\"",
         "data-position=\"top|bottom|start|end\""
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Hover/focus via CSS \u2014 but ::after content is not in the AT tree; add aria-label/aria-describedby"
     },
     {
       "name": "typography",
@@ -949,7 +1153,17 @@
       "classes": [
         "prose",
         "lead"
-      ]
+      ],
+      "status": "stable",
+      "js": "none",
+      "support": "baseline",
+      "a11y": "Prose styles + large/small/muted helpers"
     }
-  ]
+  ],
+  "fields": {
+    "status": "stable | partial (works but limited) | visual-only (styling only, behavior needs JS)",
+    "js": "none (zero JS) | trigger (one-line native showModal()/showPopover()) | consumer (real JS for full behavior)",
+    "support": "baseline (all evergreen) | popover-api | has-selector | dialog | details",
+    "a11y": "the accessibility contract / required ARIA for correct usage"
+  }
 }

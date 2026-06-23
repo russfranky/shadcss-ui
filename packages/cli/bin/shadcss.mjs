@@ -17,7 +17,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 
 const PKG = "@russfranky/shadcss";
-const DEFAULT_VERSION = "0.1.8"; // framework version this CLI ships against
+const DEFAULT_VERSION = "0.1.9"; // framework version this CLI ships against
 
 const C = {
   dim: (s) => `\x1b[2m${s}\x1b[0m`,
@@ -113,8 +113,11 @@ async function cmdInfo(src, name) {
   console.log(C.bold(`\n  ${e.name}`));
   if (e.description) console.log(`  ${e.description}`);
   console.log(`\n  ${C.dim("file:")}    ${e.file}`);
+  if (e.status || e.js || e.support)
+    console.log(`  ${C.dim("status:")}  ${e.status || "stable"} ${C.dim("·")} js:${e.js || "none"} ${C.dim("·")} support:${e.support || "baseline"}`);
   console.log(`  ${C.dim("deps:")}    ${(e.deps || []).join(", ") || "none"}`);
   console.log(`  ${C.dim("classes:")} ${(e.classes || []).join(" ")}`);
+  if (e.a11y) console.log(`  ${C.dim("a11y:")}    ${e.a11y}`);
   if (e.markup) console.log(`\n  ${C.dim("markup:")}\n  ${e.markup}`);
   console.log("");
 }

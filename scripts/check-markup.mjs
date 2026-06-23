@@ -38,9 +38,11 @@ for (const f of readdirSync(r(compDir)).filter((x) => x.endsWith(".css"))) {
 pass(`no anchor() without anchor-name in component CSS`);
 
 // 3) navigation-menu-content must never carry the popover attribute (D2-002)
-if (/navigation-menu-content"[^>]*\bpopover\b/.test(html)) fail(`showcase: popover re-added to .navigation-menu-content (D2-002)`);
+// Match only real markup: class="navigation-menu-content" ... popover (before the tag closes),
+// so prose like an a11y note that mentions "popover" can't trip it.
+if (/class="navigation-menu-content"[^>]*\bpopover\b/.test(html)) fail(`showcase: popover re-added to .navigation-menu-content (D2-002)`);
 else pass(`navigation-menu-content has no popover`);
-if (/navigation-menu-content\\?"[^>]*\bpopover\b/.test(read("packages/shadcss/registry.json"))) fail(`registry: popover on navigation-menu-content (D2-002)`);
+if (/class=\\?"navigation-menu-content\\?"[^>]*\bpopover\b/.test(read("packages/shadcss/registry.json"))) fail(`registry: popover on navigation-menu-content (D2-002)`);
 else pass(`registry navigation-menu-content has no popover`);
 
 // 4) No static aria-selected on tab triggers — CSS can't sync it (D2-005/008)

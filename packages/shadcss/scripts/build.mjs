@@ -17,6 +17,9 @@ const distDir = path.join(root, "dist");
 const outCss = path.join(distDir, "shadcss.css");
 const outMinCss = path.join(distDir, "shadcss.min.css");
 const wwwCss = path.resolve(root, "..", "..", "apps", "www", "shadcss.min.css");
+const registryPath = path.join(root, "registry.json");
+const llmsOut = path.join(root, "llms.txt");
+const wwwLlms = path.resolve(root, "..", "..", "apps", "www", "llms.txt");
 
 const targets = {
   chrome: 111,
@@ -50,9 +53,37 @@ async function minify(code) {
   return minified;
 }
 
+// Generate llms.txt from registry.json — an LLM-friendly, machine-readable
+// index so agents emit correct, accessible shadcss markup. Kept in sync on
+// every build.
+async function genLlms() {
+  const reg = JSON.parse(await fs.readFile(registryPath, "utf8"));
+  const L = [];
+  L.push("# shadcss", "");
+  L.push("> shadcn/ui's aesthetic as zero-runtime HTML + CSS. " + reg.components.length + " components, no React/Radix/Tailwind, no JS framework, zero dependencies. Theme via CSS custom-property design tokens.", "");
+  L.push("Live demo: https://shadcss.vercel.app  ·  npm: @russfranky/shadcss  ·  CLI: npx @russfranky/shadcss-cli add <component>", "");
+  L.push("## How to use");
+  L.push("- Import the bundle (`@import \"@russfranky/shadcss\"` via a bundler, or `dist/shadcss.min.css` by path / CDN), or copy individual `src/components/<name>.css` files (each depends only on `src/base/tokens.css`).");
+  L.push("- Write semantic HTML with the classes below. Prefer native elements; only add ARIA where the component's a11y contract says to.");
+  L.push("- `js` legend: none = zero JS · trigger = one native one-liner (showModal()/showPopover()) · consumer = you write real JS for full behavior.");
+  L.push("- `status` legend: stable · partial (works, limited) · visual-only (styling only; behavior needs JS).", "");
+  L.push("## Components");
+  for (const c of reg.components) {
+    L.push("", `### ${c.name} — status:${c.status || "stable"} · js:${c.js || "none"} · support:${c.support || "baseline"}`);
+    if (c.description) L.push(c.description);
+    L.push(`Classes: ${(c.classes || []).join(" ")}`);
+    if (c.a11y) L.push(`A11y: ${c.a11y}`);
+    if (c.markup) L.push("Markup: " + c.markup);
+  }
+  L.push("");
+  await fs.writeFile(llmsOut, L.join("\n"));
+  try { await fs.access(path.dirname(wwwLlms)); await fs.writeFile(wwwLlms, L.join("\n")); } catch {}
+}
+
 async function build() {
   const t0 = performance.now();
   await ensureDir(distDir);
+  await genLlms();
   const { code } = readAndBundle();
 
   await fs.writeFile(outCss, code);
