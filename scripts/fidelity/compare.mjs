@@ -169,4 +169,5 @@ console.log(`\n=== COLOR/FOREGROUND DEVIATIONS (${colorRows.length}) ===`);
 for (const r of colorRows) console.log(`  ${r[0]}/${r[1]}`.padEnd(34) + `${r[2].padEnd(11)} shadcn=${String(r[3]).padEnd(20)} shadcss=${r[4]}`);
 console.log(`\n=== BOX-METRIC DEVIATIONS (${rows.length-1}) ===`);
 for (const r of rows.slice(1)) console.log(`  ${r[0]}/${r[1]}`.padEnd(30) + `${r[2].padEnd(12)} shadcn=${String(r[3]).padEnd(10)} shadcss=${String(r[4]).padEnd(12)} ${r[5]}`);
-console.log(`\nWrote qa/fidelity/gaps.csv`);
+console.log(`\ndeviations_total=${lineHeightRows.length + colorRows.length + (rows.length - 1)}`);
+console.log(`Wrote qa/fidelity/gaps.csv`);

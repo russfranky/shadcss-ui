@@ -895,7 +895,7 @@
       "deps": [
         "base/tokens"
       ],
-      "description": "Loading placeholder with shimmer animation.",
+      "description": "Loading placeholder that pulses (animate-pulse, bg-accent, rounded-md).",
       "markup": "<div class=\"skeleton\"></div>",
       "classes": [
         "skeleton",

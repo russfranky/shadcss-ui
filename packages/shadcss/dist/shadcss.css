@@ -1369,7 +1369,7 @@
   }
 
   .card-header {
-    gap: var(--space-1);
+    gap: var(--space-2);
     padding: var(--space-6);
     flex-direction: column;
     display: flex;
@@ -1781,24 +1781,20 @@
   }
 
   .skeleton {
-    background: linear-gradient(90deg,
-      var(--muted) 25%,
-      color-mix(in oklab, var(--muted) 50%, transparent) 50%,
-      var(--muted) 75%);
-    border-radius: var(--radius-sm);
-    background-size: 200% 100%;
+    background-color: var(--accent);
+    border-radius: var(--radius-md);
     min-height: 1rem;
-    animation: 1.5s ease-in-out infinite shadcss-shimmer;
+    animation: 2s cubic-bezier(.4, 0, .6, 1) infinite shadcss-pulse;
     display: block;
   }
 
-  @keyframes shadcss-shimmer {
-    0% {
-      background-position: 200% 0;
+  @keyframes shadcss-pulse {
+    0%, 100% {
+      opacity: 1;
     }
 
-    100% {
-      background-position: -200% 0;
+    50% {
+      opacity: .5;
     }
   }
 
@@ -1807,7 +1803,7 @@
   }
 
   .skeleton-text {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     height: .75rem;
     margin-bottom: .5rem;
   }
@@ -2612,7 +2608,7 @@
   }
 
   .dialog-header {
-    gap: var(--space-1);
+    gap: var(--space-2);
     padding: var(--space-6);
     padding-bottom: var(--space-3);
     flex-direction: column;
