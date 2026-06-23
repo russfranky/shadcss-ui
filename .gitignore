@@ -21,3 +21,6 @@ apps/www/shadcss.min.css
 # Generated docs site (built from registry)
 apps/www/docs/
 apps/www/llms.txt
+
+# autoresearch experiment state
+.auto/
