@@ -1647,7 +1647,7 @@
   }
 
   .alert-dialog-header {
-    gap: var(--space-2);
+    gap: var(--space-1\.5);
     padding: var(--space-6);
     padding-bottom: var(--space-3);
     text-align: center;
@@ -2774,7 +2774,7 @@
   .sheet-header {
     justify-content: space-between;
     align-items: flex-start;
-    gap: var(--space-4);
+    gap: var(--space-1\.5);
     padding: var(--space-4);
     display: flex;
   }
@@ -3518,7 +3518,7 @@
   .command-item {
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-2);
+    padding: var(--space-1\.5) var(--space-2);
     border-radius: var(--radius-sm);
     color: var(--popover-foreground);
     font-size: var(--text-sm);
@@ -5695,6 +5695,7 @@
   --space-0: 0;
   --space-px: 1px;
   --space-1: .25rem;
+  --space-1\.5: .375rem;
   --space-2: .5rem;
   --space-3: .75rem;
   --space-4: 1rem;
