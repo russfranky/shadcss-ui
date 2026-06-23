@@ -4683,7 +4683,7 @@
     --sidebar-collapsed-width: 4rem;
     width: var(--sidebar-width);
     height: 100vh;
-    padding: var(--space-3);
+    padding: var(--space-2);
     background: var(--sidebar);
     border-inline-end: 1px solid var(--sidebar-border);
     color: var(--sidebar-foreground);
@@ -4714,7 +4714,7 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2);
     margin-bottom: var(--space-3);
     min-height: 3.5rem;
     display: flex;
@@ -4752,7 +4752,7 @@
   }
 
   .sidebar-content {
-    gap: var(--space-4);
+    gap: var(--space-2);
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
     flex-direction: column;
@@ -4777,9 +4777,10 @@
   }
 
   .sidebar-group-label {
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2);
     font-size: var(--text-xs);
-    color: var(--muted-foreground);
+    color: var(--sidebar-foreground);
+    opacity: .7;
     text-transform: uppercase;
     letter-spacing: .05em;
     font-weight: 500;
@@ -4793,8 +4794,8 @@
   }
 
   .sidebar-menu {
+    gap: var(--space-1);
     flex-direction: column;
-    gap: .125rem;
     list-style: none;
     display: flex;
   }
@@ -4875,8 +4876,8 @@
     align-items: center;
     gap: var(--space-2);
     padding: var(--space-1) var(--space-2);
-    font-size: var(--text-xs);
-    color: var(--muted-foreground);
+    font-size: var(--text-sm);
+    color: var(--sidebar-foreground);
     border-radius: var(--radius-sm);
     cursor: pointer;
     width: 100%;
