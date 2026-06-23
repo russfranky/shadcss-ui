@@ -101,7 +101,7 @@
     padding: var(--space-4);
     font-size: var(--text-sm);
     color: var(--muted-foreground);
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   /* Chevron-less style */

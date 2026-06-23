@@ -99,12 +99,13 @@
   .sheet-title {
     font-size: var(--text-lg);
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
     letter-spacing: -0.025em;
   }
   .sheet-description {
     font-size: var(--text-sm);
     color: var(--muted-foreground);
+    line-height: 1.5;
   }
 
   .sheet-body {

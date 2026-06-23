@@ -58,8 +58,8 @@
   }
   .popover-title {
     font-size: var(--text-sm);
-    font-weight: 600;
-    line-height: 1.2;
+    font-weight: 500;
+    line-height: 1;
   }
   .popover-description {
     font-size: var(--text-xs);

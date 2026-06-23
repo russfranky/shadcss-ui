@@ -1379,12 +1379,13 @@
     font-size: var(--text-lg);
     letter-spacing: -.025em;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .card-description {
     font-size: var(--text-sm);
     color: var(--muted-foreground);
+    line-height: 1.5;
   }
 
   .card-header:has(.card-action) {
@@ -1536,7 +1537,7 @@
   .alert-title {
     margin-bottom: .125rem;
     font-weight: 500;
-    line-height: 1.3;
+    line-height: 1;
   }
 
   .alert-description {
@@ -1658,7 +1659,7 @@
     font-size: var(--text-lg);
     letter-spacing: -.025em;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .alert-dialog-description {
@@ -2133,8 +2134,8 @@
 
   .popover-title {
     font-size: var(--text-sm);
-    font-weight: 600;
-    line-height: 1.2;
+    font-weight: 500;
+    line-height: 1;
   }
 
   .popover-description {
@@ -2206,7 +2207,7 @@
   .hover-card-title {
     font-size: var(--text-sm);
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1;
   }
 
   .hover-card-description {
@@ -2339,7 +2340,7 @@
     padding: var(--space-4);
     font-size: var(--text-sm);
     color: var(--muted-foreground);
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .accordion[data-chevron="false"] > details > summary:after {
@@ -2622,12 +2623,13 @@
     font-size: var(--text-lg);
     letter-spacing: -.025em;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .dialog-description {
     font-size: var(--text-sm);
     color: var(--muted-foreground);
+    line-height: 1.5;
   }
 
   .dialog-body {
@@ -2792,12 +2794,13 @@
     font-size: var(--text-lg);
     letter-spacing: -.025em;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .sheet-description {
     font-size: var(--text-sm);
     color: var(--muted-foreground);
+    line-height: 1.5;
   }
 
   .sheet-body {
@@ -2944,12 +2947,13 @@
     font-size: var(--text-lg);
     letter-spacing: -.025em;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   .drawer-description {
     font-size: var(--text-sm);
     color: var(--muted-foreground);
+    line-height: 1.5;
   }
 
   .drawer-body {
@@ -5060,7 +5064,7 @@
     color: var(--foreground);
     grid-area: label;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.375;
     display: inline-flex;
   }
 
@@ -5083,19 +5087,19 @@
   }
 
   .field-description {
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     color: var(--muted-foreground);
     grid-area: description;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .field-error {
     align-items: center;
     gap: var(--space-1);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     color: var(--destructive);
     grid-area: error;
-    line-height: 1.4;
+    line-height: 1.5;
     display: none;
   }
 

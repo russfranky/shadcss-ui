@@ -18,15 +18,18 @@ export function spacing(n) {
 }
 
 const TEXT = {
-  xs: "0.75rem/1rem",
-  sm: "0.875rem/1.25rem",
-  base: "1rem/1.5rem",
-  lg: "1.125rem/1.75rem",
-  xl: "1.25rem/1.75rem",
-  "2xl": "1.5rem/2rem",
-  "3xl": "1.875rem/2.25rem",
-  "4xl": "2.25rem/2.5rem",
+  xs: { s: "0.75rem", lh: "1rem" },
+  sm: { s: "0.875rem", lh: "1.25rem" },
+  base: { s: "1rem", lh: "1.5rem" },
+  lg: { s: "1.125rem", lh: "1.75rem" },
+  xl: { s: "1.25rem", lh: "1.75rem" },
+  "2xl": { s: "1.5rem", lh: "2rem" },
+  "3xl": { s: "1.875rem", lh: "2.25rem" },
+  "4xl": { s: "2.25rem", lh: "2.5rem" },
 };
+
+// Tailwind leading-* -> unitless line-height ratio (shadcn's explicit vocabulary).
+const LEADING = { none: "1", tight: "1.25", snug: "1.375", normal: "1.5", relaxed: "1.625", loose: "2" };
 
 const FONT_WEIGHT = {
   thin: 100, extralight: 200, light: 300, normal: 400,
@@ -120,7 +123,9 @@ export function resolveClasses(classes) {
     // ---- radius ----
     else if ((mm = base.match(/^rounded(?:-(.+))?$/))) set("radius", RADIUS[mm[1] ?? "DEFAULT"] ?? `[${mm[1]}]`);
     // ---- typography ----
-    else if ((mm = base.match(/^text-(xs|sm|base|lg|xl|2xl|3xl|4xl)$/))) set("fontSize", TEXT[mm[1]]);
+    else if ((mm = base.match(/^text-(xs|sm|base|lg|xl|2xl|3xl|4xl)$/))) { set("fontSize", TEXT[mm[1]].s); set("lineHeight", TEXT[mm[1]].lh); m._lhSource = "type-scale"; }
+    else if ((mm = base.match(/^leading-(none|tight|snug|normal|relaxed|loose)$/))) { set("lineHeight", LEADING[mm[1]]); m._lhSource = "leading-" + mm[1]; }
+    else if ((mm = base.match(/^leading-\[([^\]]+)\]$/))) { set("lineHeight", mm[1]); m._lhSource = "leading-arbitrary"; }
     else if ((mm = base.match(/^font-(\w+)$/)) && FONT_WEIGHT[mm[1]]) set("fontWeight", FONT_WEIGHT[mm[1]]);
     else if (base === "tracking-tight") set("letterSpacing", "-0.025em");
     else if (base === "tracking-wide") set("letterSpacing", "0.025em");

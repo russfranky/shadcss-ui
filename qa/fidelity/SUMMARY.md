@@ -94,3 +94,26 @@ height, so `py` is non-constraining). Verified by rendering — see
 ## Final state
 build green (17.8 KB gz) · `npm run check` 14/14 · `check:a11y` 0 critical /
 0 markup-level serious (26 color-contrast accepted as shadcn fidelity).
+
+---
+
+## 0.2.1 — line-height canon alignment + comprehensive comparator
+
+The v1 comparator only diffed 8 numeric box-metrics on **root** elements — it
+never compared line-height (resolver bundled it into the font-size string and
+`compare.mjs` discarded the lh half), colors, or sub-elements. Rebuilt it (v2):
+parses `leading-*`, keeps line-height, diffs colors/foreground tokens, and walks
+**every `data-slot`** (titles/descriptions/etc.), not just roots.
+
+Re-run found the line-height gaps and they're now fixed (comparator: **0
+line-height deviations**):
+- titles (card/dialog/alert-dialog/sheet/drawer/popover/hover-card/alert) → `1` (leading-none)
+- field-label → `1.375` (snug); field-description → `1.5` (normal); field desc/error font → `text-sm`
+- accordion content + all descriptions → `1.5`; popover-title weight → 500
+- single-line controls keep `line-height:1` (identical under inline-flex+items-center)
+
+Type-scale `--leading-*` tokens already matched Tailwind v4. Remaining comparator
+rows are triaged: 2 parse artifacts (`text-center`/`left-*`), ~7 minor token
+choices (input transparent-bg nuance, sidebar muted labels, tabs inactive dim),
+and box-metric rows that are structural (shadcss has fewer sub-element classes)
+or height-driven padding — logged in gaps.csv, not material.

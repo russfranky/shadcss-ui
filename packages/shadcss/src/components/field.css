@@ -24,7 +24,7 @@
     gap: var(--space-2);
     font-size: var(--text-sm);
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.375;
     color: var(--foreground);
   }
   .field-label::after {
@@ -44,9 +44,9 @@
 
   .field-description {
     grid-area: description;
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     color: var(--muted-foreground);
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .field-error {
@@ -54,9 +54,9 @@
     display: none;
     align-items: center;
     gap: var(--space-1);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     color: var(--destructive);
-    line-height: 1.4;
+    line-height: 1.5;
   }
   .field-error > svg { width: 0.875rem; height: 0.875rem; }
 

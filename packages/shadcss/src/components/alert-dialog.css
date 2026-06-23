@@ -48,7 +48,7 @@
     font-size: var(--text-lg);
     font-weight: 600;
     letter-spacing: -0.025em;
-    line-height: 1.2;
+    line-height: 1;
   }
   .alert-dialog-description {
     font-size: var(--text-sm);
