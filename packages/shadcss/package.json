@@ -1,6 +1,6 @@
 {
   "name": "@russfranky/shadcss",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "shadcn's beauty, no JS framework. A modular HTML+CSS-only component library built on modern web standards.",
   "type": "module",
   "main": "dist/shadcss.min.css",

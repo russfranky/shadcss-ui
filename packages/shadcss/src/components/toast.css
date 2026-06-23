@@ -133,3 +133,14 @@
     }
   }
 }
+
+/* --- A toast opened as a [popover] must not stretch to fill the top layer. --- */
+@layer components {
+  .toast[popover] {
+    position: fixed;
+    inset: auto;
+    bottom: var(--space-6);
+    inset-inline-end: var(--space-6);
+    width: min(24rem, calc(100vw - 3rem));
+  }
+}

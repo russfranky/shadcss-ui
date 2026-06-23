@@ -44,6 +44,17 @@
     animation: shadcss-sonner-in var(--duration-slow) var(--ease-out);
   }
 
+  /* When a sonner is opened as a [popover] it lands in the top layer where the
+     UA sets inset:0 — without this it stretches across the whole viewport.
+     Pin it to the corner as a fixed-width card. */
+  .sonner[popover] {
+    position: fixed;
+    inset: auto;
+    bottom: var(--space-6);
+    inset-inline-end: var(--space-6);
+    width: min(24rem, calc(100vw - 3rem));
+  }
+
   @keyframes shadcss-sonner-in {
     from { opacity: 0; transform: translateX(100%) scale(0.95); }
     to   { opacity: 1; transform: translateX(0) scale(1); }

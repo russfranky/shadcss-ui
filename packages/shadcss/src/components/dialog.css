@@ -21,6 +21,9 @@
     max-width: min(32rem, 90vw);
     max-height: 85vh;
     width: 100%;
+    /* Hug content: the modal's UA inset:0 + width:100% otherwise stretches the
+       dialog to fill the viewport (minus auto margins) instead of fitting. */
+    height: fit-content;
     overflow: auto;
     animation: shadcss-dialog-in var(--duration-base) var(--ease-out);
   }

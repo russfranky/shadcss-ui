@@ -795,6 +795,55 @@
     box-shadow: 0 0 0 2px hsl(var(--destructive) / .25);
   }
 
+  .input:-webkit-autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .textarea:-webkit-autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .select:-webkit-autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .otp-input:-webkit-autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .input:autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .textarea:autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
+  .otp-input:autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+
   .textarea {
     width: 100%;
     min-height: 5rem;
@@ -1740,6 +1789,8 @@
     box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: min(28rem, 90vw);
+    height: fit-content;
+    max-height: 85vh;
     animation: shadcss-alert-in var(--duration-base) var(--ease-out);
     margin: auto;
     padding: 0;
@@ -2906,6 +2957,7 @@
     box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: min(32rem, 90vw);
+    height: fit-content;
     max-height: 85vh;
     animation: shadcss-dialog-in var(--duration-base) var(--ease-out);
     margin: auto;
@@ -3022,6 +3074,10 @@
     padding: 0;
     display: flex;
     overflow: auto;
+  }
+
+  dialog.sheet:not([open]) {
+    display: none;
   }
 
   dialog.sheet::backdrop {
@@ -3208,6 +3264,10 @@
     padding: 0;
     display: flex;
     overflow: auto;
+  }
+
+  dialog.drawer:not([open]) {
+    display: none;
   }
 
   dialog.drawer::backdrop {
@@ -4372,6 +4432,24 @@
     }
   }
 
+  .toast[popover] {
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    bottom: var(--space-6);
+    width: min(24rem, 100vw - 3rem);
+    position: fixed;
+  }
+
+  .toast[popover]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+    right: var(--space-6);
+  }
+
+  .toast[popover]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+    left: var(--space-6);
+  }
+
   .sonner-region {
     bottom: var(--space-6);
     gap: var(--space-2);
@@ -4412,6 +4490,24 @@
 
   .sonner[data-persistent="true"] {
     animation: shadcss-sonner-in var(--duration-slow) var(--ease-out);
+  }
+
+  .sonner[popover] {
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    bottom: var(--space-6);
+    width: min(24rem, 100vw - 3rem);
+    position: fixed;
+  }
+
+  .sonner[popover]:not(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi))) {
+    right: var(--space-6);
+  }
+
+  .sonner[popover]:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
+    left: var(--space-6);
   }
 
   @keyframes shadcss-sonner-in {

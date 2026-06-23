@@ -22,6 +22,10 @@
     flex-direction: column;
   }
 
+  /* A closed <dialog> must stay hidden: the base rule sets display:flex,
+     which overrides the UA dialog:not([open]){display:none}. Re-assert it. */
+  dialog.sheet:not([open]) { display: none; }
+
   dialog.sheet::backdrop {
     background: hsl(var(--background) / 0.7);
     backdrop-filter: blur(4px);

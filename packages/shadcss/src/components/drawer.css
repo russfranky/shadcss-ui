@@ -22,6 +22,9 @@
     flex-direction: column;
     animation: shadcss-drawer-slide-in var(--duration-slow) var(--ease-out);
   }
+  /* A closed <dialog> must stay hidden: the base rule sets display:flex,
+     which overrides the UA dialog:not([open]){display:none}. Re-assert it. */
+  dialog.drawer:not([open]) { display: none; }
 
   dialog.drawer::backdrop {
     background: hsl(var(--background) / 0.7);

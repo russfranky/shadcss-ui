@@ -99,3 +99,20 @@
   .input[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
   .input[aria-invalid="true"]:focus { box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25); }
 }
+
+/* --- Autofill: override the UA's light fill so valued/autofilled inputs keep
+   the theme background in dark mode (affects input, textarea, select, otp). --- */
+@layer components {
+  .input:-webkit-autofill,
+  .textarea:-webkit-autofill,
+  .select:-webkit-autofill,
+  .otp-input:-webkit-autofill,
+  .input:autofill,
+  .textarea:autofill,
+  .otp-input:autofill {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    box-shadow: 0 0 0 1000px hsl(var(--background)) inset;
+    caret-color: hsl(var(--foreground));
+  }
+}

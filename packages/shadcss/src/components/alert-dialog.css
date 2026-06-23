@@ -18,6 +18,8 @@
     box-shadow: var(--shadow-lg);
     max-width: min(28rem, 90vw);
     width: 100%;
+    height: fit-content;
+    max-height: 85vh;
     overflow: hidden;
     animation: shadcss-alert-in var(--duration-base) var(--ease-out);
   }

@@ -5,6 +5,13 @@ All notable changes to shadcss are documented here. The framework follows
 may include refinements; patch bumps are fixes and docs. Pin a version in
 production (`@russfranky/shadcss@0.1.4`) so a future change can't surprise you.
 
+## 0.1.7
+- **Visual QA pass (rendered, not static).** A screenshot-based review of the live
+  showcase caught what code gates couldn't: the **sheet/drawer dialogs rendered
+  always-open** (display:flex overrode the UA closed-state), **toasts stretched to
+  full-viewport** as popovers, the **dialog over-stretched** to 85vh, and **autofill**
+  painted dark-mode inputs light. All fixed. See qa/visual/.
+
 ## 0.1.6
 - **Fix: closed popovers could render visible.** Components that set `display` on
   a `[popover]` element (`.command`, `.sonner`) overrode the UA closed-state
