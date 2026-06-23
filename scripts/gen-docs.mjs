@@ -198,6 +198,21 @@ function retrofitPage(reg) {
 .your-btn:hover { background: hsl(var(--accent)); }</code></pre>
 <p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm)">Every token lives on <code>:root</code> — see <a href="./index.html" style="color:hsl(var(--primary))">the components</a> and override any of them to retheme everything.</p></div>
 
+<div class="docs-section"><h2>Reach for the real components — don't hand-roll</h2>
+<div class="alert alert-warning" role="alert"><div><div class="alert-description">The most common retrofit mistake: re-styling your custom layout divs from scratch when a shadcss component already exists. Hand-rolling a sidebar with <code>height:100%; margin-top:auto</code> is fragile (the footer clips); the <code>sidebar</code> component already gives you a scrolling body + pinned footer for free. Before writing CSS, check the <a href="./index.html" style="color:hsl(var(--primary))">component list</a> — <code>sidebar</code>, <code>card</code>, <code>input</code>, <code>table</code>, <code>dialog</code>, <code>tabs</code> cover most app chrome.</div></div></div>
+<p style="color:hsl(var(--muted-foreground));font-size:var(--text-sm);margin-top:var(--space-3)">Restructure to the component's classes (the markup is yours), then style only what's genuinely custom:</p>
+<pre class="docs-code"><code>&lt;aside class="sidebar"&gt;
+  &lt;div class="sidebar-content"&gt;          &lt;!-- scrolls --&gt;
+    &lt;div class="sidebar-group"&gt;
+      &lt;div class="sidebar-group-label"&gt;Folders&lt;/div&gt;
+      &lt;div class="sidebar-menu"&gt;
+        &lt;button class="sidebar-menu-button"&gt;Inbox&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sidebar-footer"&gt;…&lt;/div&gt;       &lt;!-- pinned --&gt;
+&lt;/aside&gt;</code></pre></div>
+
 <div class="docs-section"><h2>Case study: Cleanshot Sorter</h2>
 <div class="alert alert-info" role="alert"><div><div class="alert-description">A plain HTML/CSS/JS Express app was restyled to the shadcss look with <strong>zero markup or JS changes</strong> — one vendored stylesheet plus a ~120-line adapter mapping its existing classes to tokens. The app's buttons (<code>.btn</code>, <code>.btn-secondary</code>, <code>.btn-danger</code>) mapped directly; only the bespoke layout classes needed glue.</div></div></div></div>
 `;
