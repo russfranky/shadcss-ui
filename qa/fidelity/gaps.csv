@@ -113,12 +113,6 @@
 "field","field-group","gap","28px","20px",""
 "field","field-content","—","","(selector .field-content not found)","skip"
 "field","field-separator","—","","(selector .field-separator not found)","skip"
-"navigation-menu","navigation-menu-list","gap","4px","0px",""
-"navigation-menu","navigation-menu-content","paddingX","8px","16px",""
-"navigation-menu","navigation-menu-content","paddingY","8px","16px",""
-"navigation-menu","navigation-menu-link","paddingX","8px","12px",""
-"navigation-menu","navigation-menu-link","paddingY","8px","12px",""
-"navigation-menu","navigation-menu-link","gap","4px","12px",""
 "navigation-menu","navigation-menu-indicator","—","","(selector .navigation-menu-indicator not found)","skip"
 
 "LINE-HEIGHT DEVIATIONS"
