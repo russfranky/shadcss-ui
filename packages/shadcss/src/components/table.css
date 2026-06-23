@@ -6,7 +6,7 @@
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
   }
 
@@ -19,12 +19,12 @@
 
   .table caption {
     margin-top: var(--space-2);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     font-size: var(--text-xs);
   }
 
   .table thead {
-    background: hsl(var(--muted));
+    background: var(--muted);
   }
 
   .table th {
@@ -32,18 +32,18 @@
     padding: 0 var(--space-4);
     text-align: start;
     font-weight: 500;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     font-size: var(--text-xs);
     text-transform: none;
     white-space: nowrap;
-    border-bottom: 1px solid hsl(var(--border));
+    border-bottom: 1px solid var(--border);
   }
 
   .table td {
     height: 3rem;
     padding: 0 var(--space-4);
-    color: hsl(var(--foreground));
-    border-bottom: 1px solid hsl(var(--border));
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
     vertical-align: middle;
   }
 
@@ -53,7 +53,7 @@
     transition: background var(--duration-fast) var(--ease-out);
   }
   .table tbody tr:hover {
-    background: hsl(var(--muted) / 0.5);
+    background: color-mix(in oklab, var(--muted) 50%, transparent);
   }
 
   /* Right-align numeric columns */
@@ -70,7 +70,7 @@
   .table[data-sticky-header] thead th {
     position: sticky;
     top: 0;
-    background: hsl(var(--muted));
+    background: var(--muted);
     z-index: 1;
   }
 }

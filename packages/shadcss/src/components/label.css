@@ -10,7 +10,7 @@
     font-size: var(--text-sm);
     font-weight: 500;
     line-height: 1;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     cursor: pointer;
     user-select: none;
   }
@@ -22,11 +22,11 @@
 
   .label-required::after {
     content: "*";
-    color: hsl(var(--destructive));
+    color: var(--destructive);
     margin-inline-start: 0.125em;
   }
 
-  .label-muted { color: hsl(var(--muted-foreground)); font-weight: 400; }
+  .label-muted { color: var(--muted-foreground); font-weight: 400; }
 
   /* Form layout helper */
   .form-field {
@@ -36,13 +36,13 @@
   }
   .form-field .help-text {
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
   /* :user-invalid (Baseline since ~2023) is the primary trigger — it reddens
      help-text for empty placeholder-less required controls after interaction.
      The :placeholder-shown pair is a progressive-enhancement fallback. */
   .form-field:has(:user-invalid) .help-text,
   .form-field:has(:invalid:not(:placeholder-shown)) .help-text {
-    color: hsl(var(--destructive));
+    color: var(--destructive);
   }
 }

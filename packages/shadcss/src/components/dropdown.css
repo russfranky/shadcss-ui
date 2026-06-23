@@ -20,9 +20,9 @@
     --menu-min-width: 12rem;
     min-width: var(--menu-min-width);
     padding: var(--space-1);
-    background: hsl(var(--popover));
-    color: hsl(var(--popover-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     margin: 0;
@@ -67,7 +67,7 @@
     padding: var(--space-2) var(--space-3);
     font-size: var(--text-sm);
     line-height: 1;
-    color: hsl(var(--popover-foreground));
+    color: var(--popover-foreground);
     border-radius: calc(var(--radius-md) - 2px);
     cursor: pointer;
     text-align: start;
@@ -78,45 +78,45 @@
 
   .dropdown-item:hover,
   .dropdown-item:focus-visible {
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
+    background: var(--accent);
+    color: var(--accent-foreground);
     outline: none;
   }
 
   .dropdown-item > svg {
     width: 1rem;
     height: 1rem;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     flex-shrink: 0;
   }
 
   .dropdown-destructive {
-    color: hsl(var(--destructive));
+    color: var(--destructive);
   }
-  .dropdown-destructive > svg { color: hsl(var(--destructive)); }
+  .dropdown-destructive > svg { color: var(--destructive); }
   .dropdown-destructive:hover,
   .dropdown-destructive:focus-visible {
-    background: hsl(var(--destructive) / 0.1);
-    color: hsl(var(--destructive));
+    background: color-mix(in oklab, var(--destructive) 10%, transparent);
+    color: var(--destructive);
   }
 
   .dropdown-label {
     padding: var(--space-2) var(--space-3);
     font-size: var(--text-xs);
     font-weight: 500;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     text-transform: none;
   }
 
   .dropdown-separator {
     height: 1px;
-    background: hsl(var(--border));
+    background: var(--border);
     margin: var(--space-1) 0;
   }
 
   .dropdown-shortcut {
     margin-inline-start: auto;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     font-size: var(--text-xs);
     letter-spacing: 0.05em;
   }
@@ -137,7 +137,7 @@
     top: 50%;
     transform: translateY(-50%);
     opacity: 0;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
   }
   .dropdown-checkbox-item[aria-checked="true"]::before,
   .dropdown-checkbox-item[data-checked]::before {
@@ -175,15 +175,15 @@
   }
   .dropdown-sub-trigger:hover,
   .dropdown-sub-trigger[data-state="open"] {
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
   .dropdown-sub-content {
     min-width: 8rem;
     padding: var(--space-1);
-    background: hsl(var(--popover));
-    color: hsl(var(--popover-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
   }

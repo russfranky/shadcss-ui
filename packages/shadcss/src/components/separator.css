@@ -6,7 +6,7 @@
   /* Base = horizontal, so any unknown/missing orientation falls back safely */
   .separator {
     flex-shrink: 0;
-    background: hsl(var(--border));
+    background: var(--border);
     border: none;
     width: 100%;
     height: 1px;

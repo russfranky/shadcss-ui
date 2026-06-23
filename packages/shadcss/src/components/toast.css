@@ -31,9 +31,9 @@
     padding: var(--space-3) var(--space-4);
     min-width: 20rem;
     max-width: 26rem;
-    background: hsl(var(--card));
-    color: hsl(var(--card-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     font-size: var(--text-sm);
@@ -60,7 +60,7 @@
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     margin-top: 0.0625rem;
   }
 
@@ -69,14 +69,14 @@
     line-height: 1.3;
   }
   .toast-description {
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
     margin-top: 0.125rem;
   }
 
   .toast-close {
     margin-inline-start: auto;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -85,24 +85,24 @@
     transition: background var(--duration-fast) var(--ease-out);
     flex-shrink: 0;
   }
-  .toast-close:hover { background: hsl(var(--accent)); }
+  .toast-close:hover { background: var(--accent); }
 
   /* Variants */
   .toast-success > svg,
-  .toast-success .toast-title { color: hsl(var(--success)); }
-  .toast-success { border-color: hsl(var(--success) / 0.4); }
+  .toast-success .toast-title { color: var(--success); }
+  .toast-success { border-color: color-mix(in oklab, var(--success) 40%, transparent); }
 
   .toast-destructive > svg,
-  .toast-destructive .toast-title { color: hsl(var(--destructive)); }
-  .toast-destructive { border-color: hsl(var(--destructive) / 0.4); }
+  .toast-destructive .toast-title { color: var(--destructive); }
+  .toast-destructive { border-color: color-mix(in oklab, var(--destructive) 40%, transparent); }
 
   .toast-warning > svg,
-  .toast-warning .toast-title { color: hsl(var(--warning)); }
-  .toast-warning { border-color: hsl(var(--warning) / 0.4); }
+  .toast-warning .toast-title { color: var(--warning); }
+  .toast-warning { border-color: color-mix(in oklab, var(--warning) 40%, transparent); }
 
   .toast-info > svg,
-  .toast-info .toast-title { color: hsl(var(--info)); }
-  .toast-info { border-color: hsl(var(--info) / 0.4); }
+  .toast-info .toast-title { color: var(--info); }
+  .toast-info { border-color: color-mix(in oklab, var(--info) 40%, transparent); }
 
   /* Stacked variant — center top */
   .toast-region[data-position="top"] {

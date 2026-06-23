@@ -8,7 +8,7 @@
     position: relative;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--border)) transparent;
+    scrollbar-color: var(--border) transparent;
   }
 
   /* WebKit (Chrome / Safari / Edge) */
@@ -20,13 +20,13 @@
     background: transparent;
   }
   .scroll-area::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
+    background: var(--border);
     border-radius: var(--radius-full);
     border: 2px solid transparent;
     background-clip: padding-box;
   }
   .scroll-area::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--input));
+    background: var(--input);
     background-clip: padding-box;
     border: 2px solid transparent;
   }
@@ -38,10 +38,10 @@
 
   /* Always-visible scrollbar */
   .scroll-area[data-persistent="true"] {
-    scrollbar-color: hsl(var(--input)) hsl(var(--muted) / 0.3);
+    scrollbar-color: var(--input) color-mix(in oklab, var(--muted) 30%, transparent);
   }
   .scroll-area[data-persistent="true"]::-webkit-scrollbar-track {
-    background: hsl(var(--muted) / 0.3);
+    background: color-mix(in oklab, var(--muted) 30%, transparent);
   }
 
   /* Hide scrollbar entirely (e.g. carousel) */

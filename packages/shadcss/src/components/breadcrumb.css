@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     gap: 0;
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
 
   .breadcrumb-item {
@@ -20,11 +20,11 @@
   .breadcrumb-item:not(:last-child)::after {
     content: "/";
     margin-inline: var(--space-2);
-    color: hsl(var(--muted-foreground) / 0.6);
+    color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
   }
 
   .breadcrumb-link {
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-out);
     border-radius: var(--radius-sm);
@@ -32,12 +32,12 @@
     margin-inline: -0.25rem;
   }
   .breadcrumb-link:hover {
-    color: hsl(var(--foreground));
-    background: hsl(var(--accent));
+    color: var(--foreground);
+    background: var(--accent);
   }
 
   .breadcrumb-current {
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     font-weight: 500;
     padding: 0.125rem 0.25rem;
     margin-inline: -0.25rem;
@@ -60,7 +60,7 @@
     justify-content: center;
     width: 1.25rem;
     height: 1.25rem;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
   .breadcrumb-ellipsis > svg { width: 1rem; height: 1rem; }
 }

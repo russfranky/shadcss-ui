@@ -19,7 +19,7 @@
     align-items: flex-start;
     gap: var(--space-3);
     padding: var(--space-3);
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     cursor: pointer;
     transition:
@@ -27,15 +27,16 @@
       background var(--duration-base) var(--ease-out);
   }
   .radio-group-item:hover {
-    background: hsl(var(--accent));
+    background: var(--accent);
   }
   .radio-group-item:has(:checked) {
-    border-color: hsl(var(--primary));
-    background: hsl(var(--accent));
+    border-color: var(--primary);
+    background: var(--accent);
   }
   .radio-group-item:has(:focus-visible) {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   .radio-group-item-body {
@@ -48,11 +49,11 @@
     font-size: var(--text-sm);
     font-weight: 500;
     line-height: 1.2;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
   }
   .radio-group-item-description {
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
   }
 

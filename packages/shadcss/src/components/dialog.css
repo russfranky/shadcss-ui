@@ -13,10 +13,10 @@
   dialog.dialog {
     margin: auto;
     padding: 0;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background: var(--background);
+    color: var(--foreground);
     box-shadow: var(--shadow-lg);
     max-width: min(32rem, 90vw);
     max-height: 85vh;
@@ -29,7 +29,7 @@
   }
 
   dialog.dialog::backdrop {
-    background: hsl(var(--background) / 0.7);
+    background: color-mix(in oklab, var(--background) 70%, transparent);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     animation: shadcss-backdrop-in var(--duration-base) var(--ease-out);
@@ -59,7 +59,7 @@
   }
   .dialog-description {
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
 
   .dialog-body {
@@ -89,14 +89,15 @@
     display: inline-grid;
     place-content: center;
     border-radius: var(--radius-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     background: transparent;
     cursor: pointer;
     transition: background var(--duration-base) var(--ease-out);
   }
-  .dialog-close:hover { background: hsl(var(--accent)); }
+  .dialog-close:hover { background: var(--accent); }
   .dialog-close:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 }

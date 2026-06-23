@@ -11,10 +11,10 @@
   dialog.alert-dialog {
     margin: auto;
     padding: 0;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background: var(--background);
+    color: var(--foreground);
     box-shadow: var(--shadow-lg);
     max-width: min(28rem, 90vw);
     width: 100%;
@@ -25,7 +25,7 @@
   }
 
   dialog.alert-dialog::backdrop {
-    background: hsl(var(--background) / 0.8);
+    background: color-mix(in oklab, var(--background) 80%, transparent);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     animation: shadcss-backdrop-in var(--duration-base) var(--ease-out);
@@ -52,7 +52,7 @@
   }
   .alert-dialog-description {
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
   }
 

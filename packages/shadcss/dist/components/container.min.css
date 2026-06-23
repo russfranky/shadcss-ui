@@ -1,0 +1,1 @@
+@layer components{.container{width:100%;padding-inline:var(--space-4);max-width:80rem;margin-inline:auto}.container-sm{max-width:40rem}.container-md{max-width:56rem}.container-lg{max-width:72rem}.container-xl{max-width:80rem}.container-full{max-width:100%}@media (width>=640px){.container{padding-inline:var(--space-6)}}}

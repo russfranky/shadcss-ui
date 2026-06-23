@@ -24,8 +24,8 @@
     min-width: 0;
     min-height: 0;
     padding: var(--space-3);
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    background: var(--card);
+    border: 1px solid var(--border);
   }
   .resizable-panel:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
   .resizable-panel:last-child  { border-radius: 0 var(--radius-md) var(--radius-md) 0; border-inline-start: none; }
@@ -38,7 +38,7 @@
   }
   .resizable[data-direction="vertical"] .resizable-panel:last-child {
     border-radius: 0 0 var(--radius-md) var(--radius-md);
-    border-inline-start: 1px solid hsl(var(--border));
+    border-inline-start: 1px solid var(--border);
     border-block-start: none;
   }
   .resizable[data-direction="vertical"] .resizable-panel:only-child {
@@ -48,7 +48,7 @@
   .resizable-handle {
     position: relative;
     flex-shrink: 0;
-    background: hsl(var(--border));
+    background: var(--border);
     transition: background var(--duration-base) var(--ease-out);
     touch-action: none;
   }
@@ -64,7 +64,7 @@
   }
   .resizable-handle:hover,
   .resizable-handle[data-active="true"] {
-    background: hsl(var(--ring));
+    background: var(--ring);
   }
 
   /* Visual grip indicator */
@@ -77,7 +77,7 @@
     width: 0.25rem;
     height: 1.5rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--muted-foreground) / 0.3);
+    background: color-mix(in oklab, var(--muted-foreground) 30%, transparent);
   }
   .resizable[data-direction="vertical"] .resizable-handle::after {
     width: 1.5rem;
@@ -85,7 +85,8 @@
   }
 
   .resizable-handle:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 }

@@ -8,9 +8,9 @@
   .popover {
     width: min(20rem, calc(100vw - 2rem));
     padding: var(--space-4);
-    background: hsl(var(--popover));
-    color: hsl(var(--popover-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     margin: 0;
@@ -63,7 +63,7 @@
   }
   .popover-description {
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
   }
 
@@ -73,7 +73,7 @@
     gap: var(--space-2);
     margin-top: var(--space-3);
     padding-top: var(--space-3);
-    border-top: 1px solid hsl(var(--border));
+    border-top: 1px solid var(--border);
   }
 }
 

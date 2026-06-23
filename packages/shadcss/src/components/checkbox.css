@@ -10,11 +10,12 @@
   .checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius-sm);
-    background: hsl(var(--background));
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--background);
+    box-shadow: var(--shadow-xs);
     cursor: pointer;
     flex-shrink: 0;
     display: inline-grid;
@@ -26,41 +27,42 @@
 
   .checkbox::before {
     content: "";
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 0.625rem;
+    height: 0.625rem;
     transform: scale(0);
     transition: transform var(--duration-base) var(--ease-out);
     /* Pure-CSS checkmark via clip-path */
-    background: hsl(var(--primary-foreground));
+    background: var(--primary-foreground);
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
   }
 
   .checkbox:checked {
-    background: hsl(var(--primary));
-    border-color: hsl(var(--primary));
+    background: var(--primary);
+    border-color: var(--primary);
   }
   .checkbox:checked::before { transform: scale(1); }
 
   .checkbox[data-indeterminate="true"] {
-    background: hsl(var(--primary));
-    border-color: hsl(var(--primary));
+    background: var(--primary);
+    border-color: var(--primary);
   }
   .checkbox[data-indeterminate="true"]::before {
     transform: scale(1);
-    background: hsl(var(--primary-foreground));
+    background: var(--primary-foreground);
     clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
   }
 
-  .checkbox:hover:not(:disabled) { border-color: hsl(var(--primary)); }
+  .checkbox:hover:not(:disabled) { border-color: var(--primary); }
   .checkbox:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
   .checkbox:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
 /* --- parity: aria-invalid error state --- */
 @layer components {
-  .checkbox[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
-  .checkbox[aria-invalid="true"]:focus-visible { outline-color: hsl(var(--destructive)); }
+  .checkbox[aria-invalid="true"] { border-color: var(--destructive); }
+  .checkbox[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent); }
 }

@@ -6,37 +6,42 @@
   .textarea {
     display: block;
     width: 100%;
-    min-height: 5rem;
+    min-height: 4rem;
     padding: var(--space-2) var(--space-3);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     line-height: 1.5;
-    color: hsl(var(--foreground));
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--input));
+    color: var(--foreground);
+    background: var(--background);
+    border: 1px solid var(--input);
     border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
     resize: vertical;
     transition:
       border-color var(--duration-base) var(--ease-out),
       box-shadow var(--duration-base) var(--ease-out);
   }
-  .textarea::placeholder { color: hsl(var(--muted-foreground)); }
-  .textarea:hover:not(:focus, :disabled) { border-color: hsl(var(--input) / 0.7); }
+  /* text-base on mobile (prevents iOS zoom), text-sm from md up (matches shadcn). */
+  @media (min-width: 48rem) {
+    .textarea { font-size: var(--text-sm); }
+  }
+  .textarea::placeholder { color: var(--muted-foreground); }
+  .textarea:hover:not(:focus, :disabled) { border-color: color-mix(in oklab, var(--input) 70%, transparent); }
   .textarea:focus {
     outline: none;
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.25);
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
   .textarea:disabled { opacity: 0.5; cursor: not-allowed; }
   .textarea:invalid:not(:placeholder-shown),
-  .textarea:user-invalid { border-color: hsl(var(--destructive)); }
+  .textarea:user-invalid { border-color: var(--destructive); }
   .textarea:invalid:not(:placeholder-shown):focus,
   .textarea:user-invalid:focus {
-    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
   }
 }
 
 /* --- parity: aria-invalid error state --- */
 @layer components {
-  .textarea[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
-  .textarea[aria-invalid="true"]:focus { box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25); }
+  .textarea[aria-invalid="true"] { border-color: var(--destructive); }
+  .textarea[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent); }
 }

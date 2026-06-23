@@ -22,11 +22,18 @@ const registryPath = path.join(root, "registry.json");
 const llmsOut = path.join(root, "llms.txt");
 const wwwLlms = path.resolve(root, "..", "..", "apps", "www", "llms.txt");
 
+// Lightning CSS encodes browser versions as (major << 16) | (minor << 8) | patch.
+// Passing a bare `111` means version 0.0.111 — i.e. a prehistoric browser — which
+// forces maximum downleveling (e.g. oklch() expanded to hex + lab(), bloating the
+// bundle ~12%). These are real modern versions, all of which support oklch() and
+// color-mix() natively, so the authored colors ship as-is. This baseline is also
+// already implied by the framework's use of :has() and the Popover API.
+const v = (major, minor = 0) => (major << 16) | (minor << 8);
 const targets = {
-  chrome: 111,
-  firefox: 113,
-  safari: 16,
-  edge: 111,
+  chrome: v(111),
+  firefox: v(113),
+  safari: v(16, 4),
+  edge: v(111),
 };
 
 async function ensureDir(dir) {
@@ -81,6 +88,33 @@ async function genLlms() {
   try { await fs.access(path.dirname(wwwLlms)); await fs.writeFile(wwwLlms, L.join("\n")); } catch {}
 }
 
+// Emit a modular dist for tree-shaking: `dist/base.min.css` (reset + tokens +
+// theme — the prerequisite every component references) plus one minified file
+// per component under `dist/components/`. Lets a consumer ship only the
+// components they use (base + N components) instead of the full bundle.
+// Some components reuse another's classes (see registry `deps`); include those
+// too. Returns the component count.
+async function emitModular() {
+  const srcDir = path.join(root, "src");
+  const distComponents = path.join(distDir, "components");
+  await ensureDir(distComponents);
+
+  // base.min.css — prime layer order, then reset/tokens/theme.
+  let baseCss = "@layer reset, theme, components;\n";
+  for (const f of ["base/reset.css", "base/tokens.css", "base/theme.css"])
+    baseCss += (await fs.readFile(path.join(srcDir, f), "utf8")) + "\n";
+  const { code: baseMin } = transform({ filename: "base.css", code: Buffer.from(baseCss), minify: true, targets });
+  await fs.writeFile(path.join(distDir, "base.min.css"), baseMin);
+
+  const compDir = path.join(srcDir, "components");
+  const names = (await fs.readdir(compDir)).filter((f) => f.endsWith(".css"));
+  for (const f of names) {
+    const { code: min } = transform({ filename: f, code: await fs.readFile(path.join(compDir, f)), minify: true, targets });
+    await fs.writeFile(path.join(distComponents, f.replace(/\.css$/, ".min.css")), min);
+  }
+  return names.length;
+}
+
 async function build() {
   const t0 = performance.now();
   await ensureDir(distDir);
@@ -105,6 +139,8 @@ async function build() {
     // apps/www not present — skip the showcase copy.
   }
 
+  const modularCount = await emitModular();
+
   const kbRaw = (code.length / 1024).toFixed(1);
   const kbMin = (minified.length / 1024).toFixed(1);
   const kbGzip = (gzipSync(minified).length / 1024).toFixed(1);
@@ -115,7 +151,8 @@ async function build() {
     `  ─────────────────────────────────────\n` +
     `  dist/shadcss.css        ${kbRaw.padStart(7)} KB  (expanded)\n` +
     `  dist/shadcss.min.css    ${kbMin.padStart(7)} KB  (minified)\n` +
-    `  gzipped             ${kbGzip.padStart(7)} KB  (over the wire)\n`
+    `  gzipped             ${kbGzip.padStart(7)} KB  (over the wire)\n` +
+    `  dist/base.min.css + dist/components/*.min.css  (${modularCount} modular files)\n`
   );
 }
 

@@ -20,9 +20,9 @@
     gap: var(--space-2);
     padding: var(--space-2) var(--space-3);
     background: transparent;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     font-size: var(--text-sm);
     font-weight: 500;
     cursor: pointer;
@@ -31,10 +31,11 @@
     transition: background var(--duration-fast) var(--ease-out);
   }
   .collapsible-trigger::-webkit-details-marker { display: none; }
-  .collapsible-trigger:hover { background: hsl(var(--accent)); }
+  .collapsible-trigger:hover { background: var(--accent); }
   .collapsible-trigger:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   .collapsible-trigger::after {
@@ -44,7 +45,7 @@
     background: currentColor;
     flex-shrink: 0;
     transition: transform var(--duration-base) var(--ease-out);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
   }
@@ -86,7 +87,7 @@
   .collapsible-content {
     padding-top: var(--space-2);
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.6;
   }
 }

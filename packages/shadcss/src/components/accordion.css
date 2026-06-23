@@ -10,14 +10,14 @@
   .accordion {
     display: flex;
     flex-direction: column;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: hsl(var(--card));
+    background: var(--card);
   }
 
   .accordion > details {
-    border-bottom: 1px solid hsl(var(--border));
+    border-bottom: 1px solid var(--border);
   }
   .accordion > details:last-child { border-bottom: none; }
 
@@ -29,14 +29,14 @@
     padding: var(--space-4);
     font-size: var(--text-sm);
     font-weight: 500;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     cursor: pointer;
     list-style: none;
     user-select: none;
     transition: background var(--duration-base) var(--ease-out);
   }
   .accordion > details > summary::-webkit-details-marker { display: none; }
-  .accordion > details > summary:hover { background: hsl(var(--accent)); }
+  .accordion > details > summary:hover { background: var(--accent); }
 
   .accordion > details > summary::after {
     content: "";
@@ -47,7 +47,7 @@
     transition: transform var(--duration-base) var(--ease-out);
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
   .accordion > details[open] > summary::after {
     transform: rotate(180deg);
@@ -94,13 +94,13 @@
   }
 
   .accordion > details[open] > summary {
-    border-bottom: 1px solid hsl(var(--border));
+    border-bottom: 1px solid var(--border);
   }
 
   .accordion-content {
     padding: var(--space-4);
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.6;
   }
 
@@ -117,7 +117,8 @@
 /* --- parity: keyboard focus ring on the trigger --- */
 @layer components {
   .accordion > details > summary:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: -2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 }

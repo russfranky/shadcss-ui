@@ -1,9 +1,9 @@
 # shadcss
 
 > **Zero-runtime UI with the shadcn aesthetic — no React, no Tailwind, no Radix, no hydration.**
-> 52 HTML/CSS components and patterns for server-rendered, static, HTMX, Astro, and AI-generated apps. ~16.8 KB gzipped, zero dependencies, zero JS runtime. Complex widgets are clearly marked.
+> 52 HTML/CSS components and patterns for server-rendered, static, HTMX, Astro, and AI-generated apps. ~15.4 KB gzipped, zero dependencies, zero JS runtime. Complex widgets are clearly marked.
 
-[![gzip size](https://img.shields.io/badge/gzipped-16.8%20KB-success)](./dist/shadcss.min.css)
+[![gzip size](https://img.shields.io/badge/gzipped-15.4%20KB-success)](./dist/shadcss.min.css)
 [![no js framework](https://img.shields.io/badge/JS-no%20framework-black)](#)
 [![components](https://img.shields.io/badge/components-52-blue)](#components-52)
 [![deps](https://img.shields.io/badge/dependencies-0-blue)](#)
@@ -25,6 +25,40 @@ ships 0 JS; native `<dialog>`/Popover/toast need a one-line native trigger
 
 If you've ever looked at a shadcn component's `.tsx` file and thought *"why
 is this a React hook?"* — this is for you.
+
+---
+
+## What's new in 0.2.0 (breaking)
+
+0.2.0 retunes shadcss to match **current** shadcn (Tailwind v4 era) pixel-for-pixel,
+which changes the theming contract:
+
+- **Colors are now OKLCH** (shadcn's neutral palette) stored as *full color
+  values*. Components reference them directly — `var(--primary)` — with opacity
+  via `color-mix(in oklab, var(--primary) 90%, transparent)`.
+  **Breaking:** the old contract stored HSL channels (`--primary: 240 6% 10%`)
+  used as `hsl(var(--primary))`. If you re-themed by overriding HSL triples, set
+  full colors now (`--primary: oklch(0.205 0 0)` — or any CSS color).
+- **`--radius` is `0.625rem`** (was `0.5rem`); focus rings use shadcn's 3px
+  `ring`; button/input/badge/avatar/etc. metrics match current shadcn.
+- Requires `oklch()` + `color-mix()` (Chrome 111+, Safari 16.4+, Firefox 113+) —
+  already implied by the Popover API and `:has()` shadcss builds on.
+
+### Import only what you use (tree-shaking)
+
+The full bundle `dist/shadcss.min.css` is ~15.4 KB gz. To ship less, import the
+base layer once plus only the components you use:
+
+```html
+<link rel="stylesheet" href="@russfranky/shadcss/dist/base.min.css">
+<link rel="stylesheet" href="@russfranky/shadcss/dist/components/button.min.css">
+<link rel="stylesheet" href="@russfranky/shadcss/dist/components/card.min.css">
+```
+
+`base.min.css` is ~2.7 KB gz (reset + tokens + thin utilities); each component is
+~0.5–1.5 KB gz. A typical app (base + ~8 components) is ~8 KB gz vs 15.4 for the
+full set. Some components reuse another's classes — include those too (see
+`registry.json` `deps`).
 
 ---
 
@@ -299,7 +333,7 @@ packages/shadcss/
 │   └── shadcss.css          ← main entry, @imports all
 ├── dist/
 │   ├── shadcss.css          ← bundled (165 KB)
-│   └── shadcss.min.css      ← minified (137 KB, 16.8 KB gzipped)
+│   └── shadcss.min.css      ← minified (101 KB, 15.4 KB gzipped)
 ├── scripts/
 │   └── build.mjs            ← Lightning CSS bundler
 ├── registry.json            ← machine-readable component registry

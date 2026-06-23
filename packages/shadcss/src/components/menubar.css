@@ -9,42 +9,45 @@
   .menubar {
     display: inline-flex;
     align-items: center;
-    gap: 0;
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--border));
+    gap: var(--space-1);
+    height: 2.25rem;
+    background: var(--background);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: var(--space-1);
+    box-shadow: var(--shadow-xs);
   }
 
   .menubar-trigger {
     position: relative;
     display: inline-flex;
     align-items: center;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-2);
     font-size: var(--text-sm);
     font-weight: 500;
     line-height: 1;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     background: transparent;
     border: none;
-    border-radius: calc(var(--radius-md) - 2px);
+    border-radius: var(--radius-sm);
     cursor: pointer;
     user-select: none;
     transition: background var(--duration-fast) var(--ease-out);
   }
-  .menubar-trigger:hover { background: hsl(var(--accent)); }
+  .menubar-trigger:hover { background: var(--accent); }
   .menubar-trigger:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   /* Submenu via Popover API */
   .menubar-menu {
     min-width: 12rem;
     padding: var(--space-1);
-    background: hsl(var(--popover));
-    color: hsl(var(--popover-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     margin: 0;
@@ -91,7 +94,7 @@
   /* Keyboard shortcut inside menubar item */
   .menubar-menu .dropdown-shortcut {
     margin-inline-start: auto;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     font-size: var(--text-xs);
   }
 }
@@ -100,7 +103,7 @@
 @layer components {
   .menubar-trigger[data-state="open"],
   .menubar-trigger[aria-expanded="true"] {
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }

@@ -6,21 +6,21 @@
   .alert {
     display: flex;
     gap: var(--space-3);
-    padding: var(--space-4);
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--border));
+    padding: var(--space-3) var(--space-4);
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    color: hsl(var(--foreground));
+    color: var(--card-foreground);
     font-size: var(--text-sm);
     position: relative;
   }
 
   .alert > svg {
     flex-shrink: 0;
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1rem;
+    height: 1rem;
     margin-top: 0.0625rem;
-    color: hsl(var(--foreground));
+    color: currentColor;
   }
 
   .alert-title {
@@ -29,36 +29,36 @@
     margin-bottom: 0.125rem;
   }
   .alert-description {
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
   }
 
   /* Variants — color shifts via :where() so children stay readable */
-  .alert-default { background: hsl(var(--background)); }
+  .alert-default { background: var(--card); }
   .alert-destructive {
-    border-color: hsl(var(--destructive) / 0.4);
-    color: hsl(var(--destructive));
+    border-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+    color: var(--destructive);
   }
   .alert-destructive > svg,
-  .alert-destructive .alert-title { color: hsl(var(--destructive)); }
+  .alert-destructive .alert-title { color: var(--destructive); }
 
   .alert-success {
-    border-color: hsl(var(--success) / 0.4);
+    border-color: color-mix(in oklab, var(--success) 40%, transparent);
   }
   .alert-success > svg,
-  .alert-success .alert-title { color: hsl(var(--success)); }
+  .alert-success .alert-title { color: var(--success); }
 
   .alert-warning {
-    border-color: hsl(var(--warning) / 0.4);
+    border-color: color-mix(in oklab, var(--warning) 40%, transparent);
   }
   .alert-warning > svg,
-  .alert-warning .alert-title { color: hsl(var(--warning)); }
+  .alert-warning .alert-title { color: var(--warning); }
 
   .alert-info {
-    border-color: hsl(var(--info) / 0.4);
+    border-color: color-mix(in oklab, var(--info) 40%, transparent);
   }
   .alert-info > svg,
-  .alert-info .alert-title { color: hsl(var(--info)); }
+  .alert-info .alert-title { color: var(--info); }
 
   /* Dismissible using <details>+<summary> trick — no JS.
      <details open> means EXPANDED (alert visible). When user clicks the
@@ -76,12 +76,12 @@
     height: 1.25rem;
     display: grid;
     place-content: center;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     cursor: pointer;
     border-radius: var(--radius-sm);
   }
   .alert-dismissible > summary::-webkit-details-marker { display: none; }
-  .alert-dismissible > summary:hover { background: hsl(var(--accent)); }
+  .alert-dismissible > summary:hover { background: var(--accent); }
   /* Once dismissed (closed), the entire alert collapses */
   .alert-dismissible:not([open]) {
     display: none;

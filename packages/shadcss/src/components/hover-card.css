@@ -17,9 +17,9 @@
     display: none;
     width: min(20rem, calc(100vw - 2rem));
     padding: var(--space-4);
-    background: hsl(var(--popover));
-    color: hsl(var(--popover-foreground));
-    border: 1px solid hsl(var(--border));
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     margin: 0;
@@ -63,7 +63,7 @@
   }
   .hover-card-description {
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.5;
   }
 
@@ -73,9 +73,9 @@
     gap: var(--space-2);
     margin-top: var(--space-3);
     padding-top: var(--space-3);
-    border-top: 1px solid hsl(var(--border));
+    border-top: 1px solid var(--border);
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
   .hover-card-stat {
     display: flex;
@@ -85,6 +85,6 @@
   .hover-card-stat-value {
     font-size: var(--text-sm);
     font-weight: 600;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
   }
 }

@@ -8,9 +8,9 @@
     -webkit-appearance: none;
     width: 1.25rem;
     height: 1.25rem;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: var(--radius-full);
-    background: hsl(var(--background));
+    background: var(--background);
     cursor: pointer;
     flex-shrink: 0;
     display: inline-grid;
@@ -25,20 +25,21 @@
     width: 0.6rem;
     height: 0.6rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--primary-foreground));
+    background: var(--primary-foreground);
     transform: scale(0);
     transition: transform var(--duration-base) var(--ease-out);
   }
 
   .radio:checked {
-    background: hsl(var(--primary));
-    border-color: hsl(var(--primary));
+    background: var(--primary);
+    border-color: var(--primary);
   }
   .radio:checked::before { transform: scale(1); }
-  .radio:hover:not(:disabled) { border-color: hsl(var(--primary)); }
+  .radio:hover:not(:disabled) { border-color: var(--primary); }
   .radio:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
   .radio:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -48,6 +49,6 @@
 
 /* --- parity: aria-invalid error state --- */
 @layer components {
-  .radio[aria-invalid="true"] { border-color: hsl(var(--destructive)); }
-  .radio[aria-invalid="true"]:focus-visible { outline-color: hsl(var(--destructive)); }
+  .radio[aria-invalid="true"] { border-color: var(--destructive); }
+  .radio[aria-invalid="true"]:focus-visible { outline-color: var(--destructive); }
 }

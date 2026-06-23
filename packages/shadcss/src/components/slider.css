@@ -20,12 +20,12 @@
   .slider::-webkit-slider-runnable-track {
     height: 0.375rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--secondary));
+    background: var(--secondary);
   }
   .slider::-moz-range-track {
     height: 0.375rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--secondary));
+    background: var(--secondary);
   }
 
   /* Filled portion — colored via a background gradient whose stop is the
@@ -35,10 +35,10 @@
   .slider {
     background: linear-gradient(
       to right,
-      hsl(var(--primary)) 0%,
-      hsl(var(--primary)) var(--slider-fill, 50%),
-      hsl(var(--secondary)) var(--slider-fill, 50%),
-      hsl(var(--secondary)) 100%
+      var(--primary) 0%,
+      var(--primary) var(--slider-fill, 50%),
+      var(--secondary) var(--slider-fill, 50%),
+      var(--secondary) 100%
     );
     border-radius: var(--radius-full);
     height: 0.375rem;
@@ -55,8 +55,8 @@
     height: 1.125rem;
     margin-top: -0.375rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--primary));
+    background: var(--background);
+    border: 1px solid var(--primary);
     box-shadow: var(--shadow-sm);
     cursor: grab;
     transition:
@@ -71,24 +71,26 @@
     transform: scale(1.15);
   }
   .slider::-webkit-slider-thumb:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   .slider::-moz-range-thumb {
     width: 1.125rem;
     height: 1.125rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--primary));
+    background: var(--background);
+    border: 1px solid var(--primary);
     box-shadow: var(--shadow-sm);
     cursor: grab;
     transition: transform var(--duration-fast) var(--ease-out);
   }
   .slider::-moz-range-thumb:hover { transform: scale(1.1); }
   .slider::-moz-range-thumb:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   /* Disabled */
@@ -118,10 +120,10 @@
        mode, not the horizontal to-right axis used by the base rule. */
     background: linear-gradient(
       to top,
-      hsl(var(--primary)) 0%,
-      hsl(var(--primary)) var(--slider-fill, 50%),
-      hsl(var(--secondary)) var(--slider-fill, 50%),
-      hsl(var(--secondary)) 100%
+      var(--primary) 0%,
+      var(--primary) var(--slider-fill, 50%),
+      var(--secondary) var(--slider-fill, 50%),
+      var(--secondary) 100%
     );
   }
 }

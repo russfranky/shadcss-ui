@@ -24,7 +24,7 @@
     padding: 0 var(--space-2);
     font-size: var(--text-sm);
     font-weight: 500;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     border: 1px solid transparent;
     border-radius: var(--radius-sm);
     text-decoration: none;
@@ -35,19 +35,20 @@
   }
 
   .pagination-link:hover {
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 
   .pagination-link[aria-current="page"] {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background: var(--primary);
+    color: var(--primary-foreground);
     pointer-events: none;
   }
 
   .pagination-link:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 
   .pagination-ellipsis {
@@ -56,12 +57,12 @@
     justify-content: center;
     min-width: 2rem;
     height: 2rem;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
 
   .pagination-prev,
   .pagination-next {
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
 
   .pagination-prev[aria-disabled="true"],

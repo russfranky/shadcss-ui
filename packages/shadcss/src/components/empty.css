@@ -21,8 +21,8 @@
     width: 3rem;
     height: 3rem;
     border-radius: var(--radius-full);
-    background: hsl(var(--accent));
-    color: hsl(var(--muted-foreground));
+    background: var(--accent);
+    color: var(--muted-foreground);
   }
   .empty-icon > svg {
     width: 1.5rem;
@@ -38,7 +38,7 @@
 
   .empty-description {
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     max-width: 32rem;
     line-height: 1.5;
   }
@@ -51,15 +51,15 @@
 
   /* Variants by content type */
   .empty-error .empty-icon {
-    background: hsl(var(--destructive) / 0.1);
-    color: hsl(var(--destructive));
+    background: color-mix(in oklab, var(--destructive) 10%, transparent);
+    color: var(--destructive);
   }
   .empty-success .empty-icon {
-    background: hsl(var(--success) / 0.1);
-    color: hsl(var(--success));
+    background: color-mix(in oklab, var(--success) 10%, transparent);
+    color: var(--success);
   }
   .empty-warning .empty-icon {
-    background: hsl(var(--warning) / 0.1);
-    color: hsl(var(--warning));
+    background: color-mix(in oklab, var(--warning) 10%, transparent);
+    color: var(--warning);
   }
 }

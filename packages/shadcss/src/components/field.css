@@ -25,11 +25,11 @@
     font-size: var(--text-sm);
     font-weight: 500;
     line-height: 1;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
   }
   .field-label::after {
     content: "*";
-    color: hsl(var(--destructive));
+    color: var(--destructive);
     margin-inline-start: 0.125em;
     display: none;
   }
@@ -45,7 +45,7 @@
   .field-description {
     grid-area: description;
     font-size: var(--text-xs);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     line-height: 1.4;
   }
 
@@ -55,7 +55,7 @@
     align-items: center;
     gap: var(--space-1);
     font-size: var(--text-xs);
-    color: hsl(var(--destructive));
+    color: var(--destructive);
     line-height: 1.4;
   }
   .field-error > svg { width: 0.875rem; height: 0.875rem; }
@@ -83,14 +83,14 @@
   .field:has(:invalid:not(:placeholder-shown)) .input,
   .field:has(:invalid:not(:placeholder-shown)) .textarea,
   .field:has(select:user-invalid) .select {
-    border-color: hsl(var(--destructive));
+    border-color: var(--destructive);
   }
   .field:has(:user-invalid) .input:focus,
   .field:has(:user-invalid) .textarea:focus,
   .field:has(:invalid:not(:placeholder-shown)) .input:focus,
   .field:has(:invalid:not(:placeholder-shown)) .textarea:focus,
   .field:has(select:user-invalid) .select:focus {
-    box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.25);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--destructive) 25%, transparent);
   }
 }
 
@@ -110,6 +110,6 @@
   .field[data-invalid="true"] .input,
   .field:has([aria-invalid="true"]) .input,
   .field[data-invalid="true"] .textarea,
-  .field:has([aria-invalid="true"]) .textarea { border-color: hsl(var(--destructive)); }
+  .field:has([aria-invalid="true"]) .textarea { border-color: var(--destructive); }
   .field-group { display: flex; flex-direction: column; gap: var(--space-5); }
 }

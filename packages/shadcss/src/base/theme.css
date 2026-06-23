@@ -13,23 +13,23 @@
   }
 
   body {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background: var(--background);
+    color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.2);
+    background: color-mix(in oklab, var(--primary) 20%, transparent);
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--ring));
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
 
   hr {
     border: none;
-    border-top: 1px solid hsl(var(--border));
+    border-top: 1px solid var(--border);
   }
 
   code, kbd, pre, samp {
@@ -38,27 +38,27 @@
   }
 
   /* Token helpers — use as `class="bg-card text-muted-foreground"` */
-  .text-foreground      { color: hsl(var(--foreground)); }
-  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
-  .text-primary         { color: hsl(var(--primary)); }
-  .text-destructive     { color: hsl(var(--destructive)); }
-  .text-success         { color: hsl(var(--success)); }
-  .text-warning         { color: hsl(var(--warning)); }
-  .text-info            { color: hsl(var(--info)); }
+  .text-foreground      { color: var(--foreground); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+  .text-primary         { color: var(--primary); }
+  .text-destructive     { color: var(--destructive); }
+  .text-success         { color: var(--success); }
+  .text-warning         { color: var(--warning); }
+  .text-info            { color: var(--info); }
 
-  .bg-background        { background: hsl(var(--background)); }
-  .bg-card              { background: hsl(var(--card)); }
-  .bg-popover           { background: hsl(var(--popover)); }
-  .bg-primary           { background: hsl(var(--primary)); }
-  .bg-secondary         { background: hsl(var(--secondary)); }
-  .bg-muted             { background: hsl(var(--muted)); }
-  .bg-accent            { background: hsl(var(--accent)); }
-  .bg-destructive       { background: hsl(var(--destructive)); }
+  .bg-background        { background: var(--background); }
+  .bg-card              { background: var(--card); }
+  .bg-popover           { background: var(--popover); }
+  .bg-primary           { background: var(--primary); }
+  .bg-secondary         { background: var(--secondary); }
+  .bg-muted             { background: var(--muted); }
+  .bg-accent            { background: var(--accent); }
+  .bg-destructive       { background: var(--destructive); }
 
-  .border-border        { border-color: hsl(var(--border)); }
-  .border-input         { border-color: hsl(var(--input)); }
-  .border-primary       { border-color: hsl(var(--primary)); }
-  .border-destructive   { border-color: hsl(var(--destructive)); }
+  .border-border        { border-color: var(--border); }
+  .border-input         { border-color: var(--input); }
+  .border-primary       { border-color: var(--primary); }
+  .border-destructive   { border-color: var(--destructive); }
 
   /* Typography scale helpers */
   .text-xs   { font-size: var(--text-xs);   line-height: var(--leading-xs); }

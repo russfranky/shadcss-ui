@@ -24,9 +24,9 @@
     font-size: var(--text-lg);
     font-weight: 500;
     font-family: var(--font-mono);
-    color: hsl(var(--foreground));
-    background: hsl(var(--background));
-    border: 1px solid hsl(var(--input));
+    color: var(--foreground);
+    background: var(--background);
+    border: 1px solid var(--input);
     border-radius: var(--radius-md);
     transition:
       border-color var(--duration-base) var(--ease-out),
@@ -35,8 +35,8 @@
 
   .otp-input:focus {
     outline: none;
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.25);
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 25%, transparent);
   }
 
   .otp-input:disabled {
@@ -45,7 +45,7 @@
   }
 
   .otp-input:user-invalid {
-    border-color: hsl(var(--destructive));
+    border-color: var(--destructive);
   }
 
   /* Separator after N digits */
@@ -53,7 +53,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     padding-inline: var(--space-1);
   }
 

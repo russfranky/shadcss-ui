@@ -8,9 +8,9 @@
     display: block;
     background: linear-gradient(
       90deg,
-      hsl(var(--muted)) 25%,
-      hsl(var(--muted) / 0.5) 50%,
-      hsl(var(--muted)) 75%
+      var(--muted) 25%,
+      color-mix(in oklab, var(--muted) 50%, transparent) 50%,
+      var(--muted) 75%
     );
     background-size: 200% 100%;
     animation: shadcss-shimmer 1.5s ease-in-out infinite;

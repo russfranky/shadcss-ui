@@ -6,10 +6,10 @@
   .card {
     display: flex;
     flex-direction: column;
-    background: hsl(var(--card));
-    color: hsl(var(--card-foreground));
-    border: 1px solid hsl(var(--border));
-    border-radius: var(--radius-lg);
+    background: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
   }
@@ -28,7 +28,7 @@
   }
   .card-description {
     font-size: var(--text-sm);
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
   }
 
   /* Action slot — a control pinned to the top-right of the header (shadcn's
@@ -72,7 +72,8 @@
     box-shadow: var(--shadow-md);
   }
   .card-interactive:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   }
 }
