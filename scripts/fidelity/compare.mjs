@@ -50,8 +50,10 @@ function colorToken(v) {
   if (v === "transparent" || v === "currentColor" || v === "inherit") return v;
   return v.slice(0, 18);
 }
-// shadcn colorRef -> comparable token
-function shadcnColor(ref) { if (!ref) return null; if (ref.token === "white") return "white"; return ref.token; }
+// shadcn colorRef -> comparable token. Guard against text-align keywords that
+// the extractor occasionally captured as a "color" (e.g. text-center/text-left).
+const ALIGN_KEYWORDS = new Set(["center", "left", "right", "start", "end", "justify"]);
+function shadcnColor(ref) { if (!ref) return null; if (ALIGN_KEYWORDS.has(ref.token)) return null; if (ref.token === "white") return "white"; return ref.token; }
 
 function shadcssAt(css, selector) {
   const b = readBlock(css, selector); if (b == null) return null;
@@ -169,5 +171,11 @@ console.log(`\n=== COLOR/FOREGROUND DEVIATIONS (${colorRows.length}) ===`);
 for (const r of colorRows) console.log(`  ${r[0]}/${r[1]}`.padEnd(34) + `${r[2].padEnd(11)} shadcn=${String(r[3]).padEnd(20)} shadcss=${r[4]}`);
 console.log(`\n=== BOX-METRIC DEVIATIONS (${rows.length-1}) ===`);
 for (const r of rows.slice(1)) console.log(`  ${r[0]}/${r[1]}`.padEnd(30) + `${r[2].padEnd(12)} shadcn=${String(r[3]).padEnd(10)} shadcss=${String(r[4]).padEnd(12)} ${r[5]}`);
-console.log(`\ndeviations_total=${lineHeightRows.length + colorRows.length + (rows.length - 1)}`);
+// "not found" rows mean a slot the comparator couldn't locate (shadcss names it
+// differently or styles a native element) — that's "can't compare", NOT a real
+// deviation, so it doesn't count toward fidelity. Count only real mismatches.
+const realBox = rows.slice(1).filter((r) => r[5] !== "skip").length;
+const notFound = rows.slice(1).length - realBox;
+console.log(`\nreal_deviations=${lineHeightRows.length + colorRows.length + realBox}  (box ${realBox}, color ${colorRows.length}, line-height ${lineHeightRows.length}; ${notFound} slots not comparable)`);
+console.log(`deviations_total=${lineHeightRows.length + colorRows.length + realBox}`);
 console.log(`Wrote qa/fidelity/gaps.csv`);

@@ -108,5 +108,3 @@
 "COLOR/TOKEN DEVIATIONS"
 "component","slot","metric","shadcn","shadcss"
 "progress","(root)","background","primary","mix:primary"
-"command","command-empty","color","center","muted-foreground"
-"sidebar","(root)","color","left","sidebar-foreground"
