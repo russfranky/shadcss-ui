@@ -55,7 +55,7 @@
     font-size: var(--text-sm);
     font-weight: 500;
     line-height: 1;
-    color: var(--muted-foreground);
+    color: var(--foreground);
     border-radius: calc(var(--radius-md) - 2px);
     cursor: pointer;
     white-space: nowrap;
