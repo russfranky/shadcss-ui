@@ -98,7 +98,6 @@
 "sidebar","sidebar-menu-sub-item","—","","(selector .sidebar-menu-sub-item not found)","skip"
 "field","field-set","—","","(selector .field-set not found)","skip"
 "field","field-legend","—","","(selector .field-legend not found)","skip"
-"field","field-group","gap","28px","20px",""
 "field","field-content","—","","(selector .field-content not found)","skip"
 "field","field-separator","—","","(selector .field-separator not found)","skip"
 "navigation-menu","navigation-menu-indicator","—","","(selector .navigation-menu-indicator not found)","skip"

@@ -111,5 +111,5 @@
   .field:has([aria-invalid="true"]) .input,
   .field[data-invalid="true"] .textarea,
   .field:has([aria-invalid="true"]) .textarea { border-color: var(--destructive); }
-  .field-group { display: flex; flex-direction: column; gap: var(--space-5); }
+  .field-group { display: flex; flex-direction: column; gap: var(--space-7); }
 }
