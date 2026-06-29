@@ -247,7 +247,7 @@ A11y: nav landmark; mobile reveal via a CSS-only checkbox toggle
 Markup: <aside class="sidebar"><div class="sidebar-header"><a class="sidebar-brand"><span class="sidebar-brand-logo">…</span><span class="sidebar-brand-text">Brand</span></a></div><nav class="sidebar-content"><div class="sidebar-group"><div class="sidebar-group-label">Group</div><ul class="sidebar-menu"><li class="sidebar-menu-item"><a class="sidebar-menu-button" aria-current="page"><svg>…</svg><span>Item</span></a></li></ul></div></nav><div class="sidebar-footer">…</div></aside>
 
 ### skeleton — status:stable · js:none · support:baseline
-Loading placeholder with shimmer animation.
+Loading placeholder that pulses (animate-pulse, bg-accent, rounded-md).
 Classes: skeleton skeleton-circle skeleton-text
 A11y: Decorative; aria-hidden or a loading status nearby
 Markup: <div class="skeleton"></div>

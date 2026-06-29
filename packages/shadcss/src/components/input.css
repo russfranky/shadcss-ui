@@ -12,7 +12,7 @@
     font-size: var(--text-base);
     line-height: 1;
     color: var(--foreground);
-    background: var(--background);
+    background: transparent;
     border: 1px solid var(--input);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-xs);

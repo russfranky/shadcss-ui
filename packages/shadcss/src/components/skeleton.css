@@ -1,33 +1,28 @@
 /* ==========================================================================
    shadcss · components/skeleton.css
-   Pure CSS shimmer animation. Use <div class="skeleton"> placeholders.
+   shadcn-faithful loading placeholder: a solid accent block that pulses
+   (animate-pulse / bg-accent / rounded-md). Use <div class="skeleton">.
    ========================================================================== */
 
 @layer components {
   .skeleton {
     display: block;
-    background: linear-gradient(
-      90deg,
-      var(--muted) 25%,
-      color-mix(in oklab, var(--muted) 50%, transparent) 50%,
-      var(--muted) 75%
-    );
-    background-size: 200% 100%;
-    animation: shadcss-shimmer 1.5s ease-in-out infinite;
-    border-radius: var(--radius-sm);
+    background-color: var(--accent);
+    animation: shadcss-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    border-radius: var(--radius-md);
     min-height: 1rem;
   }
 
-  @keyframes shadcss-shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+  @keyframes shadcss-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
   }
 
   .skeleton-circle { border-radius: var(--radius-full); }
   .skeleton-text {
     height: 0.75rem;
     margin-bottom: 0.5rem;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
   }
   .skeleton-text-group .skeleton-text:last-child { width: 60%; }
 
